@@ -1,63 +1,36 @@
+import 'package:easybit/constants.dart';
 import 'package:flutter/material.dart';
 
 class Background extends StatelessWidget {
-  const Background({super.key});
+  const Background({super.key, required Column child});
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage("images/background.png"), fit: BoxFit.cover),
-      ),
-      child: Center(
-          child: FlutterLogo(
-        size: 200,
-      )),
-    );
+    return const DecoratedBox(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.white70,
+              offset: const Offset(5.0, 5.0),
+              blurRadius: 10.0,
+              spreadRadius: 0.0,
+            ),
+          ],
+          // boxShadow: [ BoxShadow(color: Colors.grey, blurRadius: 6, offset: Offset(0, 2))],
+          image: DecorationImage(
+            //scale: 3.0,
+            //opacity: 6.0,
+            image: AssetImage("images/background.png"),
+            fit: BoxFit.cover,
+          ),
+          gradient: LinearGradient(
+            colors: [
+              Colors.white,
+              Color.fromARGB(255, 16, 76, 135),
+            ],
+          ),
+        ),
+        child: Column());
   }
 }
-
- /*DrawerHeader(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [
-            Colors.white,
-            Theme.of(context).primaryColor,
-          ]),
-        ),
-        child: const Column(
-          verticalDirection: VerticalDirection.down,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            CircleAvatar(
-              backgroundImage: AssetImage("images/logo.png"),
-              radius: 50,
-            ),
-            // IconButton(onPressed: () {}, icon: const Icon(Icons.settings))
-            Image(
-              image: AssetImage("images/background.png"),
-              fit: BoxFit.cover,
-              // width: 500,
-            ),
-          ],
-        ));*/
-
-/*
-decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [
-            Colors.white,
-            Theme.of(context).primaryColor,
-          ]),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const CircleAvatar(
-              backgroundImage: AssetImage("images/restaurantlogo.png"),
-              radius: 30,
-            ),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.settings))
-          ],
-        )
-*/
