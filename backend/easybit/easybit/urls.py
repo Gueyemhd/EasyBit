@@ -16,7 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from authentication.register import first_page_register, second_page_register
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("register1/", first_page_register),
+    path("register2/", second_page_register)
 ]
