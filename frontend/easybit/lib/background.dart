@@ -6,13 +6,12 @@ class Background extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return const DecoratedBox(
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
               color: Colors.white70,
-              offset: const Offset(5.0, 5.0),
+              offset: Offset(5.0, 5.0),
               blurRadius: 10.0,
               spreadRadius: 0.0,
             ),
@@ -27,7 +26,7 @@ class Background extends StatelessWidget {
           gradient: LinearGradient(
             colors: [
               Colors.white,
-              Color.fromARGB(255, 16, 76, 135),
+              bluelogo,
             ],
           ),
         ),

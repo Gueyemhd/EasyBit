@@ -1,5 +1,6 @@
 import 'package:easybit/constants.dart';
-import 'package:easybit/screens/home.dart';
+import 'package:easybit/screens/launchpage.dart';
+import 'package:easybit/screens/startedPage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,14 +16,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        // primarySwatch: Colors.lightBlue,
         primaryColor: bluelogo,
-        // scaffoldBackgroundColor: secondColor
       ),
       routes: {
-        "/home": (context) => const Home(),
+        "/started": (context) => const Home(),
+        "/launch": (context) => Launch(),
       },
-      initialRoute: "/home",
+      initialRoute: "/launch",
     );
   }
 }
