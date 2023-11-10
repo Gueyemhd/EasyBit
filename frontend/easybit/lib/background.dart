@@ -16,7 +16,6 @@ class Background extends StatelessWidget {
               spreadRadius: 0.0,
             ),
           ],
-          // boxShadow: [ BoxShadow(color: Colors.grey, blurRadius: 6, offset: Offset(0, 2))],
           image: DecorationImage(
             //scale: 3.0,
             //opacity: 6.0,

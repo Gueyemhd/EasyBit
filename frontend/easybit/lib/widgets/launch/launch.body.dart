@@ -1,4 +1,5 @@
 //import 'package:easybit/background.dart';
+import 'package:easybit/screens/registrationpage.dart';
 import 'package:easybit/screens/startedPage.dart';
 import 'package:easybit/widgets/launch/launch.body.roundedButton.dart';
 import 'package:easybit/widgets/launch/launch.body.roundedButton2.dart';
@@ -39,7 +40,11 @@ class _LaunchBodyState extends State<LaunchBody> {
           SizedBox(height: size.height * 0.02),
           RoundedButton2(
             text: "S'inscrire",
-            press: () {},
+            press: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return RegistrationPage();
+              }));
+            },
           ),
         ],
       ),
