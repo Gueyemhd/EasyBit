@@ -30,7 +30,6 @@ def obtenir_taux_change_eur_xof():
         return taux_change_eur_xof
        
     else:
-        # Gérer les erreurs ici, par exemple, en levant une exception ou en renvoyant un message d'erreur
         raise Exception('Impossible de récupérer le taux de change EUR/XOF')
 
 
@@ -71,7 +70,7 @@ def Convert_XOF(request):
         
         else:
 
-            return Response({'error': 'Invalid coin amount, Please provide a non-negative value'}, status=status.HTTP_400_BAD_REQUEST)
+             return Response({'error': 'Invalid coin amount, Please provide a non-negative value'}, status=status.HTTP_400_BAD_REQUEST)
         
     else : 
 
@@ -115,8 +114,9 @@ def Convert_BTC(request):
         else:
 
             return Response({'error': 'Invalid currency amount, Please provide a non-negative value'}, status=status.HTTP_400_BAD_REQUEST)
-
-    return Response({"error": 'Bad request '}, status= status.HTTP_405_METHOD_NOT_ALLOWED)
+    else:
+        
+        return Response({"error": 'Bad request '}, status= status.HTTP_405_METHOD_NOT_ALLOWED)
         
 #----------------------------------------------------------------------------------------------------------------------------------------------------
 
