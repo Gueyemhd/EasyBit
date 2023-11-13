@@ -11,6 +11,6 @@ class Launch extends StatefulWidget {
 class _LaunchState extends State<Launch> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(resizeToAvoidBottomInset: true, body: LaunchBody());
+    return const LaunchBody();
   }
 }

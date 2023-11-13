@@ -1,6 +1,6 @@
 import 'package:easybit/constants.dart';
-import 'package:easybit/screens/launchpage.dart';
-import 'package:easybit/screens/registrationpage.dart';
+import 'package:easybit/screens/launchPage.dart';
+import 'package:easybit/screens/registrationPage.dart';
 import 'package:easybit/screens/startedPage.dart';
 import 'package:easybit/widgets/registration/next.dart';
 import 'package:flutter/material.dart';
@@ -22,11 +22,11 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         "/started": (context) => const Home(),
-        "/launch": (context) => Launch(),
-        "/registration": (context) => RegistrationPage(),
-        "/next": (context) => Next(),
+        "/launch": (context) => const Launch(),
+        "/registration": (context) => const Registration(),
+        "/next": (context) => const Next(),
       },
-      initialRoute: "/registration",
+      initialRoute: "/launch",
     );
   }
 }

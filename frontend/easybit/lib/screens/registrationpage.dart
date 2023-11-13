@@ -1,14 +1,14 @@
 import 'package:easybit/widgets/registration/registration.body.dart';
 import 'package:flutter/material.dart';
 
-class RegistrationPage extends StatefulWidget {
-  const RegistrationPage({super.key});
+class Registration extends StatefulWidget {
+  const Registration({super.key});
 
   @override
-  State<RegistrationPage> createState() => _RegistrationPageState();
+  State<Registration> createState() => _RegistrationState();
 }
 
-class _RegistrationPageState extends State<RegistrationPage> {
+class _RegistrationState extends State<Registration> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
