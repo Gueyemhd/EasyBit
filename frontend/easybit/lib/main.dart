@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         "/registration": (context) => const Registration(),
         "/next": (context) => const Next(),
       },
-      initialRoute: "/launch",
+      initialRoute: "/registration",
     );
   }
 }
