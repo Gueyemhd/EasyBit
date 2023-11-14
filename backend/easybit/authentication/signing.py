@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view
 from .models import Utilisateur, User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView, PasswordResetCompleteView, PasswordResetDoneView
 
 
 # API to sign in 
@@ -28,4 +29,11 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return Response({'message': 'vous êtes déconnecté'})
+
+
+
+# APIs to reset password
+# views.py
+
+
 
