@@ -1,95 +1,52 @@
 import 'package:easybit/constants.dart';
-import 'package:easybit/widgets/registration/next.dart';
 import 'package:flutter/material.dart';
 
-class RegistrationBody extends StatefulWidget {
-  const RegistrationBody({super.key});
+class LoginBody extends StatefulWidget {
+  const LoginBody({super.key});
 
   @override
-  State<RegistrationBody> createState() => _RegistrationBodyState();
+  State<LoginBody> createState() => _LoginBodyState();
 }
 
-class _RegistrationBodyState extends State<RegistrationBody> {
+class _LoginBodyState extends State<LoginBody> {
+  bool isRememberMe = false;
+
+  Widget rememberMe() {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      alignment: Alignment.centerLeft,
+      height: 20,
+      child: Row(children: <Widget>[
+        Theme(
+          data: ThemeData(unselectedWidgetColor: gold),
+          child: Checkbox(
+              value: isRememberMe,
+              checkColor: Colors.white,
+              activeColor: gold,
+              onChanged: (value) {
+                setState(() {
+                  isRememberMe = value!;
+                });
+              }),
+        ),
+        const Text(
+          'Se souvenir',
+          style: TextStyle(color: Colors.white, fontSize: 15),
+        )
+      ]),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     //This size provides us total height and width of our screen
-    Widget manageFirstname() {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 10),
-            width: size.width * 0.7,
-            alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: const [
-                  BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 6,
-                      offset: Offset(0, 2))
-                ],
-                border: Border.all(color: bluelogo, width: 3)),
-            height: 60,
-            child: const TextField(
-              style: TextStyle(
-                color: Colors.black87,
-              ),
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.only(top: 14),
-                  prefixIcon: Icon(Icons.person, color: bluelogo),
-                  hintText: 'Prénom',
-                  hintStyle: TextStyle(color: bluelogo, fontSize: 12)),
-            ),
-          )
-        ],
-      );
-    }
-
-    Widget manageName() {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 10),
-            width: size.width * 0.7,
-            alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: const [
-                  BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 6,
-                      offset: Offset(0, 2))
-                ],
-                border: Border.all(color: bluelogo, width: 3)),
-            height: 60,
-            child: const TextField(
-              style: TextStyle(
-                color: Colors.black87,
-              ),
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.only(top: 14),
-                  prefixIcon: Icon(Icons.person, color: bluelogo),
-                  hintText: 'Nom',
-                  hintStyle: TextStyle(color: bluelogo, fontSize: 12)),
-            ),
-          )
-        ],
-      );
-    }
-
     Widget manageUsername() {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            margin: const EdgeInsets.symmetric(vertical: 10),
+            margin: const EdgeInsets.symmetric(vertical: 7),
             width: size.width * 0.7,
             alignment: Alignment.centerLeft,
             decoration: BoxDecoration(
@@ -102,7 +59,7 @@ class _RegistrationBodyState extends State<RegistrationBody> {
                       offset: Offset(0, 2))
                 ],
                 border: Border.all(color: bluelogo, width: 3)),
-            height: 60,
+            height: 50,
             child: const TextField(
               style: TextStyle(
                 color: Colors.black87,
@@ -119,36 +76,85 @@ class _RegistrationBodyState extends State<RegistrationBody> {
       );
     }
 
-    Widget nextBtn() {
-      return Container(
-          margin: const EdgeInsets.symmetric(vertical: 10),
-          width: size.width * 0.7,
-          alignment: Alignment.centerRight,
-          decoration: BoxDecoration(
-              color: bluelogo,
-              borderRadius: BorderRadius.circular(10),
-              /* boxShadow: const [
-                  BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 6,
-                      offset: Offset(0, 2))
-                ],*/
-              border: Border.all(color: gold, width: 3)),
-          //  padding: const EdgeInsets.symmetric(vertical: 25),
-          height: 100,
-          child: ElevatedButton(
-            onPressed: () => Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => Next())),
-            style: ElevatedButton.styleFrom(
-              // backgroundColor: bluelogo,
-              shape: const BeveledRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(2))),
-              textStyle: const TextStyle(
-                  color: gold, fontSize: 18, fontWeight: FontWeight.bold),
+    Widget managePassword() {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            margin: const EdgeInsets.symmetric(vertical: 7),
+            width: size.width * 0.7,
+            alignment: Alignment.centerLeft,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: bluelogo, width: 3)),
+            height: 50,
+            child: const TextField(
+              //  keyboardType: TextInputType.emailAddress,
+              obscureText: true,
+              style: TextStyle(
+                color: Colors.black87,
+              ),
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.only(top: 14),
+                prefixIcon: Icon(Icons.lock, color: bluelogo),
+                hintText: 'Mot de passe',
+                hintStyle: TextStyle(
+                  color: bluelogo,
+                  fontSize: 12,
+                ),
+                suffixIcon: Icon(
+                  Icons.visibility_off,
+                  color: bluelogo,
+                ),
+                border: InputBorder.none,
+              ),
             ),
-            child: const Text('Suivant ',
-                style: TextStyle(color: gold, fontSize: 13)),
-          ));
+          )
+        ],
+      );
+    }
+
+    Widget manageForgotPasswordBtn() {
+      return Container(
+        margin: const EdgeInsets.symmetric(vertical: 1),
+        width: size.width * 0.7,
+        alignment: Alignment.centerRight,
+        child: TextButton(
+          onPressed: () => print("Forgot password pressed"),
+          child: const Text(
+            'Mot de passe oublié?',
+            style: TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15),
+          ),
+        ),
+      );
+    }
+
+    Widget manageLoginBtn() {
+      return Container(
+        margin: const EdgeInsets.symmetric(vertical: 10),
+        width: size.width * 0.6,
+        height: 50,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(70),
+          child: Container(
+              decoration: BoxDecoration(
+                  color: bluelogo, //container color
+                  borderRadius: BorderRadius.circular(50),
+                  border: Border.all(color: gold, width: 2)),
+              child: TextButton(
+                onPressed: () {},
+                child: const Text(
+                  "Se connecter",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Colors.white),
+                ),
+              )),
+        ),
+      );
     }
 
     return Center(
@@ -210,21 +216,18 @@ class _RegistrationBodyState extends State<RegistrationBody> {
                 ),
               ),
               Positioned(
-                right: 100,
-                bottom: 75,
+                right: 70,
+                bottom: 5,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    //  SizedBox(height: size.height * 0.11),
-                    manageFirstname(),
-                    const SizedBox(height: 5),
-                    manageName(),
-                    const SizedBox(height: 5),
+                    const SizedBox(height: 14),
                     manageUsername(),
-                    const SizedBox(height: 5),
+                    managePassword(),
+                    manageForgotPasswordBtn(),
+                    rememberMe(),
+                    manageLoginBtn(),
                     checkSignInBtn(),
-                    const SizedBox(height: 5),
-                    nextBtn(),
                   ],
                 ),
               ),
@@ -242,15 +245,15 @@ Widget checkSignInBtn() {
     child: RichText(
       text: const TextSpan(children: [
         TextSpan(
-            text: "Avez vous déjà un compte?",
+            text: "N'avez vous pas encore de compte?",
             style: TextStyle(
                 color: Colors.white,
-                fontSize: 15,
+                fontSize: 12,
                 fontWeight: FontWeight.w500)),
         TextSpan(
-            text: "  Se connecter",
+            text: "  S'inscrire",
             style: TextStyle(
-                color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold))
+                color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold))
       ]),
     ),
   );

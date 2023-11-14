@@ -41,6 +41,17 @@ class Background extends StatelessWidget {
                 ),
               ),
               Positioned(
+                child: Container(
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Colors.white, bluelogo],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
                 left: 150,
                 top: 25,
                 child: Container(
