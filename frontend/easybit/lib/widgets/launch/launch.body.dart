@@ -75,7 +75,7 @@ class _LaunchBodyState extends State<LaunchBody> {
                 ),
               ),
               Positioned(
-                right: 100,
+                right: 70,
                 bottom: 75,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
