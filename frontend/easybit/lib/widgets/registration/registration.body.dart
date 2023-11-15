@@ -122,20 +122,13 @@ class _RegistrationBodyState extends State<RegistrationBody> {
     Widget nextBtn() {
       return Container(
           margin: const EdgeInsets.symmetric(vertical: 10),
-          width: size.width * 0.7,
-          alignment: Alignment.centerRight,
+          width: size.width * 0.3,
+          alignment: Alignment.bottomRight,
           decoration: BoxDecoration(
-              color: bluelogo,
+              // color: bluelogo,
               borderRadius: BorderRadius.circular(10),
-              /* boxShadow: const [
-                  BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 6,
-                      offset: Offset(0, 2))
-                ],*/
               border: Border.all(color: gold, width: 3)),
-          //  padding: const EdgeInsets.symmetric(vertical: 25),
-          height: 100,
+          height: 35,
           child: ElevatedButton(
             onPressed: () => Navigator.of(context)
                 .push(MaterialPageRoute(builder: (context) => Next())),
@@ -210,20 +203,16 @@ class _RegistrationBodyState extends State<RegistrationBody> {
                 ),
               ),
               Positioned(
-                right: 100,
-                bottom: 75,
+                right: 70,
+                bottom: 5,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    //  SizedBox(height: size.height * 0.11),
+                    const SizedBox(height: 14),
                     manageFirstname(),
-                    const SizedBox(height: 5),
                     manageName(),
-                    const SizedBox(height: 5),
                     manageUsername(),
-                    const SizedBox(height: 5),
                     checkSignInBtn(),
-                    const SizedBox(height: 5),
                     nextBtn(),
                   ],
                 ),
@@ -245,12 +234,12 @@ Widget checkSignInBtn() {
             text: "Avez vous déjà un compte?",
             style: TextStyle(
                 color: Colors.white,
-                fontSize: 15,
+                fontSize: 12,
                 fontWeight: FontWeight.w500)),
         TextSpan(
             text: "  Se connecter",
             style: TextStyle(
-                color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold))
+                color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold))
       ]),
     ),
   );
