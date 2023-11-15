@@ -17,12 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from authentication.register import first_page_register, second_page_register
+from converting_calculator.converting import Convert_XOF , Convert_BTC
 from authentication.signing import login_view, logout_view
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("register1/", first_page_register),
     path("register2/", second_page_register),
+    path("Convert_XOF/", Convert_XOF ),
+    path("Convert_BTC/", Convert_BTC),
     path("login/", login_view),
     path("logout/", logout_view),
     path('api/password_reset/', include('django_rest_passwordreset.urls', namespace='password_reset')),
