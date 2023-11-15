@@ -70,7 +70,7 @@ def Convert_XOF(request):
         
         else:
 
-             return Response({'error': 'Invalid coin amount, Please provide a non-negative value'}, status=status.HTTP_400_BAD_REQUEST)
+             return Response({'error': 'Invalid coin amount!'}, status=status.HTTP_400_BAD_REQUEST)
         
     else : 
 
@@ -113,7 +113,7 @@ def Convert_BTC(request):
         
         else:
 
-            return Response({'error': 'Invalid currency amount, Please provide a non-negative value'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'Invalid currency amount!'}, status=status.HTTP_400_BAD_REQUEST)
     else:
         
         return Response({"error": 'Bad request '}, status= status.HTTP_405_METHOD_NOT_ALLOWED)

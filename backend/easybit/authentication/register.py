@@ -45,6 +45,7 @@ def second_page_register(request):
     error_message = ""
     if request.method == "POST":
         email_adress = request.data.get("adresse_mail")
+        print(email_adress)
         password = request.data.get("mot_de_passe")
         password_confirmation = request.data.get("confirmation")
 
