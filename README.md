@@ -13,7 +13,9 @@ EasyBit est un projet novateur visant à créer une application mobile permettan
  
 **Calculateur de changebitcoin - Franc CFA** : EasyBit permet aux utilisateurs de calculerla valeur en franc CFA à partir d’un montant bitcoin renseigné et inversement. Et ce, en utilisant le taux de change du bitcoin mis à jour en temps réel. 
  
-**Alerte de Taux de Change** : La fonctionnalité d'alerte de taux de change dans EasyBit offre une surveillance des fluctuations du marché en alertant les utilisateurs lorsque le taux de change bitcoin - Franc CFA atteint un seuil prédéfini. Cette fonction permet aux utilisateurs de rester informés en temps réel et de prendre des décisions éclairées sur leurs transactions. 
+**Alerte de Taux de Change** : La fonctionnalité d'alerte de taux de change dans EasyBit offre une surveillance des fluctuations du marché en alertant les utilisateurs lorsque le taux de change bitcoin - Franc CFA atteint un seuil prédéfini. Cette fonction permet aux utilisateurs de rester informés en temps réel et de prendre des décisions éclairées sur leurs transactions.
+
+**Transfert de bitcoins à un autre utilisateur** : Cette fonctionnalité permet à un utilisateur d'envoyer des bitcoins à un autre utilisateur de l'application.
  
  
 # Technologies utilisées 
