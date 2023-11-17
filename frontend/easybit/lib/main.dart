@@ -1,4 +1,6 @@
 import 'package:easybit/constants.dart';
+import 'package:easybit/screens/calculatorBTCtoXOF.dart';
+import 'package:easybit/screens/calculatorXOFtoBTC.dart';
 import 'package:easybit/screens/launchPage.dart';
 import 'package:easybit/screens/loginPage.dart';
 import 'package:easybit/screens/nextPage.dart';
@@ -26,8 +28,10 @@ class MyApp extends StatelessWidget {
         "/registration": (context) => const Registration(),
         "/next": (context) => const NextPage(),
         "/login": (context) => const Login(),
+        "/CalculatorBTCtoXOF": (context) => const CalculatorBTCtoXOF(),
+        "/CalculatorXOFtoBTC": (context) => const CalculatorXOFtoBTC()
       },
-      initialRoute: "/launch",
+      initialRoute: "/CalculatorBTCtoXOF",
     );
   }
 }

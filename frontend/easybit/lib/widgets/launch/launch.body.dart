@@ -83,20 +83,14 @@ class _LaunchBodyState extends State<LaunchBody> {
                     SizedBox(height: size.height * 0.11),
                     RoundedButton(
                       text: "Se connecter",
-                      press: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const Login()));
-                      },
+                      press: () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const Login())),
                     ),
                     SizedBox(height: size.height * 0.02),
                     RoundedButton2(
                       text: "S'inscrire",
-                      press: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return const Registration();
-                        }));
-                      },
+                      press: () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const Registration())),
                     ),
                   ],
                 ),
