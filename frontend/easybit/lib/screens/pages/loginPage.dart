@@ -1,4 +1,4 @@
-import 'package:easybit/widgets/login/login.body.dart';
+import 'package:easybit/screens/widgets/login/login.body.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {

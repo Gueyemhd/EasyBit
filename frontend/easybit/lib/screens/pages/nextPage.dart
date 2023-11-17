@@ -1,4 +1,4 @@
-import 'package:easybit/widgets/registration/next.dart';
+import 'package:easybit/screens/widgets/registration/next.dart';
 import 'package:flutter/material.dart';
 
 class NextPage extends StatefulWidget {

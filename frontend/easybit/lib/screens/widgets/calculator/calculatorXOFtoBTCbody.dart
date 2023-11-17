@@ -1,4 +1,4 @@
-import 'package:easybit/screens/calculatorBTCtoXOF.dart';
+import 'package:easybit/screens/pages/calculatorBTCtoXOF.dart';
 import 'package:flutter/material.dart';
 
 class XOFtoBTC extends StatefulWidget {

@@ -1,5 +1,5 @@
-import 'package:easybit/screens/calculatorBTCtoXOF.dart';
-import 'package:easybit/widgets/calculator/calculatorXOFtoBTCbody.dart';
+import 'package:easybit/screens/pages/calculatorBTCtoXOF.dart';
+import 'package:easybit/screens/widgets/calculator/calculatorXOFtoBTCbody.dart';
 import 'package:flutter/material.dart';
 
 class CalculatorXOFtoBTC extends StatefulWidget {

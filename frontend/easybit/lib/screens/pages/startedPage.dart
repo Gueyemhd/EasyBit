@@ -1,4 +1,4 @@
-import 'package:easybit/background.dart';
+import 'package:easybit/screens/widgets/background.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {

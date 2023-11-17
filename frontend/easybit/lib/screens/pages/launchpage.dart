@@ -1,4 +1,4 @@
-import 'package:easybit/widgets/launch/launch.body.dart';
+import 'package:easybit/screens/widgets/launch/launch.body.dart';
 import 'package:flutter/material.dart';
 
 class Launch extends StatefulWidget {

@@ -1,5 +1,5 @@
-import 'package:easybit/constants.dart';
-import 'package:easybit/screens/registrationpage.dart';
+import 'package:easybit/screens/registrationPage.dart';
+import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_pw_validator/flutter_pw_validator.dart';
 //import 'package:validation_textformfield/validation_textformfield.dart';

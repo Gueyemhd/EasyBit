@@ -1,4 +1,4 @@
-import 'package:easybit/widgets/registration/registration.body.dart';
+import 'package:easybit/screens/widgets/registration/registration.body.dart';
 import 'package:flutter/material.dart';
 
 class Registration extends StatefulWidget {

@@ -1,5 +1,5 @@
-import 'package:easybit/constants.dart';
-import 'package:easybit/screens/registrationpage.dart';
+import 'package:easybit/screens/registrationPage.dart';
+import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 
 class Next extends StatefulWidget {

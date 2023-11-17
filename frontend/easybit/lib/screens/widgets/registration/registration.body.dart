@@ -1,8 +1,7 @@
-import 'package:easybit/constants.dart';
 import 'package:easybit/models/user_model.dart';
-import 'package:easybit/screens/loginPage.dart';
-import 'package:easybit/screens/nextPage.dart';
-import 'package:easybit/widgets/registration/next.dart';
+import 'package:easybit/screens/pages/loginPage.dart';
+import 'package:easybit/screens/pages/nextPage.dart';
+import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 
 class RegistrationBody extends StatefulWidget {
@@ -17,7 +16,7 @@ class RegistrationBody extends StatefulWidget {
 class _RegistrationBodyState extends State<RegistrationBody> {
   // Map userData = {};
   // User user = User();
-//user.name = 'John Doe';
+  //user.name = ''
 
   // Create a global key that uniquely identifies the Form widget
   // and allows validation of the form.

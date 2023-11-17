@@ -1,4 +1,4 @@
-import 'package:easybit/constants.dart';
+import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 
 //RoundedButton(text: "Se connecter", press: () {}), // à placer là où on veut l'appeler
