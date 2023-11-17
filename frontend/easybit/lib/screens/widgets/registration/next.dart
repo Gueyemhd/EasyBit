@@ -1,6 +1,9 @@
-import 'package:easybit/screens/registrationPage.dart';
+import 'package:easybit/models/userModel.dart';
+import 'package:easybit/screens/pages/registrationpage.dart';
+import 'package:easybit/services/user_service.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class Next extends StatefulWidget {
   const Next({super.key});
@@ -19,16 +22,30 @@ class _NextState extends State<Next> {
   // not a GlobalKey<MyCustomFormState>.
   final _formKey = GlobalKey<FormState>();
 
-  // Create a text controller and use it to retrieve the current value
-  // of the TextField.
-  final myController = TextEditingController();
+  // Create a text controller and use it to retrieve the current values of TextFields
+  Map userData = {};
 
-  @override
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final emailController = TextEditingController();
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
+  // final validatorFirstName = GlobalKey<FormState>();
+
+  String path = "/http:127.0.0.1:8000/registration";
+
+  void sendCreateAccountDataToServer(Map userData, String path) {
+    var responseRequest = http.post(Uri.parse(path), body: userData);
+  }
+
+  /* @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
     myController.dispose();
     super.dispose();
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +72,8 @@ class _NextState extends State<Next> {
                 border: Border.all(color: bluelogo, width: 3)),
             height: 60,
             child: TextFormField(
+              controller: emailController,
               // The validator receives the password that the user has entered.
-              //   controller: myController,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Veuillez entrer votre email';
@@ -97,8 +114,8 @@ class _NextState extends State<Next> {
                 border: Border.all(color: bluelogo, width: 3)),
             height: 60,
             child: TextFormField(
+              controller: passwordController,
               // The validator receives the password that the user has entered.
-              //   controller: myController,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Veuillez entrer votre mot de passe';
@@ -144,6 +161,7 @@ class _NextState extends State<Next> {
                 border: Border.all(color: bluelogo, width: 3)),
             height: 60,
             child: TextFormField(
+              controller: confirmPasswordController,
               // The validator receives the password that the user has entered.
               //   controller: myController,
               validator: (value) {
@@ -221,9 +239,22 @@ class _NextState extends State<Next> {
                     // If the form is valid, display a snackbar. In the real world,
                     // you'd often call a server or save the information in a database.
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Succès')),
+                      const SnackBar(content: Text("Succès")),
                     );
                   }
+
+                  User user = User(
+                    firstname: firstNameController.text,
+                    lastname: lastNameController.text,
+                    username: usernameController.text,
+                    email: emailController.text,
+                    password: passwordController.text,
+                    confirmPassword: confirmPasswordController.text,
+                    id: 0,
+                  );
+
+                  // calling registration function from service to send request
+                  UserService().registration(user);
                 },
                 child: const Text(
                   "S'inscrire",

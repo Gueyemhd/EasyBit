@@ -1,8 +1,8 @@
-import 'package:easybit/models/user_model.dart';
 import 'package:easybit/screens/pages/loginPage.dart';
 import 'package:easybit/screens/pages/nextPage.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class RegistrationBody extends StatefulWidget {
   const RegistrationBody({super.key});
@@ -14,16 +14,26 @@ class RegistrationBody extends StatefulWidget {
 // Define a corresponding State class.
 // This class holds data related to the form.
 class _RegistrationBodyState extends State<RegistrationBody> {
-  // Map userData = {};
-  // User user = User();
-  //user.name = ''
-
   // Create a global key that uniquely identifies the Form widget
   // and allows validation of the form.
   //
-  // Note: This is a `GlobalKey<FormState>`,
-  // not a GlobalKey<MyCustomFormState>.
+  // Note: This is a `GlobalKey<FormState>` not a GlobalKey<MyCustomFormState>.
   final _formKey = GlobalKey<FormState>();
+
+  Map userData = {};
+
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final emailController = TextEditingController();
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
+  String path = "/http:127.0.0.1:8000/registration";
+
+  void sendCreateAccountDataToServer(Map userData, String path) {
+    var responseRequest = http.post(Uri.parse(path), body: userData);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +59,7 @@ class _RegistrationBodyState extends State<RegistrationBody> {
                 border: Border.all(color: bluelogo, width: 3)),
             height: 60,
             child: TextFormField(
+              controller: firstNameController,
               // The validator receives the text that the user has entered.
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -93,6 +104,7 @@ class _RegistrationBodyState extends State<RegistrationBody> {
                 border: Border.all(color: bluelogo, width: 3)),
             height: 60,
             child: TextFormField(
+              controller: lastNameController,
               // The validator receives the text that the user has entered.
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -137,6 +149,7 @@ class _RegistrationBodyState extends State<RegistrationBody> {
                 border: Border.all(color: bluelogo, width: 3)),
             height: 60,
             child: TextFormField(
+              controller: usernameController,
               // The validator receives the text that the user has entered.
               validator: (value) {
                 if (value == null || value.isEmpty) {

@@ -41,6 +41,7 @@ dependencies:
   validation_textformfield: ^2.2.5
   sqflite: ^2.3.0
   path: ^1.8.3
+  http: ^1.1.0
 
 dev_dependencies:
   flutter_test:
