@@ -25,7 +25,7 @@ class _LaunchBodyState extends State<LaunchBody> {
             children: <Widget>[
               Positioned(
                 top: -190,
-                left: -200,
+                left: -150,
                 child: Container(
                   height: MediaQuery.of(context).size.height * 2,
                   width: MediaQuery.of(context).size.width * 2,
@@ -53,7 +53,7 @@ class _LaunchBodyState extends State<LaunchBody> {
                 child: Container(
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [Colors.white, bluelogo],
+                      colors: [Colors.white, Color.fromARGB(232, 10, 76, 130)],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                     ),
@@ -61,11 +61,11 @@ class _LaunchBodyState extends State<LaunchBody> {
                 ),
               ),
               Positioned(
-                left: 150,
-                top: 25,
+                left: 80,
+                top: 175,
                 child: Container(
-                  height: 200,
-                  width: 200,
+                  height: 300,
+                  width: 250,
                   alignment: Alignment.bottomCenter,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
@@ -76,7 +76,7 @@ class _LaunchBodyState extends State<LaunchBody> {
               ),
               Positioned(
                 right: 70,
-                bottom: 75,
+                bottom: 150,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[

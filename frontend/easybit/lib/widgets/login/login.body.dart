@@ -1,5 +1,8 @@
 import 'package:easybit/constants.dart';
+import 'package:easybit/screens/registrationpage.dart';
 import 'package:flutter/material.dart';
+//import 'package:flutter_pw_validator/flutter_pw_validator.dart';
+//import 'package:validation_textformfield/validation_textformfield.dart';
 
 class LoginBody extends StatefulWidget {
   const LoginBody({super.key});
@@ -8,33 +11,25 @@ class LoginBody extends StatefulWidget {
   State<LoginBody> createState() => _LoginBodyState();
 }
 
+// Define a corresponding State class.
+// This class holds data related to the form.
 class _LoginBodyState extends State<LoginBody> {
-  bool isRememberMe = false;
+  // Create a global key that uniquely identifies the Form widget
+  // and allows validation of the form.
+  //
+  // Note: This is a `GlobalKey<FormState>`,
+  // not a GlobalKey<MyCustomFormState>.
+  final _formKey = GlobalKey<FormState>();
 
-  Widget rememberMe() {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10),
-      alignment: Alignment.centerLeft,
-      height: 20,
-      child: Row(children: <Widget>[
-        Theme(
-          data: ThemeData(unselectedWidgetColor: gold),
-          child: Checkbox(
-              value: isRememberMe,
-              checkColor: Colors.white,
-              activeColor: gold,
-              onChanged: (value) {
-                setState(() {
-                  isRememberMe = value!;
-                });
-              }),
-        ),
-        const Text(
-          'Se souvenir',
-          style: TextStyle(color: Colors.white, fontSize: 15),
-        )
-      ]),
-    );
+  // Create a text controller and use it to retrieve the current value
+  // of the TextField.
+  final myController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    myController.dispose();
+    super.dispose();
   }
 
   @override
@@ -47,7 +42,7 @@ class _LoginBodyState extends State<LoginBody> {
         children: <Widget>[
           Container(
             margin: const EdgeInsets.symmetric(vertical: 7),
-            width: size.width * 0.7,
+            width: size.width * 0.8,
             alignment: Alignment.centerLeft,
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -60,18 +55,28 @@ class _LoginBodyState extends State<LoginBody> {
                 ],
                 border: Border.all(color: bluelogo, width: 3)),
             height: 50,
-            child: const TextField(
-              style: TextStyle(
+            child: TextFormField(
+              // The validator receives the text that the user has entered
+              controller: myController,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Veuillez entre votre nom d\'utilisateur';
+                }
+                return null;
+              },
+              keyboardType: TextInputType.text,
+              onChanged: (String value) {},
+              style: const TextStyle(
                 color: Colors.black87,
               ),
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.only(top: 14),
                   prefixIcon: Icon(Icons.person, color: bluelogo),
                   hintText: 'Nom d\'utilisateur',
                   hintStyle: TextStyle(color: bluelogo, fontSize: 12)),
             ),
-          )
+          ),
         ],
       );
     }
@@ -82,20 +87,29 @@ class _LoginBodyState extends State<LoginBody> {
         children: <Widget>[
           Container(
             margin: const EdgeInsets.symmetric(vertical: 7),
-            width: size.width * 0.7,
+            width: size.width * 0.8,
             alignment: Alignment.centerLeft,
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: bluelogo, width: 3)),
             height: 50,
-            child: const TextField(
-              //  keyboardType: TextInputType.emailAddress,
+            child: TextFormField(
+              // The validator receives the password that the user has entered.
+              controller: myController,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Veuillez entrer votre mot de passe';
+                }
+                return null;
+              },
+              onChanged: (String value) {},
+              keyboardType: TextInputType.visiblePassword,
               obscureText: true,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black87,
               ),
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 contentPadding: EdgeInsets.only(top: 14),
                 prefixIcon: Icon(Icons.lock, color: bluelogo),
                 hintText: 'Mot de passe',
@@ -118,8 +132,9 @@ class _LoginBodyState extends State<LoginBody> {
     Widget manageForgotPasswordBtn() {
       return Container(
         margin: const EdgeInsets.symmetric(vertical: 1),
-        width: size.width * 0.7,
-        alignment: Alignment.centerRight,
+        //margin: Empty space to surround the [decoration] and [child].
+        width: size.width * 0.9,
+        alignment: Alignment.bottomRight,
         child: TextButton(
           onPressed: () => print("Forgot password pressed"),
           child: const Text(
@@ -134,7 +149,7 @@ class _LoginBodyState extends State<LoginBody> {
     Widget manageLoginBtn() {
       return Container(
         margin: const EdgeInsets.symmetric(vertical: 10),
-        width: size.width * 0.6,
+        width: size.width * 0.7,
         height: 50,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(70),
@@ -144,7 +159,16 @@ class _LoginBodyState extends State<LoginBody> {
                   borderRadius: BorderRadius.circular(50),
                   border: Border.all(color: gold, width: 2)),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  // Validate returns true if the form is valid, or false otherwise.
+                  if (_formKey.currentState!.validate()) {
+                    // If the form is valid, display a snackbar. In the real world,
+                    // you'd often call a server or save the information in a database.
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Succès')),
+                    );
+                  }
+                },
                 child: const Text(
                   "Se connecter",
                   style: TextStyle(
@@ -157,104 +181,106 @@ class _LoginBodyState extends State<LoginBody> {
       );
     }
 
-    return Center(
-      child: SizedBox(
-        height: size.height,
-        width: double.infinity,
-        child: Center(
-          child: Stack(
-            children: <Widget>[
-              Positioned(
-                top: -190,
-                left: -200,
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 2,
-                  width: MediaQuery.of(context).size.width * 2,
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Colors.white, bluelogo],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: bluelogo,
-                        offset: Offset(5.0, 5.0),
-                        blurRadius: 10.0,
-                        spreadRadius: 0.0,
-                      ),
-                    ],
-                    image: DecorationImage(
-                      image: AssetImage("images/background.png"),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                child: Container(
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Colors.white, bluelogo],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 150,
-                top: 25,
-                child: Container(
-                  height: 200,
-                  width: 200,
-                  alignment: Alignment.bottomCenter,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("images/logo.png"),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                right: 70,
-                bottom: 5,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+    Widget checkSignInBtn() {
+      return GestureDetector(
+        onTap: () => Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => const Registration())),
+        child: RichText(
+          text: const TextSpan(children: [
+            TextSpan(
+                text: "N'avez vous pas encore de compte?",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500)),
+            TextSpan(
+                text: "  S'inscrire",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold))
+          ]),
+        ),
+      );
+    }
+
+    // Build a Form widget using the _formKey created above.
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(0.0),
+        //The amount of space by which to inset(insert) the child.
+        child: Form(
+          key: _formKey,
+          child: Center(
+            child: SizedBox(
+              height: size.height,
+              width: double.infinity,
+              child: Center(
+                child: Stack(
                   children: <Widget>[
-                    const SizedBox(height: 14),
-                    manageUsername(),
-                    managePassword(),
-                    manageForgotPasswordBtn(),
-                    rememberMe(),
-                    manageLoginBtn(),
-                    checkSignInBtn(),
+                    Positioned(
+                      top: -140,
+                      left: -100,
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * 2,
+                        width: MediaQuery.of(context).size.width * 2,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage("images/background.png"),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Colors.white,
+                              Color.fromARGB(235, 5, 111, 198)
+                            ],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: 95,
+                      top: 170,
+                      child: Container(
+                        height: 220,
+                        width: 220,
+                        alignment: Alignment.bottomCenter,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage("images/logo.png"),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      right: 30,
+                      bottom: 100,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          // Add TextFormFields and Button here.
+                          manageUsername(),
+                          managePassword(),
+                          manageForgotPasswordBtn(),
+                          manageLoginBtn(),
+                          checkSignInBtn(),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
-            ],
+            ),
           ),
         ),
       ),
     );
   }
-}
-
-Widget checkSignInBtn() {
-  return GestureDetector(
-    onTap: () => print("Sign in pressed"),
-    child: RichText(
-      text: const TextSpan(children: [
-        TextSpan(
-            text: "N'avez vous pas encore de compte?",
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 12,
-                fontWeight: FontWeight.w500)),
-        TextSpan(
-            text: "  S'inscrire",
-            style: TextStyle(
-                color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold))
-      ]),
-    ),
-  );
 }

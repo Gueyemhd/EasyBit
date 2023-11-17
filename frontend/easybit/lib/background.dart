@@ -16,7 +16,7 @@ class Background extends StatelessWidget {
             children: <Widget>[
               Positioned(
                 top: -190,
-                left: -200,
+                left: -150,
                 child: Container(
                   height: MediaQuery.of(context).size.height * 2,
                   width: MediaQuery.of(context).size.width * 2,
@@ -44,7 +44,7 @@ class Background extends StatelessWidget {
                 child: Container(
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [Colors.white, bluelogo],
+                      colors: [Colors.white, Color.fromARGB(166, 6, 68, 119)],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                     ),
@@ -52,11 +52,11 @@ class Background extends StatelessWidget {
                 ),
               ),
               Positioned(
-                left: 150,
-                top: 25,
+                left: 80,
+                top: 175,
                 child: Container(
-                  height: 200,
-                  width: 200,
+                  height: 300,
+                  width: 250,
                   alignment: Alignment.bottomCenter,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
@@ -66,7 +66,7 @@ class Background extends StatelessWidget {
                 ),
               ),
               Positioned(
-                right: 210,
+                right: 180,
                 bottom: 25,
                 child: Container(
                   height: 80,

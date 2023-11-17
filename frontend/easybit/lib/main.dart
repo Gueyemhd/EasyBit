@@ -1,6 +1,7 @@
 import 'package:easybit/constants.dart';
 import 'package:easybit/screens/launchPage.dart';
 import 'package:easybit/screens/loginPage.dart';
+import 'package:easybit/screens/nextPage.dart';
 import 'package:easybit/screens/registrationPage.dart';
 import 'package:easybit/screens/startedPage.dart';
 import 'package:easybit/widgets/registration/next.dart';
@@ -18,17 +19,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          //  primaryColor: bluelogo,
-          ),
+      theme: ThemeData(),
       routes: {
-        "/started": (context) => const Home(),
+        "/EasyBit": (context) => const Home(),
         "/launch": (context) => const Launch(),
         "/registration": (context) => const Registration(),
-        "/next": (context) => const Next(),
+        "/next": (context) => const NextPage(),
         "/login": (context) => const Login(),
       },
-      initialRoute: "/started",
+      initialRoute: "/launch",
     );
   }
 }

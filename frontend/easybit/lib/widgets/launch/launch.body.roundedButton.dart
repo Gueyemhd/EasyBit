@@ -24,7 +24,7 @@ class RoundedButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(70),
         child: Container(
             decoration: BoxDecoration(
-                color: bluelogo, //container color
+                color: const Color.fromARGB(237, 12, 90, 154), //container color
                 borderRadius: BorderRadius.circular(50),
                 border: Border.all(color: bordercolor, width: 2)),
             height: 70,
