@@ -1,19 +1,19 @@
 class User {
-  final int id;
-  final String firstname;
-  final String lastname;
-  final String username;
-  final String email;
-  final String password;
-  final String confirmPassword;
+  int? id;
+  String? firstname;
+  String? lastname;
+  String? username;
+  String? email;
+  String? password;
+  String? confirmPassword;
 
-  const User({
-    required this.id,
-    required this.firstname,
-    required this.lastname,
-    required this.username,
-    required this.email,
-    required this.password,
-    required this.confirmPassword,
+  User({
+    this.id,
+    this.firstname,
+    this.lastname,
+    this.username,
+    this.email,
+    this.password,
+    this.confirmPassword,
   });
 }
