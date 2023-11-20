@@ -1,4 +1,4 @@
-import 'package:easybit/models/userModel.dart';
+import 'package:easybit/models/user_model.dart';
 import 'package:easybit/screens/pages/registrationpage.dart';
 import 'package:easybit/services/user_service.dart';
 import 'package:easybit/shared/constants.dart';
@@ -31,8 +31,6 @@ class _NextState extends State<Next> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-
-  // final validatorFirstName = GlobalKey<FormState>();
 
   String path = "/http:127.0.0.1:8000/registration";
 

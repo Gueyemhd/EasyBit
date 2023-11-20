@@ -1,4 +1,5 @@
 import 'package:easybit/screens/pages/calculatorBTCtoXOF.dart';
+import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 
 class XOFtoBTC extends StatefulWidget {
@@ -65,20 +66,58 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: Colors.black12, width: 2)),
             height: 60,
-            child: TextFormField(
-              style: const TextStyle(
-                color: Colors.black87,
-              ),
-              decoration: const InputDecoration(
-                border: InputBorder.none,
-                contentPadding: EdgeInsets.only(top: 14),
-                hintStyle: TextStyle(color: Colors.black, fontSize: 12),
-                suffixIcon: Icon(
-                  Icons.arrow_drop_down,
-                  color: Color.fromARGB(237, 12, 90, 154),
-                  size: 45,
+            child: Stack(
+              children: <Widget>[
+                Positioned(
+                  top: -190,
+                  left: -150,
+                  child: TextFormField(
+                    style: const TextStyle(
+                      color: Colors.black87,
+                    ),
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.only(top: 14),
+                      hintStyle: TextStyle(color: Colors.black, fontSize: 12),
+                      suffixIcon: Icon(
+                        Icons.arrow_drop_down,
+                        color: Color.fromARGB(237, 12, 90, 154),
+                        size: 45,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+                Positioned(
+                  right: 30,
+                  bottom: 8,
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    width: size.width * 0.15,
+                    height: size.height * 0.03,
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 213, 225, 236),
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(color: Colors.black12, width: 1),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(
+                            5.0,
+                            5.0,
+                          ),
+                          blurRadius: 10.0,
+                          spreadRadius: 2.0,
+                        )
+                      ],
+                    ),
+                    child: const Text(
+                      "CFA",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 20, color: bluelogo),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
@@ -91,7 +130,7 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
       child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            btcField(),
+            xofField(),
             const SizedBox(height: 10),
             IconButton(
               iconSize: 70,
@@ -104,7 +143,7 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
                   builder: (context) => const CalculatorBTCtoXOF())),
             ),
             const SizedBox(height: 10),
-            xofField(),
+            btcField(),
           ]),
     );
   }

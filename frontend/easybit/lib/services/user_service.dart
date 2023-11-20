@@ -1,6 +1,5 @@
 import 'dart:convert';
-
-import 'package:easybit/models/userModel.dart';
+import 'package:easybit/models/user_model.dart';
 import 'package:http/http.dart' as http;
 
 class UserService {
