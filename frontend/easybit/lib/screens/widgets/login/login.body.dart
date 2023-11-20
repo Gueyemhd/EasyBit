@@ -69,7 +69,7 @@ class _LoginBodyState extends State<LoginBody> {
               controller: usernameController,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Veuillez entre votre nom d\'utilisateur';
+                  return '  Veuillez entre votre nom d\'utilisateur';
                 }
                 return null;
               },
@@ -108,7 +108,7 @@ class _LoginBodyState extends State<LoginBody> {
               controller: passwordController,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Veuillez entrer votre mot de passe';
+                  return '  Veuillez entrer votre mot de passe';
                 }
                 return null;
               },
