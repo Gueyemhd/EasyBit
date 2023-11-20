@@ -1,19 +1,22 @@
-class User {
-  int? id;
-  String? firstname;
-  String? lastname;
+class UserInformation {
+  String? prenom;
+  String? nom;
   String? username;
-  String? email;
-  String? password;
-  String? confirmPassword;
+  String? adresseMail;
+  String? motDePasse;
+  String? confirmation;
+  UserInformation(
+      {this.prenom,
+      this.nom,
+      this.username,
+      this.adresseMail,
+      this.motDePasse,
+      this.confirmation});
+}
 
-  User({
-    this.id,
-    this.firstname,
-    this.lastname,
-    this.username,
-    this.email,
-    this.password,
-    this.confirmPassword,
-  });
+class UserLogin {
+  String? username;
+  String? password;
+
+  UserLogin({this.username, this.password});
 }

@@ -4,62 +4,38 @@ from .models import Utilisateur, User
 
 
 
-# Api which enables to fetch information in the first registration page
+# Api which enables to fetch information in the registration page
 @api_view(["POST"])
-def first_page_register(request):
+def register(request):
     error = False
     error_message = ""
     if request.method == "POST":
         first_name = request.data.get('prenom', None) 
         last_name = request.data.get('nom', None)
         username = request.data.get('username', None)
-
-        if first_name == '' or last_name == '' or username == '':
-            error = True
-            error_message = "Veuillez renseigner tous les champs!"
-
-        try:
-            user = Utilisateur.objects.get(username__exact = username) # We're trying to see if it already exists an user with the same username
-        except Exception as e:
-            pass
-        else:
-            error = True
-            error_message = f"L'utilisateur {username} existe déjà"
-        
-        if not error:
-            first_page_registration_information = request.data
-            request.session['first_page_registration'] = first_page_registration_information
-
-    context = {
-            'error': error,
-            'error_message': error_message,
-        }
-
-    return Response(context)
-
-
-# API to fetch information in the second registration page
-@api_view(["POST"])
-def second_page_register(request):
-    error = False
-    error_message = ""
-    if request.method == "POST":
         email_adress = request.data.get("adresse_mail")
-        print(email_adress)
         password = request.data.get("mot_de_passe")
         password_confirmation = request.data.get("confirmation")
-
-        # we fetch data from first page registration stored in the session
-        first_page_registration_information = request.session.get('first_page_registration')
-        first_name = first_page_registration_information.get('prenom')
-        last_name = first_page_registration_information.get('nom')
-        username = first_page_registration_information.get('username')
-
-
-        if email_adress == '' or password == '':
+   
+        if first_name == '' or last_name == '' or username == '' or email_adress == '' or password == '':
             error = True
             error_message = "Veuillez renseigner tous les champs!"
+
+
+        try:
+           
+            user = User.objects.get(username__exact = username) # We're trying to see if it already exists an user with the same username
         
+            print(user.username)
+
+        except Exception as e:
+           pass
+        else:
+      
+            error = True
+            error_message = f"L'utilisateur {username} existe deja!"
+        
+          
         if not error:
             if password != password_confirmation:
                 error = True
@@ -80,14 +56,12 @@ def second_page_register(request):
                 customer.prenom = first_name
                 customer.nom = last_name
                 customer.save()
-                error_message = 'inscription réussie'
+                error_message = 'inscription reussie'
 
-        
 
-    
     context = {
-        'error' : error,
-        'error_message' : error_message,
-    }
+            'error': error,
+            'error_message': error_message,
+        }
 
     return Response(context)

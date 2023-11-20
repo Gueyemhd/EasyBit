@@ -1,9 +1,12 @@
-import 'package:easybit/models/userModel.dart';
+import 'package:easybit/models/user_model.dart';
+import 'package:easybit/screens/pages/loginPage.dart';
 import 'package:easybit/screens/pages/registrationpage.dart';
 import 'package:easybit/services/user_service.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
+
 import 'package:http/http.dart' as http;
+import 'package:localstorage/localstorage.dart';
 
 class Next extends StatefulWidget {
   const Next({super.key});
@@ -23,12 +26,10 @@ class _NextState extends State<Next> {
   final _formKey = GlobalKey<FormState>();
 
   // Create a text controller and use it to retrieve the current values of TextFields
-  Map userData = {};
 
-  final firstNameController = TextEditingController();
-  final lastNameController = TextEditingController();
+  // Map<String, dynamic>? args = {};
+
   final emailController = TextEditingController();
-  final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
@@ -49,6 +50,11 @@ class _NextState extends State<Next> {
 
   @override
   Widget build(BuildContext context) {
+    // we fetch data from the first page registration
+    // args = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+    // print("=============arguments!==================");
+    // print(args);
+
     Size size = MediaQuery.of(context).size;
     //This size provides us total height and width of our screen
 
@@ -233,28 +239,45 @@ class _NextState extends State<Next> {
                   borderRadius: BorderRadius.circular(50),
                   border: Border.all(color: gold, width: 2)),
               child: TextButton(
-                onPressed: () {
+                onPressed: () async {
+                  LocalStorage storage = LocalStorage('first_page_information');
+                  UserInformation user = UserInformation(
+                    prenom: storage.getItem('prenom'),
+                    nom: storage.getItem('nom'),
+                    username: storage.getItem('username'),
+                    adresseMail: emailController.text,
+                    motDePasse: passwordController.text,
+                    confirmation: confirmPasswordController.text,
+                  );
                   // Validate returns true if the form is valid, or false otherwise.
                   if (_formKey.currentState!.validate()) {
-                    // If the form is valid, display a snackbar. In the real world,
-                    // you'd often call a server or save the information in a database.
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("Succès")),
-                    );
+                    // If the form is valid, display a snackbar.
+                    Map response = await UserService().registration(user);
+                    if (response['error'] == false) {
+                      storage.clear();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                            backgroundColor: Colors.white,
+                            content: Text(
+                              style: const TextStyle(
+                                  color: Colors.green, fontSize: 15.0),
+                              "${response['error_message']}",
+                            )),
+                      );
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const Login()));
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                            backgroundColor: Colors.white,
+                            content: Text(
+                              style: const TextStyle(
+                                  color: Colors.red, fontSize: 15.0),
+                              "${response['error_message']}",
+                            )),
+                      );
+                    }
                   }
-
-                  User user = User(
-                    firstname: firstNameController.text,
-                    lastname: lastNameController.text,
-                    username: usernameController.text,
-                    email: emailController.text,
-                    password: passwordController.text,
-                    confirmPassword: confirmPasswordController.text,
-                    id: 0,
-                  );
-
-                  // calling registration function from service to send request
-                  UserService().registration(user);
                 },
                 child: const Text(
                   "S'inscrire",
@@ -268,7 +291,8 @@ class _NextState extends State<Next> {
       );
     }
 
-    // Build a Form widget using the _formKey created above.
+    // Build a Form widget using the _formKey created above
+
     return SingleChildScrollView(
         child: Padding(
             padding: const EdgeInsets.all(0.0),

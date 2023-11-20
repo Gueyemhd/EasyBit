@@ -1,38 +1,38 @@
 import 'dart:convert';
 
-import 'package:easybit/models/userModel.dart';
+import 'package:easybit/models/user_model.dart';
 import 'package:http/http.dart' as http;
 
 class UserService {
-  Future<bool> registration(User user) async {
+  Future<Map> registration(UserInformation user) async {
     try {
-      String urlRegistration = 'http://10.0.2.2:8000/registration';
+      String urlRegistration = "http://10.0.2.2:8000/register/";
+
       http.Response response = await http.post(
         Uri.parse(urlRegistration),
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json; charset=UTF-8',
         },
         body: json.encode({
-          "password": user.id,
-          "first_name": user.firstname,
-          "last_name": user.lastname,
+          "prenom": user.prenom,
+          "nom": user.nom,
           "username": user.username,
-          "adresse_mail": user.email,
-          "mot_de_passe": user.password,
-          "confirmation": user.confirmPassword
+          "adresse_mail": user.adresseMail,
+          "mot_de_passe": user.motDePasse,
+          "confirmation": user.confirmation
         }),
       );
-      var data = json.decode(response.body) as Map;
-      print(data);
-      return true;
-    } catch (e) {
-      print(e);
 
-      return true;
+      return json.decode(response.body);
+    } catch (e) {
+      return {
+        'error_message': "Un problème est survenu, veuillez réessayer!",
+        'error': true
+      };
     }
   }
 
-  Future<bool> login(User user) async {
+  Future<Map> login(UserLogin user) async {
     try {
       String urlLogin = 'http://10.0.2.2:8000/login';
       http.Response response = await http.post(
@@ -48,11 +48,9 @@ class UserService {
       var data = json.decode(response.body) as Map;
       print(data);
 
-      return true;
+      return data;
     } catch (e) {
-      print(e);
-
-      return true;
+      return {'error_message': "Un problème est survenu, veuillez réessayer"};
     }
   }
 }

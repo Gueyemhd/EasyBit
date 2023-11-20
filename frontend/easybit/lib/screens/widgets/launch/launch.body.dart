@@ -1,5 +1,5 @@
 import 'package:easybit/screens/pages/loginPage.dart';
-import 'package:easybit/screens/registrationPage.dart';
+import 'package:easybit/screens/pages/registrationpage.dart';
 import 'package:easybit/screens/widgets/launch/launch.body.roundedButton.dart';
 import 'package:easybit/screens/widgets/launch/launch.body.roundedButton2.dart';
 import 'package:easybit/shared/constants.dart';

@@ -1,8 +1,12 @@
+import 'package:easybit/models/user_model.dart';
 import 'package:easybit/screens/pages/loginPage.dart';
 import 'package:easybit/screens/pages/nextPage.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:localstorage/localstorage.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
+import 'package:easybit/services/user_service.dart';
 
 class RegistrationBody extends StatefulWidget {
   const RegistrationBody({super.key});
@@ -20,8 +24,6 @@ class _RegistrationBodyState extends State<RegistrationBody> {
   // Note: This is a `GlobalKey<FormState>` not a GlobalKey<MyCustomFormState>.
   final _formKey = GlobalKey<FormState>();
 
-  Map userData = {};
-
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final emailController = TextEditingController();
@@ -29,11 +31,7 @@ class _RegistrationBodyState extends State<RegistrationBody> {
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
-  String path = "/http:127.0.0.1:8000/registration";
-
-  void sendCreateAccountDataToServer(Map userData, String path) {
-    var responseRequest = http.post(Uri.parse(path), body: userData);
-  }
+  String path = 'http://10.0.2.2:8000/registration';
 
   @override
   Widget build(BuildContext context) {
@@ -179,7 +177,7 @@ class _RegistrationBodyState extends State<RegistrationBody> {
         child: RichText(
           text: const TextSpan(children: [
             TextSpan(
-                text: "Avez vous déjà un compte?",
+                text: "J'ai déja un compte",
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 12,
@@ -205,8 +203,31 @@ class _RegistrationBodyState extends State<RegistrationBody> {
               border: Border.all(color: gold, width: 3)),
           height: 35,
           child: ElevatedButton(
-            onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const NextPage())),
+            onPressed: () async {
+              UserInformation user = UserInformation(
+                prenom: firstNameController.text,
+                nom: lastNameController.text,
+                username: usernameController.text,
+              );
+
+              if (_formKey.currentState!.validate()) {
+                // If the form is valid, display a snackbar
+                LocalStorage storage = LocalStorage('first_page_information');
+                await storage.ready;
+                storage.setItem('prenom', user.prenom);
+                storage.setItem('nom', user.nom);
+                storage.setItem('username', user.username);
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                      builder: (context) => const NextPage(),
+                      settings: RouteSettings(arguments: {
+                        'prenom': user.prenom,
+                        'nom': user.nom,
+                        'username': user.username
+                      })),
+                );
+              }
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: bluelogo,
               shape: const BeveledRectangleBorder(
@@ -275,34 +296,42 @@ class _RegistrationBodyState extends State<RegistrationBody> {
                               ),
                             ),
                           ),
-                          Positioned(
-                            left: 95,
-                            top: 170,
-                            child: Container(
-                              height: 200,
-                              width: 200,
-                              alignment: Alignment.bottomCenter,
-                              decoration: const BoxDecoration(
-                                image: DecorationImage(
+                          Column(
+                            children: [
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height / 7,
+                              ),
+                              Container(
+                                height:
+                                    MediaQuery.of(context).size.height / 4.5,
+                                width: double.infinity,
+                                child: const Image(
                                   image: AssetImage("images/logo.png"),
                                 ),
                               ),
-                            ),
-                          ),
-                          Positioned(
-                            right: 50,
-                            bottom: 100,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                const SizedBox(height: 14),
-                                manageFirstname(),
-                                manageName(),
-                                manageUsername(),
-                                checkSignInBtn(),
-                                nextBtn(),
-                              ],
-                            ),
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height / 12,
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.8,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    const SizedBox(height: 14),
+                                    manageFirstname(),
+                                    manageName(),
+                                    manageUsername(),
+                                    checkSignInBtn(),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        nextBtn(),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),

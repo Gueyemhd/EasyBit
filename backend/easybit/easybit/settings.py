@@ -25,7 +25,9 @@ SECRET_KEY = "django-insecure-1ru%c877!)#+6(3-7c)x_mf8bx9f6yrour2o60!zd$0$e8=%ir
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['10.0.2.2', '127.0.0.1']
+
+CORS_ALLOW_CREDENTIALS = True
 
 
 # Application definition
@@ -46,6 +48,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django.contrib.sessions.middleware.SessionMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -54,7 +57,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "corsheaders.middleware.CorsMiddleware",
-    "django.middleware.common.CommonMiddleware"
 ]
 
 ROOT_URLCONF = "easybit.urls"
@@ -142,3 +144,6 @@ EMAIL_HOST_PASSWORD = ''  # to complete
 
 # Time in hours about how long the token is active
 DJANGO_REST_MULTITOKENAUTH_RESET_TOKEN_EXPIRY_TIME = 0.08
+
+CORS_ALLOW_ALL_ORIGINS = True
+

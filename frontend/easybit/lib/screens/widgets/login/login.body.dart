@@ -178,11 +178,11 @@ class _LoginBodyState extends State<LoginBody> {
                     );
                   }
 
-                  User user = User();
-                  user.username = usernameController.text;
-                  user.password = passwordController.text;
+                  // User user = User();
+                  // user.username = usernameController.text;
+                  // user.password = passwordController.text;
 
-                  UserService().login(user);
+                  // UserService().login(user);
                 },
                 child: const Text(
                   "Se connecter",
