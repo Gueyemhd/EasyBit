@@ -87,9 +87,11 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
                       // Down Arrow Icon
                       icon: const Icon(
                         Icons.arrow_drop_down,
-                        color: Color.fromARGB(237, 12, 90, 154),
-                        size: 45,
                       ),
+                      iconSize: 45,
+                      //   iconDisabledColor: Colors.blue,
+                      iconEnabledColor: Colors.grey,
+                      //dropdownColor: Colors.blue,
                       // Array list of items
                       items: items.map((String items) {
                         return DropdownMenuItem(
@@ -218,7 +220,7 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
                 Icons.change_circle,
                 color: Color.fromARGB(237, 12, 90, 154),
               ),
-              tooltip: 'désactiver compte',
+              tooltip: 'switcher les champs',
               onPressed: () => Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => const CalculatorBTCtoXOF())),
             ),

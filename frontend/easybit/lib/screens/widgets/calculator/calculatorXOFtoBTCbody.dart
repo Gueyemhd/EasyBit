@@ -162,7 +162,7 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
                     height: size.height * 0.03,
                     decoration: BoxDecoration(
                       color: const Color.fromARGB(255, 213, 225, 236),
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(0),
                       border: Border.all(color: Colors.black12, width: 1),
                       boxShadow: const [
                         BoxShadow(
@@ -217,7 +217,7 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
                 Icons.change_circle,
                 color: Color.fromARGB(237, 12, 90, 154),
               ),
-              tooltip: 'désactiver compte',
+              tooltip: 'Switcher les champs',
               onPressed: () => Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => const CalculatorBTCtoXOF())),
             ),
