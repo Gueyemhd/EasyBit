@@ -67,7 +67,6 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
                     decoration: BoxDecoration(
                       color: const Color.fromARGB(255, 213, 225, 236),
                       borderRadius: BorderRadius.circular(0),
-                      border: Border.all(color: Colors.black12, width: 0),
                       boxShadow: const [
                         BoxShadow(
                           color: Colors.black26,
@@ -165,7 +164,6 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
                     decoration: BoxDecoration(
                       color: const Color.fromARGB(255, 213, 225, 236),
                       borderRadius: BorderRadius.circular(0),
-                      border: Border.all(color: Colors.black12, width: 1),
                       boxShadow: const [
                         BoxShadow(
                           color: Colors.black26,
