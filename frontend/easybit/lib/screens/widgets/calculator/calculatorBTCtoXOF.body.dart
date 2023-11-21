@@ -128,10 +128,24 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
       physics: const AlwaysScrollableScrollPhysics(),
       padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 120),
       child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          // crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            const Text(
+              "1 BTC = 3,898,529,37 XOF",
+              style: TextStyle(
+                fontWeight: FontWeight.w400,
+                color: Color.fromARGB(232, 20, 108, 180),
+                fontSize: 16,
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.05,
+            ),
             btcField(),
-            const SizedBox(height: 10),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.05,
+            ),
             IconButton(
               iconSize: 70,
               icon: const Icon(
@@ -142,7 +156,9 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
               onPressed: () => Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => const CalculatorBTCtoXOF())),
             ),
-            const SizedBox(height: 10),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.05,
+            ),
             xofField(),
           ]),
     );

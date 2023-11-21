@@ -26,10 +26,10 @@ class MyApp extends StatelessWidget {
         "/registration": (context) => const Registration(),
         "/next": (context) => const NextPage(),
         "/login": (context) => const Login(),
-        "/CalculatorBTCtoXOF": (context) => const CalculatorBTCtoXOF(),
-        "/CalculatorXOFtoBTC": (context) => const CalculatorXOFtoBTC()
+        "/calculatorBTCtoXOF": (context) => const CalculatorBTCtoXOF(),
+        "/calculatorXOFtoBTC": (context) => const CalculatorXOFtoBTC()
       },
-      initialRoute: "/launch",
+      initialRoute: "/calculatorBTCtoXOF",
     );
   }
 }
