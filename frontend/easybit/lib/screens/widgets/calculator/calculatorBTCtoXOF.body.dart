@@ -10,6 +10,15 @@ class BTCtoXOF extends StatefulWidget {
 }
 
 class _BTCtoXOFState extends State<BTCtoXOF> {
+// Initial Selected Value
+  String dropdownvalue = '  BTC';
+
+  // List of items in our dropdown menu
+  var items = [
+    '  BTC',
+    '  SAT',
+  ];
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -27,26 +36,83 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: Colors.black12, width: 2)),
             height: 60,
-            child: TextFormField(
-              // The validator receives the text that the user has entered.
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Veuillez entrer le montant en BTC ou SAT';
-                }
-                return null;
-              },
-              style: const TextStyle(
-                color: Colors.black87,
-              ),
-              decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.only(top: 14),
-                  suffixIcon: Icon(
-                    Icons.arrow_drop_down,
-                    color: Color.fromARGB(237, 12, 90, 154),
-                    size: 45,
+            child: Stack(
+              children: <Widget>[
+                Positioned(
+                  top: -190,
+                  left: -150,
+                  child: TextFormField(
+                    style: const TextStyle(
+                      color: Colors.black87,
+                    ),
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.only(top: 14),
+                      hintStyle: TextStyle(color: Colors.black, fontSize: 12),
+                      suffixIcon: Icon(
+                        Icons.arrow_drop_down,
+                        color: Color.fromARGB(237, 12, 90, 154),
+                        size: 45,
+                      ),
+                    ),
                   ),
-                  hintStyle: TextStyle(color: Colors.black, fontSize: 12)),
+                ),
+                Positioned(
+                  right: 30,
+                  bottom: 2,
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    width: size.width * 0.24,
+                    height: size.height * 0.04,
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 213, 225, 236),
+                      borderRadius: BorderRadius.circular(0),
+                      border: Border.all(color: Colors.black12, width: 0),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(
+                            5.0,
+                            5.0,
+                          ),
+                          blurRadius: 10.0,
+                          spreadRadius: 2.0,
+                        )
+                      ],
+                    ),
+                    child: DropdownButton(
+                      style: const TextStyle(color: Colors.blue),
+                      // Initial Value
+                      value: dropdownvalue,
+                      // Down Arrow Icon
+                      icon: const Icon(
+                        Icons.arrow_drop_down,
+                        color: Color.fromARGB(237, 12, 90, 154),
+                        size: 45,
+                      ),
+                      // Array list of items
+                      items: items.map((String items) {
+                        return DropdownMenuItem(
+                          value: items,
+                          child: Text(
+                            items,
+                            //     selectionColor: Colors.blue,
+                            style:
+                                const TextStyle(fontSize: 20, color: bluelogo),
+                          ),
+                        );
+                      }).toList(),
+                      // After selecting the desired option,it will
+                      // change button value to selected value
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          dropdownvalue = newValue!;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
@@ -89,14 +155,14 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
                 ),
                 Positioned(
                   right: 30,
-                  bottom: 8,
+                  bottom: 5,
                   child: Container(
                     margin: const EdgeInsets.symmetric(vertical: 10),
                     width: size.width * 0.15,
                     height: size.height * 0.03,
                     decoration: BoxDecoration(
                       color: const Color.fromARGB(255, 213, 225, 236),
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(0),
                       border: Border.all(color: Colors.black12, width: 1),
                       boxShadow: const [
                         BoxShadow(
