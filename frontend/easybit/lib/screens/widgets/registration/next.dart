@@ -74,7 +74,7 @@ class _NextState extends State<Next> {
               // The validator receives the password that the user has entered.
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Veuillez entrer votre email';
+                  return '  Veuillez entrer votre email';
                 }
                 return null;
               },
@@ -116,7 +116,7 @@ class _NextState extends State<Next> {
               // The validator receives the password that the user has entered.
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Veuillez entrer votre mot de passe';
+                  return '  Veuillez entrer votre mot de passe';
                 }
                 return null;
               },
@@ -164,7 +164,7 @@ class _NextState extends State<Next> {
               //   controller: myController,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Veuillez entrer à nouveau votre mot de passe';
+                  return '  Veuillez entrer à nouveau votre mot de passe';
                 }
                 return null;
               },
@@ -176,7 +176,7 @@ class _NextState extends State<Next> {
               decoration: const InputDecoration(
                 contentPadding: EdgeInsets.only(top: 14),
                 prefixIcon: Icon(Icons.lock, color: bluelogo),
-                hintText: 'Confirmer mot de passe',
+                hintText: '  Confirmer mot de passe',
                 hintStyle: TextStyle(
                   color: bluelogo,
                   fontSize: 12,

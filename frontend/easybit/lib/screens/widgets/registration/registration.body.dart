@@ -63,7 +63,7 @@ class _RegistrationBodyState extends State<RegistrationBody> {
               // The validator receives the text that the user has entered.
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Veuillez entrer votre prénom';
+                  return '  Veuillez entrer votre prénom';
                 }
                 return null;
               },
@@ -108,7 +108,7 @@ class _RegistrationBodyState extends State<RegistrationBody> {
               // The validator receives the text that the user has entered.
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Veuillez entrer votre nom';
+                  return '  Veuillez entrer votre nom';
                 }
                 return null;
               },
@@ -153,7 +153,7 @@ class _RegistrationBodyState extends State<RegistrationBody> {
               // The validator receives the text that the user has entered.
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Veuillez entre votre nom d\'utilisateur';
+                  return '  Veuillez entre votre nom d\'utilisateur';
                 }
                 return null;
               },

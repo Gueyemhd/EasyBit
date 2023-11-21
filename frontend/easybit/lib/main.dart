@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         "/CalculatorBTCtoXOF": (context) => const CalculatorBTCtoXOF(),
         "/CalculatorXOFtoBTC": (context) => const CalculatorXOFtoBTC()
       },
-      initialRoute: "/CalculatorBTCtoXOF",
+      initialRoute: "/launch",
     );
   }
 }

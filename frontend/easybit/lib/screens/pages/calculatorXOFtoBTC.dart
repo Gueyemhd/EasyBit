@@ -10,7 +10,7 @@ class CalculatorXOFtoBTC extends StatefulWidget {
 }
 
 class _CalculatorXOFtoBTCState extends State<CalculatorXOFtoBTC> {
-  static const String _title = 'Calculateur CFA en BTC/SAT';
+  static const String _title = 'Calculateur';
 
   @override
   Widget build(BuildContext context) {
