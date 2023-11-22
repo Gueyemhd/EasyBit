@@ -61,8 +61,9 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
                         ],
                       ),
                       child: DropdownButton(
-                        // Initial Value
+                        // Initial Values
                         value: dropdownvalue,
+                        dropdownColor: bluelogo,
 
                         // Down Arrow Icon
                         icon: const Icon(
@@ -77,7 +78,7 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
                             value: items,
                             child: Text(
                               items,
-                              style: const TextStyle(color: bluelogo),
+                              style: const TextStyle(color: Colors.white),
                             ),
                           );
                         }).toList(),
