@@ -77,6 +77,7 @@ class _NextState extends State<Next> {
                 border: Border.all(color: bluelogo, width: 3)),
             height: 60,
             child: TextFormField(
+              autofocus: true,
               controller: emailController,
               // The validator receives the password that the user has entered.
               validator: (value) {
@@ -119,6 +120,7 @@ class _NextState extends State<Next> {
                 border: Border.all(color: bluelogo, width: 3)),
             height: 60,
             child: TextFormField(
+              autofocus: true,
               controller: passwordController,
               // The validator receives the password that the user has entered.
               validator: (value) {
@@ -178,6 +180,7 @@ class _NextState extends State<Next> {
                 border: Border.all(color: bluelogo, width: 3)),
             height: 60,
             child: TextFormField(
+              autofocus: true,
               controller: confirmPasswordController,
               // The validator receives the password that the user has entered.
               //   controller: myController,
