@@ -181,15 +181,14 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.05,
             ),
-            IconButton(
-              iconSize: 70,
-              icon: const Icon(
-                Icons.change_circle,
-                color: Color.fromARGB(237, 12, 90, 154),
-              ),
-              tooltip: 'Switcher les champs',
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+            GestureDetector(
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => const CalculatorBTCtoXOF())),
+              child: const Image(
+                image: AssetImage("images/arrow_swap.png"),
+                fit: BoxFit.cover,
+                width: 70,
+              ),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.05,

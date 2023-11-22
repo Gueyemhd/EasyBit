@@ -183,7 +183,16 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.05,
             ),
-            IconButton(
+            GestureDetector(
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const CalculatorXOFtoBTC())),
+              child: const Image(
+                image: AssetImage("images/arrow_swap.png"),
+                fit: BoxFit.cover,
+                width: 70,
+              ),
+            ),
+            /*  IconButton(
               iconSize: 70,
               icon: const Icon(
                 Icons.change_circle,
@@ -192,7 +201,7 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
               tooltip: 'switcher les champs',
               onPressed: () => Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => const CalculatorXOFtoBTC())),
-            ),
+            ),*/
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.05,
             ),
