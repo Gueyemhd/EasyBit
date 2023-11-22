@@ -119,30 +119,29 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
 
     Widget xofField() {
       return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 10),
-            width: size.width * 0.9,
-            alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(
-                color: Colors.white38,
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Colors.black12, width: 2)),
-            height: 60,
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  right: 30,
-                  bottom: 5,
-                  child: Container(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              margin: const EdgeInsets.symmetric(vertical: 10),
+              width: size.width * 0.9,
+              alignment: Alignment.centerLeft,
+              decoration: BoxDecoration(
+                  color: Colors.white38,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.black12, width: 2)),
+              height: 60,
+              child: TextFormField(
+                style: const TextStyle(
+                  color: Colors.black87,
+                ),
+                decoration: InputDecoration(
+                  suffix: Container(
                     margin: const EdgeInsets.symmetric(vertical: 10),
                     width: size.width * 0.15,
                     height: size.height * 0.03,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 213, 225, 236),
-                      borderRadius: BorderRadius.circular(0),
-                      boxShadow: const [
+                    decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 213, 225, 236),
+                      boxShadow: [
                         BoxShadow(
                           color: Colors.black26,
                           offset: Offset(
@@ -160,31 +159,18 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
                       style: TextStyle(fontSize: 20, color: bluelogo),
                     ),
                   ),
-                ),
-                Positioned(
-                  top: -190,
-                  left: -150,
-                  child: TextFormField(
-                    style: const TextStyle(
-                      color: Colors.black87,
-                    ),
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.only(top: 14),
-                      hintStyle: TextStyle(color: Colors.black, fontSize: 12),
-                      suffixIcon: Icon(
-                        Icons.arrow_drop_down,
-                        color: Color.fromARGB(237, 12, 90, 154),
-                        size: 45,
-                      ),
-                    ),
+                  suffixStyle: const TextStyle(
+                    fontSize: 20,
+                    color: bluelogo,
+                    backgroundColor: Color.fromARGB(255, 213, 225, 236),
                   ),
+                  border: InputBorder.none,
+                  contentPadding: const EdgeInsets.only(top: 14),
+                  hintStyle: const TextStyle(color: Colors.black, fontSize: 12),
                 ),
-              ],
+              ),
             ),
-          ),
-        ],
-      );
+          ]);
     }
 
     return SingleChildScrollView(

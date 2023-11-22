@@ -36,51 +36,21 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: Colors.black12, width: 2)),
             height: 60,
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  top: -190,
-                  left: -150,
-                  child: TextFormField(
-                    style: const TextStyle(
-                      color: Colors.black87,
-                    ),
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.only(top: 14),
-                      hintStyle: TextStyle(color: Colors.black, fontSize: 12),
-                      suffixIcon: Icon(
-                        Icons.arrow_drop_down,
-                        color: Color.fromARGB(237, 12, 90, 154),
-                        size: 45,
-                      ),
-                    ),
+            child: Container(
+                margin: const EdgeInsets.symmetric(vertical: 10),
+                width: size.width * 0.1,
+                alignment: Alignment.centerLeft,
+                decoration: BoxDecoration(
+                    color: Colors.white38,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: Colors.black12, width: 2)),
+                height: 60,
+                child: TextFormField(
+                  style: const TextStyle(
+                    color: Colors.black87,
                   ),
-                ),
-                Positioned(
-                  right: 30,
-                  bottom: 2,
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(vertical: 10),
-                    width: size.width * 0.24,
-                    height: size.height * 0.04,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 213, 225, 236),
-                      borderRadius: BorderRadius.circular(0),
-                      border: Border.all(color: Colors.black12, width: 0),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black26,
-                          offset: Offset(
-                            5.0,
-                            5.0,
-                          ),
-                          blurRadius: 10.0,
-                          spreadRadius: 2.0,
-                        )
-                      ],
-                    ),
-                    child: DropdownButton(
+                  decoration: InputDecoration(
+                    suffix: DropdownButton(
                       style: const TextStyle(color: Colors.blue),
                       // Initial Value
                       value: dropdownvalue,
@@ -96,7 +66,6 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
                           value: items,
                           child: Text(
                             items,
-                            //     selectionColor: Colors.blue,
                             style:
                                 const TextStyle(fontSize: 20, color: bluelogo),
                           ),
@@ -110,11 +79,18 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
                         });
                       },
                     ),
+                    suffixStyle: const TextStyle(
+                      fontSize: 20,
+                      color: bluelogo,
+                      backgroundColor: Color.fromARGB(255, 213, 225, 236),
+                    ),
+                    border: InputBorder.none,
+                    contentPadding: const EdgeInsets.only(top: 14),
+                    hintStyle:
+                        const TextStyle(color: Colors.black, fontSize: 12),
                   ),
-                ),
-              ],
-            ),
-          ),
+                )),
+          )
         ],
       );
     }
@@ -124,81 +100,56 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-              margin: const EdgeInsets.symmetric(vertical: 10),
-              width: size.width * 0.9,
-              alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
-                  color: Colors.white38,
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.black12, width: 2)),
-              height: 60,
-              child: TextFormField(
-                style: const TextStyle(
-                  color: Colors.black87,
-                ),
-                decoration: const InputDecoration(
-                  suffixText: "CFA",
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.only(top: 14),
-                  hintStyle: TextStyle(color: Colors.black, fontSize: 12),
-                ),
-              ),
-              /*Stack(
-              children: <Widget>[
-                Positioned(
-                  top: -190,
-                  left: -150,
-                  child: TextFormField(
-                    style: const TextStyle(
-                      color: Colors.black87,
-                    ),
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.only(top: 14),
-                      hintStyle: TextStyle(color: Colors.black, fontSize: 12),
-                      suffixIcon: Icon(
-                        Icons.arrow_drop_down,
-                        color: Color.fromARGB(237, 12, 90, 154),
-                        size: 45,
+                margin: const EdgeInsets.symmetric(vertical: 10),
+                width: size.width * 0.9,
+                alignment: Alignment.centerLeft,
+                decoration: BoxDecoration(
+                    color: Colors.white38,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: Colors.black12, width: 2)),
+                height: 60,
+                child: TextFormField(
+                  style: const TextStyle(
+                    color: Colors.black87,
+                  ),
+                  decoration: InputDecoration(
+                    suffix: Container(
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 15),
+                      width: size.width * 0.15,
+                      height: size.height * 0.03,
+                      decoration: const BoxDecoration(
+                        color: Color.fromARGB(255, 213, 225, 236),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            offset: Offset(
+                              5.0,
+                              5.0,
+                            ),
+                            blurRadius: 10.0,
+                            spreadRadius: 2.0,
+                          )
+                        ],
+                      ),
+                      child: const Text(
+                        "CFA",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 20, color: bluelogo),
                       ),
                     ),
-                  ),
-                ),*/
-              /*  Positioned(
-                  right: 30,
-                  bottom: 8,
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(vertical: 10),
-                    width: size.width * 0.15,
-                    height: size.height * 0.03,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 213, 225, 236),
-                      borderRadius: BorderRadius.circular(0),
-                      border: Border.all(color: Colors.black12, width: 1),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black26,
-                          offset: Offset(
-                            5.0,
-                            5.0,
-                          ),
-                          blurRadius: 10.0,
-                          spreadRadius: 2.0,
-                        )
-                      ],
+                    suffixStyle: const TextStyle(
+                      fontSize: 20,
+                      color: bluelogo,
+                      backgroundColor: Color.fromARGB(255, 213, 225, 236),
                     ),
-                    child: const Text(
-                      "CFA",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 20, color: bluelogo),
-                    ),
+                    border: InputBorder.none,
+                    contentPadding: const EdgeInsets.only(top: 14),
+                    hintStyle:
+                        const TextStyle(color: Colors.black, fontSize: 12),
                   ),
-                ),*/
-            ),
+                )),
           ]);
-      //   )
-      /*  ],
-      );*/
     }
 
     return SingleChildScrollView(
