@@ -15,6 +15,13 @@ class Next extends StatefulWidget {
 // Define a corresponding State class.
 // This class holds data related to the form.
 class _NextState extends State<Next> {
+  bool passwordVisible = false;
+
+  @override
+  void initState() {
+    super.initState();
+    passwordVisible = true;
+  }
   // Create a global key that uniquely identifies the Form widget
   // and allows validation of the form.
 
@@ -78,7 +85,7 @@ class _NextState extends State<Next> {
                 }
                 return null;
               },
-              keyboardType: TextInputType.emailAddress,
+              keyboardType: TextInputType.text,
               style: const TextStyle(
                 color: Colors.black87,
               ),
@@ -121,21 +128,33 @@ class _NextState extends State<Next> {
                 return null;
               },
               keyboardType: TextInputType.visiblePassword,
+              textInputAction: TextInputAction.done,
               obscureText: true,
               style: const TextStyle(
                 color: Colors.black87,
               ),
-              decoration: const InputDecoration(
-                contentPadding: EdgeInsets.only(top: 14),
-                prefixIcon: Icon(Icons.lock, color: bluelogo),
+              decoration: InputDecoration(
+                alignLabelWithHint: false,
+                filled: true,
+                contentPadding: const EdgeInsets.only(top: 14),
+                prefixIcon: const Icon(Icons.lock, color: bluelogo),
                 hintText: 'Mot de passe',
-                hintStyle: TextStyle(
+                hintStyle: const TextStyle(
                   color: bluelogo,
                   fontSize: 12,
                 ),
-                suffixIcon: Icon(
-                  Icons.visibility_off,
-                  color: bluelogo,
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    passwordVisible ? Icons.visibility : Icons.visibility_off,
+                    color: bluelogo,
+                  ),
+                  onPressed: () {
+                    setState(
+                      () {
+                        passwordVisible = !passwordVisible;
+                      },
+                    );
+                  },
                 ),
                 border: InputBorder.none,
               ),
@@ -169,21 +188,33 @@ class _NextState extends State<Next> {
                 return null;
               },
               keyboardType: TextInputType.visiblePassword,
+              textInputAction: TextInputAction.done,
               obscureText: true,
               style: const TextStyle(
                 color: Colors.black87,
               ),
-              decoration: const InputDecoration(
-                contentPadding: EdgeInsets.only(top: 14),
-                prefixIcon: Icon(Icons.lock, color: bluelogo),
+              decoration: InputDecoration(
+                alignLabelWithHint: false,
+                filled: true,
+                contentPadding: const EdgeInsets.only(top: 14),
+                prefixIcon: const Icon(Icons.lock, color: bluelogo),
                 hintText: '  Confirmer mot de passe',
-                hintStyle: TextStyle(
+                hintStyle: const TextStyle(
                   color: bluelogo,
                   fontSize: 12,
                 ),
-                suffixIcon: Icon(
-                  Icons.visibility_off,
-                  color: bluelogo,
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    passwordVisible ? Icons.visibility : Icons.visibility_off,
+                    color: bluelogo,
+                  ),
+                  onPressed: () {
+                    setState(
+                      () {
+                        passwordVisible = !passwordVisible;
+                      },
+                    );
+                  },
                 ),
                 border: InputBorder.none,
               ),

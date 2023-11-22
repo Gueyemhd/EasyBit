@@ -121,18 +121,29 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
 
     Widget xofField() {
       return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 10),
-            width: size.width * 0.9,
-            alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(
-                color: Colors.white38,
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Colors.black12, width: 2)),
-            height: 60,
-            child: Stack(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              margin: const EdgeInsets.symmetric(vertical: 10),
+              width: size.width * 0.9,
+              alignment: Alignment.centerLeft,
+              decoration: BoxDecoration(
+                  color: Colors.white38,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.black12, width: 2)),
+              height: 60,
+              child: TextFormField(
+                style: const TextStyle(
+                  color: Colors.black87,
+                ),
+                decoration: const InputDecoration(
+                  suffixText: "CFA",
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.only(top: 14),
+                  hintStyle: TextStyle(color: Colors.black, fontSize: 12),
+                ),
+              ),
+              /*Stack(
               children: <Widget>[
                 Positioned(
                   top: -190,
@@ -152,8 +163,8 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
                       ),
                     ),
                   ),
-                ),
-                Positioned(
+                ),*/
+              /*  Positioned(
                   right: 30,
                   bottom: 8,
                   child: Container(
@@ -182,12 +193,12 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
                       style: TextStyle(fontSize: 20, color: bluelogo),
                     ),
                   ),
-                ),
-              ],
+                ),*/
             ),
-          ),
-        ],
-      );
+          ]);
+      //   )
+      /*  ],
+      );*/
     }
 
     return SingleChildScrollView(

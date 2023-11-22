@@ -1,4 +1,5 @@
 import 'package:easybit/screens/pages/calculatorBTCtoXOF.dart';
+import 'package:easybit/screens/pages/calculatorXOFtoBTC.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -39,25 +40,6 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
             child: Stack(
               children: <Widget>[
                 Positioned(
-                  top: -190,
-                  left: -150,
-                  child: TextFormField(
-                    style: const TextStyle(
-                      color: Colors.black87,
-                    ),
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.only(top: 14),
-                      hintStyle: TextStyle(color: Colors.black, fontSize: 12),
-                      suffixIcon: Icon(
-                        Icons.arrow_drop_down,
-                        color: Color.fromARGB(237, 12, 90, 154),
-                        size: 45,
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
                   right: 30,
                   bottom: 2,
                   child: Container(
@@ -80,29 +62,8 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
                       ],
                     ),
                     child: DropdownButton(
-                      style: const TextStyle(color: Colors.blue),
                       // Initial Value
                       value: dropdownvalue,
-                      // Down Arrow Icon
-                      icon: const Icon(
-                        Icons.arrow_drop_down,
-                      ),
-                      iconSize: 45,
-                      //   iconDisabledColor: Colors.blue,
-                      iconEnabledColor: Colors.grey,
-                      //dropdownColor: Colors.blue,
-                      // Array list of items
-                      items: items.map((String items) {
-                        return DropdownMenuItem(
-                          value: items,
-                          child: Text(
-                            items,
-                            //     selectionColor: Colors.blue,
-                            style:
-                                const TextStyle(fontSize: 20, color: bluelogo),
-                          ),
-                        );
-                      }).toList(),
                       // After selecting the desired option,it will
                       // change button value to selected value
                       onChanged: (String? newValue) {
@@ -110,6 +71,42 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
                           dropdownvalue = newValue!;
                         });
                       },
+                      // Down Arrow Icon
+                      icon: const Icon(
+                        Icons.arrow_drop_down,
+                      ),
+                      iconSize: 45,
+                      // Array list of items
+                      items: items.map((String items) {
+                        return DropdownMenuItem(
+                          value: items,
+                          child: Text(
+                            items,
+                            style:
+                                const TextStyle(fontSize: 20, color: bluelogo),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: -190,
+                  left: -150,
+                  child: TextFormField(
+                    enabled: true,
+                    style: const TextStyle(
+                      color: Colors.black87,
+                    ),
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.only(top: 14),
+                      hintStyle: TextStyle(color: Colors.black, fontSize: 12),
+                      suffixIcon: Icon(
+                        Icons.arrow_drop_down,
+                        color: Color.fromARGB(237, 12, 90, 154),
+                        size: 45,
+                      ),
                     ),
                   ),
                 ),
@@ -136,25 +133,6 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
             child: Stack(
               children: <Widget>[
                 Positioned(
-                  top: -190,
-                  left: -150,
-                  child: TextFormField(
-                    style: const TextStyle(
-                      color: Colors.black87,
-                    ),
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.only(top: 14),
-                      hintStyle: TextStyle(color: Colors.black, fontSize: 12),
-                      suffixIcon: Icon(
-                        Icons.arrow_drop_down,
-                        color: Color.fromARGB(237, 12, 90, 154),
-                        size: 45,
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
                   right: 30,
                   bottom: 5,
                   child: Container(
@@ -180,6 +158,25 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
                       "CFA",
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 20, color: bluelogo),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: -190,
+                  left: -150,
+                  child: TextFormField(
+                    style: const TextStyle(
+                      color: Colors.black87,
+                    ),
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.only(top: 14),
+                      hintStyle: TextStyle(color: Colors.black, fontSize: 12),
+                      suffixIcon: Icon(
+                        Icons.arrow_drop_down,
+                        color: Color.fromARGB(237, 12, 90, 154),
+                        size: 45,
+                      ),
                     ),
                   ),
                 ),
@@ -220,7 +217,7 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
               ),
               tooltip: 'switcher les champs',
               onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const CalculatorBTCtoXOF())),
+                  builder: (context) => const CalculatorXOFtoBTC())),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.05,
