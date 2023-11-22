@@ -5,6 +5,7 @@ import 'package:easybit/screens/pages/loginPage.dart';
 import 'package:easybit/screens/pages/nextPage.dart';
 import 'package:easybit/screens/pages/registrationpage.dart';
 import 'package:easybit/screens/pages/startedPage.dart';
+import 'package:easybit/screens/pages/transfertBitoins.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -27,9 +28,10 @@ class MyApp extends StatelessWidget {
         "/next": (context) => const NextPage(),
         "/login": (context) => const Login(),
         "/calculatorBTCtoXOF": (context) => const CalculatorBTCtoXOF(),
-        "/calculatorXOFtoBTC": (context) => const CalculatorXOFtoBTC()
+        "/calculatorXOFtoBTC": (context) => const CalculatorXOFtoBTC(),
+        "/transfertBitcoins": (context) => const TransfertBitcoins(),
       },
-      initialRoute: "/calculatorXOFtoBTC",
+      initialRoute: "/calculatorBTCtoXOF",
     );
   }
 }

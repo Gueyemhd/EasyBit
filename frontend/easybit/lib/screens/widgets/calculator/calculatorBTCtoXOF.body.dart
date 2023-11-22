@@ -53,7 +53,7 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
                       width: size.width * 0.18,
                       height: size.height * 0.20,
                       decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 193, 215, 236),
+                        color: Color(0xFFEAF2F6),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black26,
@@ -83,7 +83,7 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
                             value: items,
                             child: Text(
                               items,
-                              style: const TextStyle(color: Colors.white),
+                              style: const TextStyle(color: Colors.black),
                             ),
                           );
                         }).toList(),
@@ -192,16 +192,6 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
                 width: 70,
               ),
             ),
-            /*  IconButton(
-              iconSize: 70,
-              icon: const Icon(
-                Icons.change_circle,
-                color: Color.fromARGB(237, 12, 90, 154),
-              ),
-              tooltip: 'switcher les champs',
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const CalculatorXOFtoBTC())),
-            ),*/
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.05,
             ),

@@ -51,7 +51,7 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
                       width: size.width * 0.18,
                       height: size.height * 0.20,
                       decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 193, 215, 236),
+                        color: Color(0xFFEAF2F6),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black26,
@@ -129,7 +129,7 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
                       width: size.width * 0.15,
                       height: size.height * 0.03,
                       decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 213, 225, 236),
+                        color: Color(0xFFEAF2F6),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black26,
