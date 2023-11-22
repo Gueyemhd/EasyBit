@@ -41,6 +41,10 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
                     color: Colors.black87,
                   ),
                   decoration: InputDecoration(
+                    enabledBorder: const OutlineInputBorder(),
+                    focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: bluelogo, width: 2.0),
+                    ),
                     suffix: Container(
                       margin: const EdgeInsets.symmetric(
                           vertical: 15, horizontal: 15),
@@ -110,10 +114,15 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(color: Colors.black12, width: 2)),
                 child: TextFormField(
+                  autofocus: true, //make phone keyboard appear automatically
                   style: const TextStyle(
                     color: Colors.black87,
                   ),
                   decoration: InputDecoration(
+                    enabledBorder: const OutlineInputBorder(),
+                    focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: bluelogo, width: 2.0),
+                    ),
                     suffix: Container(
                       margin: const EdgeInsets.symmetric(
                           vertical: 15, horizontal: 18),
@@ -162,7 +171,7 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
               style: TextStyle(
                 fontWeight: FontWeight.w400,
                 color: Color.fromARGB(232, 20, 108, 180),
-                fontSize: 16,
+                fontSize: 20,
               ),
             ),
             SizedBox(
