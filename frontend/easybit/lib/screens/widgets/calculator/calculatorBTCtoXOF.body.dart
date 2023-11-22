@@ -26,95 +26,74 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
     //This size provides us total height and width of our screen
     Widget btcField() {
       return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 10),
-            width: size.width * 0.9,
-            alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(
-                color: Colors.white38,
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Colors.black12, width: 2)),
-            height: 60,
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  right: 30,
-                  bottom: 2,
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(vertical: 10),
-                    width: size.width * 0.24,
-                    height: size.height * 0.04,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 213, 225, 236),
-                      borderRadius: BorderRadius.circular(0),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black26,
-                          offset: Offset(
-                            5.0,
-                            5.0,
-                          ),
-                          blurRadius: 10.0,
-                          spreadRadius: 2.0,
-                        )
-                      ],
-                    ),
-                    child: DropdownButton(
-                      // Initial Value
-                      value: dropdownvalue,
-                      // After selecting the desired option,it will
-                      // change button value to selected value
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          dropdownvalue = newValue!;
-                        });
-                      },
-                      // Down Arrow Icon
-                      icon: const Icon(
-                        Icons.arrow_drop_down,
-                      ),
-                      iconSize: 45,
-                      // Array list of items
-                      items: items.map((String items) {
-                        return DropdownMenuItem(
-                          value: items,
-                          child: Text(
-                            items,
-                            style:
-                                const TextStyle(fontSize: 20, color: bluelogo),
-                          ),
-                        );
-                      }).toList(),
-                    ),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              margin: const EdgeInsets.symmetric(vertical: 10),
+              width: size.width * 0.9,
+              height: size.width * 0.15,
+              alignment: Alignment.centerLeft,
+              decoration: BoxDecoration(
+                  color: Colors.white38,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.black12, width: 2)),
+              child: TextFormField(
+                  style: const TextStyle(
+                    color: Colors.black87,
                   ),
-                ),
-                Positioned(
-                  top: -190,
-                  left: -150,
-                  child: TextFormField(
-                    enabled: true,
-                    style: const TextStyle(
-                      color: Colors.black87,
-                    ),
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.only(top: 14),
-                      hintStyle: TextStyle(color: Colors.black, fontSize: 12),
-                      suffixIcon: Icon(
-                        Icons.arrow_drop_down,
-                        color: Color.fromARGB(237, 12, 90, 154),
-                        size: 45,
+                  decoration: InputDecoration(
+                    suffix: Container(
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 15, horizontal: 15),
+                      width: size.width * 0.18,
+                      height: size.height * 0.20,
+                      decoration: const BoxDecoration(
+                        color: Color.fromARGB(255, 193, 215, 236),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            offset: Offset(
+                              5.0,
+                              5.0,
+                            ),
+                            blurRadius: 10.0,
+                            spreadRadius: 2.0,
+                          )
+                        ],
+                      ),
+                      child: DropdownButton(
+                        // Initial Value
+                        value: dropdownvalue,
+
+                        // Down Arrow Icon
+                        icon: const Icon(
+                          Icons.arrow_drop_down,
+                          color: Color.fromARGB(237, 12, 90, 154),
+                          size: 25,
+                        ),
+
+                        // Array list of items
+                        items: items.map((String items) {
+                          return DropdownMenuItem(
+                            value: items,
+                            child: Text(
+                              items,
+                              style: const TextStyle(color: bluelogo),
+                            ),
+                          );
+                        }).toList(),
+                        // After selecting the desired option,it will
+                        // change button value to selected value
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            dropdownvalue = newValue!;
+                          });
+                        },
                       ),
                     ),
-                  ),
-                ),
-              ],
+                  )),
             ),
-          ),
-        ],
-      );
+          ]);
     }
 
     Widget xofField() {
@@ -122,54 +101,54 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-              margin: const EdgeInsets.symmetric(vertical: 10),
-              width: size.width * 0.9,
-              alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
-                  color: Colors.white38,
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.black12, width: 2)),
-              height: 60,
-              child: TextFormField(
-                style: const TextStyle(
-                  color: Colors.black87,
-                ),
-                decoration: InputDecoration(
-                  suffix: Container(
-                    margin: const EdgeInsets.symmetric(vertical: 10),
-                    width: size.width * 0.15,
-                    height: size.height * 0.03,
-                    decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 213, 225, 236),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black26,
-                          offset: Offset(
-                            5.0,
-                            5.0,
-                          ),
-                          blurRadius: 10.0,
-                          spreadRadius: 2.0,
-                        )
-                      ],
-                    ),
-                    child: const Text(
-                      "CFA",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 20, color: bluelogo),
-                    ),
+                margin: const EdgeInsets.symmetric(vertical: 10),
+                width: size.width * 0.9,
+                height: size.width * 0.15,
+                alignment: Alignment.centerLeft,
+                decoration: BoxDecoration(
+                    color: Colors.white38,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: Colors.black12, width: 2)),
+                child: TextFormField(
+                  style: const TextStyle(
+                    color: Colors.black87,
                   ),
-                  suffixStyle: const TextStyle(
-                    fontSize: 20,
-                    color: bluelogo,
-                    backgroundColor: Color.fromARGB(255, 213, 225, 236),
+                  decoration: InputDecoration(
+                    suffix: Container(
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 15, horizontal: 18),
+                      width: size.width * 0.15,
+                      height: size.height * 0.03,
+                      decoration: const BoxDecoration(
+                        color: Color.fromARGB(255, 213, 225, 236),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            offset: Offset(
+                              5.0,
+                              5.0,
+                            ),
+                            blurRadius: 10.0,
+                            spreadRadius: 2.0,
+                          )
+                        ],
+                      ),
+                      child: const Text(
+                        "CFA",
+                        textAlign: TextAlign.center,
+                        // style: TextStyle(fontSize: 20, color: bluelogo),
+                      ),
+                    ),
+                    suffixStyle: const TextStyle(
+                      fontSize: 20,
+                      color: bluelogo,
+                      backgroundColor: Color.fromARGB(255, 213, 225, 236),
+                    ),
+                    border: InputBorder.none,
+                    contentPadding: const EdgeInsets.only(top: 14),
+                    hintStyle: const TextStyle(color: bluelogo, fontSize: 15),
                   ),
-                  border: InputBorder.none,
-                  contentPadding: const EdgeInsets.only(top: 14),
-                  hintStyle: const TextStyle(color: Colors.black, fontSize: 12),
-                ),
-              ),
-            ),
+                )),
           ]);
     }
 
@@ -185,7 +164,7 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
               style: TextStyle(
                 fontWeight: FontWeight.w400,
                 color: Color.fromARGB(232, 20, 108, 180),
-                fontSize: 16,
+                fontSize: 20,
               ),
             ),
             SizedBox(

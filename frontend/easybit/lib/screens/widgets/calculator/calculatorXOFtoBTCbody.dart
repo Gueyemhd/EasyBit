@@ -25,74 +25,74 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
     //This size provides us total height and width of our screen
     Widget btcField() {
       return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 10),
-            width: size.width * 0.9,
-            alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(
-                color: Colors.white38,
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Colors.black12, width: 2)),
-            height: 60,
-            child: Container(
-                margin: const EdgeInsets.symmetric(vertical: 10),
-                width: size.width * 0.1,
-                alignment: Alignment.centerLeft,
-                decoration: BoxDecoration(
-                    color: Colors.white38,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black12, width: 2)),
-                height: 60,
-                child: TextFormField(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              margin: const EdgeInsets.symmetric(vertical: 10),
+              width: size.width * 0.9,
+              height: size.width * 0.15,
+              alignment: Alignment.centerLeft,
+              decoration: BoxDecoration(
+                  color: Colors.white38,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.black12, width: 2)),
+              child: TextFormField(
                   style: const TextStyle(
                     color: Colors.black87,
                   ),
                   decoration: InputDecoration(
-                    suffix: DropdownButton(
-                      style: const TextStyle(color: Colors.blue),
-                      // Initial Value
-                      value: dropdownvalue,
-                      // Down Arrow Icon
-                      icon: const Icon(
-                        Icons.arrow_drop_down,
-                        color: Color.fromARGB(237, 12, 90, 154),
-                        size: 45,
+                    suffix: Container(
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 15, horizontal: 15),
+                      width: size.width * 0.18,
+                      height: size.height * 0.20,
+                      decoration: const BoxDecoration(
+                        color: Color.fromARGB(255, 193, 215, 236),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            offset: Offset(
+                              5.0,
+                              5.0,
+                            ),
+                            blurRadius: 10.0,
+                            spreadRadius: 2.0,
+                          )
+                        ],
                       ),
-                      // Array list of items
-                      items: items.map((String items) {
-                        return DropdownMenuItem(
-                          value: items,
-                          child: Text(
-                            items,
-                            style:
-                                const TextStyle(fontSize: 20, color: bluelogo),
-                          ),
-                        );
-                      }).toList(),
-                      // After selecting the desired option,it will
-                      // change button value to selected value
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          dropdownvalue = newValue!;
-                        });
-                      },
+                      child: DropdownButton(
+                        // Initial Value
+                        value: dropdownvalue,
+
+                        // Down Arrow Icon
+                        icon: const Icon(
+                          Icons.arrow_drop_down,
+                          color: Color.fromARGB(237, 12, 90, 154),
+                          size: 25,
+                        ),
+
+                        // Array list of items
+                        items: items.map((String items) {
+                          return DropdownMenuItem(
+                            value: items,
+                            child: Text(
+                              items,
+                              style: const TextStyle(color: bluelogo),
+                            ),
+                          );
+                        }).toList(),
+                        // After selecting the desired option,it will
+                        // change button value to selected value
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            dropdownvalue = newValue!;
+                          });
+                        },
+                      ),
                     ),
-                    suffixStyle: const TextStyle(
-                      fontSize: 20,
-                      color: bluelogo,
-                      backgroundColor: Color.fromARGB(255, 213, 225, 236),
-                    ),
-                    border: InputBorder.none,
-                    contentPadding: const EdgeInsets.only(top: 14),
-                    hintStyle:
-                        const TextStyle(color: Colors.black, fontSize: 12),
-                  ),
-                )),
-          )
-        ],
-      );
+                  )),
+            ),
+          ]);
     }
 
     Widget xofField() {
@@ -102,12 +102,12 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
             Container(
                 margin: const EdgeInsets.symmetric(vertical: 10),
                 width: size.width * 0.9,
+                height: size.width * 0.15,
                 alignment: Alignment.centerLeft,
                 decoration: BoxDecoration(
                     color: Colors.white38,
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(color: Colors.black12, width: 2)),
-                height: 60,
                 child: TextFormField(
                   style: const TextStyle(
                     color: Colors.black87,
@@ -115,7 +115,7 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
                   decoration: InputDecoration(
                     suffix: Container(
                       margin: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 15),
+                          vertical: 15, horizontal: 18),
                       width: size.width * 0.15,
                       height: size.height * 0.03,
                       decoration: const BoxDecoration(
@@ -135,7 +135,6 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
                       child: const Text(
                         "CFA",
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 20, color: bluelogo),
                       ),
                     ),
                     suffixStyle: const TextStyle(
@@ -145,8 +144,7 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
                     ),
                     border: InputBorder.none,
                     contentPadding: const EdgeInsets.only(top: 14),
-                    hintStyle:
-                        const TextStyle(color: Colors.black, fontSize: 12),
+                    hintStyle: const TextStyle(color: bluelogo, fontSize: 15),
                   ),
                 )),
           ]);
