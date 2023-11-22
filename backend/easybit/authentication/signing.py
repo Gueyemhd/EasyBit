@@ -12,14 +12,16 @@ def login_view(request):
     if request.method == "POST":
         # we fetch credentials
         username = request.data.get('username', None)
-        password = request.data.get('mot_de_passe', None)
+        password = request.data.get('password', None)
 
         auth_user = authenticate(username = username, password= password)
+        print("==============User===============")
+        print(auth_user)
         if auth_user:
             login(request, auth_user)
-            return Response({'message': 'vous êtes connecté'})
+            return Response({'message': 'reussite'})
 
-    return Response({'message': ''})
+    return Response({'error_message': 'username ou password incorrect'})
 
 
 
@@ -32,8 +34,7 @@ def logout_view(request):
 
 
 
-# APIs to reset password
-# views.py
+
 
 
 

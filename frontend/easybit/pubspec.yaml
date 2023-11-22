@@ -31,6 +31,10 @@ dependencies:
   flutter:
     sdk: flutter
   localstorage: ^4.0.0+1
+  flutter_svg: ^2.0.9
+  curved_navigation_bar: ^1.0.3
+  flutter_auto_form: ^1.0.7
+
 
     
   # The following adds the Cupertino Icons font to your application.
@@ -40,6 +44,7 @@ dependencies:
   sqflite: ^2.3.0
   path: ^1.8.3
   http: ^1.1.0
+  flutter_screenutil: ^5.9.0
  
 
 dev_dependencies:

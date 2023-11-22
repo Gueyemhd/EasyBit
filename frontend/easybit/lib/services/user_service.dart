@@ -34,7 +34,7 @@ class UserService {
 
   Future<Map> login(UserLogin user) async {
     try {
-      String urlLogin = 'http://10.0.2.2:8000/login';
+      String urlLogin = 'http://10.0.2.2:8000/login/';
       http.Response response = await http.post(
         Uri.parse(urlLogin),
         headers: {
@@ -45,10 +45,8 @@ class UserService {
           "password": user.password,
         }),
       );
-      var data = json.decode(response.body) as Map;
-      print(data);
 
-      return data;
+      return json.decode(response.body);
     } catch (e) {
       return {'error_message': "Un problème est survenu, veuillez réessayer"};
     }

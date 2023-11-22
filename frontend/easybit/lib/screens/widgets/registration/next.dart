@@ -27,19 +27,9 @@ class _NextState extends State<Next> {
 
   // Create a text controller and use it to retrieve the current values of TextFields
 
-  // Map<String, dynamic>? args = {};
-
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-
-  // final validatorFirstName = GlobalKey<FormState>();
-
-  String path = "/http:127.0.0.1:8000/registration";
-
-  void sendCreateAccountDataToServer(Map userData, String path) {
-    var responseRequest = http.post(Uri.parse(path), body: userData);
-  }
 
   /* @override
   void dispose() {
@@ -50,11 +40,6 @@ class _NextState extends State<Next> {
 
   @override
   Widget build(BuildContext context) {
-    // we fetch data from the first page registration
-    // args = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
-    // print("=============arguments!==================");
-    // print(args);
-
     Size size = MediaQuery.of(context).size;
     //This size provides us total height and width of our screen
 

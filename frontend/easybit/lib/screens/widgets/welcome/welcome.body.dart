@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:easybit/screens/widgets/welcome/actions.dart';
+import 'package:easybit/screens/widgets/welcome/header.dart';
+import 'package:easybit/screens/widgets/welcome/evolution.dart';
+import 'package:easybit/screens/widgets/welcome/footer.dart';
 
 class WelcomeBody extends StatefulWidget {
   const WelcomeBody({super.key});
@@ -8,46 +12,13 @@ class WelcomeBody extends StatefulWidget {
 }
 
 class _WelcomeBodyState extends State<WelcomeBody> {
+  bool isVisible = false;
+  String defaultValue = "----------";
+  String solde = "0.00012";
+  String afficher = "----------";
+
   @override
   Widget build(BuildContext context) {
-    Widget header() {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Salut Mouhamed",
-                style: TextStyle(
-                    fontSize: 20.0,
-                    color: Color.fromARGB(255, 195, 69, 218),
-                    fontWeight: FontWeight.w500),
-              ),
-              SizedBox(height: 5.0),
-              Text(
-                "Bienvenue!",
-                style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
-              )
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              height: 30.0,
-              width: 30.0,
-              decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
-              child: const Icon(
-                IconData(0xf237, fontFamily: 'MaterialIcons'),
-              ),
-            ),
-          )
-        ],
-      );
-    }
-
     Widget soldeSection() {
       return Stack(
         children: [
@@ -60,16 +31,63 @@ class _WelcomeBodyState extends State<WelcomeBody> {
           ),
           Container(
             decoration: BoxDecoration(),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Image.asset("images/bitcoin.png"),
-                ],
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Container(
+                    height: MediaQuery.of(context).size.height / 7.5,
+                    // decoration: BoxDecoration(color: Colors.red),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "+ 2.70% Aujourd'hui",
+                          style: TextStyle(
+                              color: Color.fromRGBO(235, 155, 216, 1),
+                              fontSize: 17.0),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
+                          child: Text(
+                            '₿ ${afficher}',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 30.0,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      ],
+                    )),
+                Image.asset("images/bitcoin.png"),
+              ],
             ),
           ),
+          Container(
+            height: MediaQuery.of(context).size.height / 4.8,
+            width: MediaQuery.of(context).size.width / 5,
+            child: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
+              Container(
+                height: MediaQuery.of(context).size.width / 7.5,
+                width: MediaQuery.of(context).size.width / 7.5,
+                decoration: BoxDecoration(
+                    color: Color.fromRGBO(160, 32, 130, 1),
+                    borderRadius: BorderRadius.all(Radius.circular(50.0))),
+                child: IconButton(
+                    onPressed: () => setState(() {
+                          isVisible = !isVisible;
+                          if (isVisible) {
+                            afficher = solde;
+                          } else {
+                            afficher = defaultValue;
+                          }
+                        }),
+                    icon: Icon(
+                      isVisible ? Icons.visibility : Icons.visibility_off,
+                      color: Colors.white,
+                    )),
+              )
+            ]),
+          )
         ],
       );
     }
@@ -85,14 +103,23 @@ class _WelcomeBodyState extends State<WelcomeBody> {
               SizedBox(
                 height: MediaQuery.of(context).size.height / 25.0,
               ),
-              header(),
+              Header(),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 17.0,
+                height: MediaQuery.of(context).size.height / 24.0,
               ),
               soldeSection(),
+              SizedBox(
+                height: 20.0,
+              ),
+              Operations(),
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 40.0,
+              ),
+              Evolution(),
             ]),
           ),
         ),
+        bottomNavigationBar: Footer(),
       ),
     );
   }

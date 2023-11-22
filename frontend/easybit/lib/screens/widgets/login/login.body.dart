@@ -1,5 +1,6 @@
 import 'package:easybit/models/user_model.dart';
 import 'package:easybit/screens/pages/registrationpage.dart';
+import 'package:easybit/screens/pages/welcomePage.dart';
 import 'package:easybit/services/user_service.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
@@ -168,14 +169,28 @@ class _LoginBodyState extends State<LoginBody> {
                   borderRadius: BorderRadius.circular(50),
                   border: Border.all(color: gold, width: 2)),
               child: TextButton(
-                onPressed: () {
+                onPressed: () async {
+                  UserLogin user = UserLogin(
+                      username: usernameController.text,
+                      password: passwordController.text);
                   // Validate returns true if the form is valid, or false otherwise.
                   if (_formKey.currentState!.validate()) {
-                    // If the form is valid, display a snackbar. In the real world,
-                    // you'd often call a server or save the information in a database.
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Succès')),
-                    );
+                    // If the form is valid, display a snackbar.
+                    Map response = await UserService().login(user);
+                    if (response['message'] == "reussite") {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const WelcomePage()));
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                            backgroundColor: Colors.white,
+                            content: Text(
+                              style: const TextStyle(
+                                  color: Colors.red, fontSize: 15.0),
+                              "${response['error_message']}",
+                            )),
+                      );
+                    }
                   }
 
                   // User user = User();

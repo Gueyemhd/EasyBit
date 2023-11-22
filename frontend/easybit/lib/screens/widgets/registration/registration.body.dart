@@ -219,12 +219,8 @@ class _RegistrationBodyState extends State<RegistrationBody> {
                 storage.setItem('username', user.username);
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                      builder: (context) => const NextPage(),
-                      settings: RouteSettings(arguments: {
-                        'prenom': user.prenom,
-                        'nom': user.nom,
-                        'username': user.username
-                      })),
+                    builder: (context) => const NextPage(),
+                  ),
                 );
               }
             },
