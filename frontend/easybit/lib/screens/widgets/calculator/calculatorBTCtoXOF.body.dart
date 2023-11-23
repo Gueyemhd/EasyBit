@@ -19,6 +19,7 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
     '  BTC',
     '  SAT',
   ];
+  bool swapTextformfield = false;
 
   @override
   Widget build(BuildContext context) {
@@ -167,13 +168,16 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.03,
         ),
-        btcField(),
+        swapTextformfield ? xofField() : btcField(),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.03,
         ),
         GestureDetector(
-          onTap: () => Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const CalculatorXOFtoBTC())),
+          onTap: () {
+            setState(() {
+              swapTextformfield = true;
+            });
+          },
           child: const Image(
             image: AssetImage("images/arrow_swap.png"),
             fit: BoxFit.cover,
@@ -183,7 +187,7 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.03,
         ),
-        xofField(),
+        swapTextformfield ? btcField() : xofField(),
       ]),
     );
   }
