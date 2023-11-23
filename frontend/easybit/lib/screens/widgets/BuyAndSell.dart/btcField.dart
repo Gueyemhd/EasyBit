@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class moneyField extends StatelessWidget {
-  final TextEditingController controler;
-  const moneyField({super.key, required this.controler});
+const List<String> list = <String>['BTC', 'SAT'];
 
+class BtcField extends StatefulWidget {
+  final TextEditingController controler;
+  const BtcField({super.key, required this.controler});
+
+  @override
+  State<BtcField> createState() => _BtcFieldState();
+}
+
+class _BtcFieldState extends State<BtcField> {
+  String? dropdownValue = 'BTC';
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -14,7 +22,7 @@ class moneyField extends StatelessWidget {
           margin: const EdgeInsets.symmetric(vertical: 10),
           width: MediaQuery.of(context).size.width * 0.8,
           decoration: BoxDecoration(
-            color: Colors.grey[200],
+            color: const Color.fromRGBO(224, 233, 239, 1),
             borderRadius: BorderRadius.circular(10),
             boxShadow: const [
               BoxShadow(
@@ -28,7 +36,7 @@ class moneyField extends StatelessWidget {
               Expanded(
                 child: TextFormField(
                   autofocus: true,
-                  controller: controler,
+                  controller: widget.controler,
                   inputFormatters: <TextInputFormatter>[
                     FilteringTextInputFormatter.digitsOnly
                   ],
@@ -45,18 +53,33 @@ class moneyField extends StatelessWidget {
                   decoration: const InputDecoration(
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.fromLTRB(15, 5, 0, 0),
-                      hintText: 'Entrez le montant',
-                      hintStyle: TextStyle(color: Colors.grey, fontSize: 14)),
+                      hintText: 'Entrez le montant à vendre',
+                      hintStyle: TextStyle(
+                          color: Color.fromARGB(255, 153, 151, 151),
+                          fontSize: 14)),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.fromLTRB(0, 5, 15, 0),
-                child: Text(
-                  'XOF',
-                  style: TextStyle(
-                      letterSpacing: 1.0,
-                      color: Colors.blueGrey,
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 5, 15, 0),
+                child: DropdownButton(
+                  value: dropdownValue,
+                  icon: const Icon(Icons.arrow_downward),
+                  elevation: 20,
+                  style: const TextStyle(
+                      color: Color.fromRGBO(23, 101, 152, 1),
                       fontWeight: FontWeight.w500),
+                  onChanged: (String? value) {
+                    // This is called when the user selects an item.
+                    setState(() {
+                      dropdownValue = value;
+                    });
+                  },
+                  items: list.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
                 ),
               )
             ],

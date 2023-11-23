@@ -40,7 +40,7 @@ class _BtcValueWaveState extends State<BtcValueWave> {
                   DropdownButton(
                     value: dropdownValue,
                     icon: const Icon(Icons.arrow_downward),
-                    elevation: 16,
+                    elevation: 20,
                     style: const TextStyle(
                         color: Color.fromRGBO(29, 200, 255, 1),
                         fontWeight: FontWeight.w500),

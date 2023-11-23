@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 
 class ButtonTransaction extends StatelessWidget {
+  final Color? couleur;
+  final String texte;
   final Function press;
-  const ButtonTransaction({super.key, required this.press});
+  const ButtonTransaction(
+      {super.key,
+      required this.press,
+      required this.couleur,
+      required this.texte});
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +20,10 @@ class ButtonTransaction extends StatelessWidget {
       ),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color.fromRGBO(255, 102, 0, 1),
+          backgroundColor: couleur,
         ),
-        child: const Text(
-          "ACHETER",
+        child: Text(
+          texte,
           style: TextStyle(fontSize: 16),
         ),
         onPressed: () {

@@ -43,10 +43,14 @@ class _OrangeState extends State<Orange> {
                 const margin(),
                 const BtcValue(),
                 const margin(),
-                NumberField(controler: telephoneController),
+                NumberField(
+                    controler: telephoneController, couleur: Colors.grey[200]),
                 const margin(),
                 const margin(),
-                ButtonTransaction(press: () {})
+                ButtonTransaction(
+                    press: () {},
+                    couleur: const Color.fromRGBO(255, 102, 0, 1),
+                    texte: "ACHETER")
               ],
             ),
           ),

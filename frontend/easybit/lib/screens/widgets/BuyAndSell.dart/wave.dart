@@ -1,7 +1,5 @@
-import 'package:easybit/screens/widgets/BuyAndSell.dart/BtcValue.dart';
 import 'package:easybit/screens/widgets/BuyAndSell.dart/BtcValueWave.dart';
 import 'package:easybit/screens/widgets/BuyAndSell.dart/actionTransaction.dart';
-import 'package:easybit/screens/widgets/BuyAndSell.dart/actionTransactionWave.dart';
 import 'package:easybit/screens/widgets/BuyAndSell.dart/margin.dart';
 import 'package:easybit/screens/widgets/BuyAndSell.dart/moneyField.dart';
 import 'package:easybit/screens/widgets/BuyAndSell.dart/numberField.dart';
@@ -45,10 +43,14 @@ class _BuyBtcWaveState extends State<BuyBtcWave> {
                 const margin(),
                 const BtcValueWave(),
                 const margin(),
-                NumberField(controler: telephoneController),
+                NumberField(
+                    controler: telephoneController, couleur: Colors.grey[200]),
                 const margin(),
                 const margin(),
-                ButtonTransactionWave(press: () {})
+                ButtonTransaction(
+                    press: () {},
+                    couleur: const Color.fromRGBO(29, 200, 255, 1),
+                    texte: "ACHETER")
               ],
             ),
           ),

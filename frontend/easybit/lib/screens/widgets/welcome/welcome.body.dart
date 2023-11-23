@@ -25,7 +25,7 @@ class _WelcomeBodyState extends State<WelcomeBody> {
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height / 5.5,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 color: Color.fromRGBO(23, 101, 152, 1),
                 borderRadius: BorderRadius.all(Radius.circular(17.0))),
           ),
@@ -40,7 +40,7 @@ class _WelcomeBodyState extends State<WelcomeBody> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           "+ 2.70% Aujourd'hui",
                           style: TextStyle(
                               color: Color.fromRGBO(235, 155, 216, 1),
@@ -49,8 +49,8 @@ class _WelcomeBodyState extends State<WelcomeBody> {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
                           child: Text(
-                            '₿ ${afficher}',
-                            style: TextStyle(
+                            '₿ $afficher',
+                            style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 30.0,
                                 fontWeight: FontWeight.bold),
@@ -69,7 +69,7 @@ class _WelcomeBodyState extends State<WelcomeBody> {
               Container(
                 height: MediaQuery.of(context).size.width / 7.5,
                 width: MediaQuery.of(context).size.width / 7.5,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Color.fromRGBO(160, 32, 130, 1),
                     borderRadius: BorderRadius.all(Radius.circular(50.0))),
                 child: IconButton(
@@ -94,32 +94,34 @@ class _WelcomeBodyState extends State<WelcomeBody> {
 
     return SafeArea(
       child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: Column(children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 25.0,
-              ),
-              Header(),
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 24.0,
-              ),
-              soldeSection(),
-              SizedBox(
-                height: 20.0,
-              ),
-              Operations(),
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 40.0,
-              ),
-              Evolution(),
-            ]),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: Column(children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 25.0,
+                ),
+                const Header(),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 24.0,
+                ),
+                soldeSection(),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                const Operations(),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 40.0,
+                ),
+                const Evolution(),
+              ]),
+            ),
           ),
         ),
-        bottomNavigationBar: Footer(),
+        bottomNavigationBar: const Footer(),
       ),
     );
   }

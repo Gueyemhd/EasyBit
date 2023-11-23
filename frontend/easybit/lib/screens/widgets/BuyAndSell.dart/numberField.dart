@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class NumberField extends StatelessWidget {
+  final Color? couleur;
   final TextEditingController controler;
-  const NumberField({super.key, required this.controler});
+  const NumberField(
+      {super.key, required this.controler, required this.couleur});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +16,7 @@ class NumberField extends StatelessWidget {
           margin: const EdgeInsets.symmetric(vertical: 10),
           width: MediaQuery.of(context).size.width * 0.8,
           decoration: BoxDecoration(
-            color: Colors.grey[200],
+            color: couleur,
             borderRadius: BorderRadius.circular(10),
             boxShadow: const [
               BoxShadow(

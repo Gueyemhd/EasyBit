@@ -2,10 +2,10 @@ import 'package:easybit/screens/pages/buyBtcOm.dart';
 import 'package:easybit/screens/pages/buyBtcWave.dart';
 import 'package:easybit/screens/pages/calculatorBTCtoXOF.dart';
 import 'package:easybit/screens/pages/calculatorXOFtoBTC.dart';
-import 'package:easybit/screens/pages/launchpage.dart';
 import 'package:easybit/screens/pages/loginPage.dart';
 import 'package:easybit/screens/pages/nextPage.dart';
 import 'package:easybit/screens/pages/registrationpage.dart';
+import 'package:easybit/screens/pages/sellBtc.dart';
 import 'package:easybit/screens/pages/startedPage.dart';
 import 'package:easybit/screens/pages/welcomePage.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +25,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(),
       routes: {
         "/EasyBit": (context) => const Home(),
-        "/launch": (context) => const Launch(),
         "/registration": (context) => const Registration(),
         "/next": (context) => const NextPage(),
         "/login": (context) => const Login(),
@@ -33,7 +32,8 @@ class MyApp extends StatelessWidget {
         "/CalculatorXOFtoBTC": (context) => const CalculatorXOFtoBTC(),
         "/welcome": (context) => const WelcomePage(),
         "/orange": (context) => const BuyBtcOm(),
-        "/wave": (context) => const Wave()
+        "/wave": (context) => const Wave(),
+        "/sellbtc": (context) => const SellBtc()
       },
       initialRoute: "/welcome",
     );
