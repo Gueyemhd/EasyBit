@@ -1,5 +1,6 @@
 import 'package:easybit/screens/pages/calculatorBTCtoXOF.dart';
 import 'package:easybit/screens/widgets/transfertBTC/transfertBitcoins.body.dart';
+import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 
 class TransfertBitcoins extends StatefulWidget {
@@ -17,7 +18,7 @@ class _TransfertBitcoinsState extends State<TransfertBitcoins> {
     return Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 60, 88, 59),
+          backgroundColor: transfertcolor,
           title: const Text(
             _title,
             style: TextStyle(fontSize: 22),
@@ -40,7 +41,7 @@ class _TransfertBitcoinsState extends State<TransfertBitcoins> {
             ),
             tooltip: 'Menu Icon',
             onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const TransfertBitcoins())),
+                builder: (context) => const CalculatorBTCtoXOF())),
           ),
         ),
         body: const TransfertBitcoinsBody());

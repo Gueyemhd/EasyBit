@@ -62,7 +62,7 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
                     height: size.width * 0.07,
                     alignment: Alignment.centerRight,
                     decoration: const BoxDecoration(
-                      color: Color.fromARGB(177, 165, 183, 199),
+                      color: calculatorDropdownColor,
                     ),
                     child: DropdownButton(
                       // Initial Value
@@ -71,12 +71,11 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
                       // Down Arrow Icon
                       icon: const Icon(
                         Icons.arrow_drop_down,
-                        color: Color.fromARGB(237, 12, 90, 154),
+                        color: bluelogo,
                         size: 25,
                       ),
 
                       // Array list of items
-
                       items:
                           items.map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
@@ -106,7 +105,7 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
             width: MediaQuery.of(context).size.width * 0.8,
             height: MediaQuery.of(context).size.height * 0.07,
             decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 222, 221, 221),
+              color: containerTexfieldColor,
               borderRadius: BorderRadius.circular(10),
               boxShadow: const [
                 BoxShadow(color: bluelogo, blurRadius: 6, offset: Offset(3, 3))
@@ -120,8 +119,7 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
                       inputFormatters: <TextInputFormatter>[
                         FilteringTextInputFormatter.digitsOnly
                       ],
-                      autofocus:
-                          true, //make phone keyboard appear automatically
+                      autofocus: true,
                       style: const TextStyle(
                         color: Colors.black87,
                       ),
@@ -137,7 +135,7 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
                     height: size.width * 0.07,
                     alignment: Alignment.centerRight,
                     decoration: BoxDecoration(
-                        color: const Color.fromARGB(177, 165, 183, 199),
+                        color: calculatorDropdownColor,
                         border: Border.all(color: Colors.black12, width: 2)),
                     child: const Text(
                       "CFA",
@@ -156,39 +154,37 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
       padding: EdgeInsets.symmetric(
           horizontal: MediaQuery.of(context).size.width / 20,
           vertical: MediaQuery.of(context).size.height / 20),
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          // crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            const Text(
-              "1 BTC = 3,898,529,37 XOF",
-              style: TextStyle(
-                fontWeight: FontWeight.w400,
-                color: Color.fromARGB(232, 20, 108, 180),
-                fontSize: 20,
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.03,
-            ),
-            btcField(),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.03,
-            ),
-            GestureDetector(
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const CalculatorXOFtoBTC())),
-              child: const Image(
-                image: AssetImage("images/arrow_swap.png"),
-                fit: BoxFit.cover,
-                width: 60,
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.03,
-            ),
-            xofField(),
-          ]),
+      child:
+          Column(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+        const Text(
+          "1 BTC = 3,898,529,37 XOF",
+          style: TextStyle(
+            fontWeight: FontWeight.w400,
+            color: Color.fromARGB(232, 20, 108, 180),
+            fontSize: 20,
+          ),
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.03,
+        ),
+        btcField(),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.03,
+        ),
+        GestureDetector(
+          onTap: () => Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const CalculatorXOFtoBTC())),
+          child: const Image(
+            image: AssetImage("images/arrow_swap.png"),
+            fit: BoxFit.cover,
+            width: 60,
+          ),
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.03,
+        ),
+        xofField(),
+      ]),
     );
   }
 }
