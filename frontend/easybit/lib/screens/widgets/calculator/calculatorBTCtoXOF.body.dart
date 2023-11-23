@@ -42,6 +42,7 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
               children: [
                 Expanded(
                   child: TextFormField(
+                      cursorColor: bluelogo,
                       keyboardType: TextInputType.number,
                       inputFormatters: <TextInputFormatter>[
                         FilteringTextInputFormatter.digitsOnly
@@ -116,6 +117,7 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
               children: [
                 Expanded(
                   child: TextFormField(
+                      cursorColor: bluelogo,
                       keyboardType: TextInputType.number,
                       inputFormatters: <TextInputFormatter>[
                         FilteringTextInputFormatter.digitsOnly

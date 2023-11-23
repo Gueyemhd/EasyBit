@@ -67,6 +67,7 @@ class _TransfertBitcoinsBodyState extends State<TransfertBitcoinsBody> {
                 children: [
                   Expanded(
                     child: TextFormField(
+                      cursorColor: transfertcolor,
                       keyboardType: TextInputType.text,
                       autofocus: true,
                       style:
@@ -118,6 +119,7 @@ class _TransfertBitcoinsBodyState extends State<TransfertBitcoinsBody> {
                 children: [
                   Expanded(
                     child: TextFormField(
+                        cursorColor: transfertcolor,
                         keyboardType: TextInputType.number,
                         inputFormatters: <TextInputFormatter>[
                           FilteringTextInputFormatter.digitsOnly
