@@ -85,7 +85,7 @@ class _NextState extends State<Next> {
                 }
                 return null;
               },
-              keyboardType: TextInputType.text,
+              keyboardType: TextInputType.emailAddress,
               style: const TextStyle(
                 color: Colors.black87,
               ),

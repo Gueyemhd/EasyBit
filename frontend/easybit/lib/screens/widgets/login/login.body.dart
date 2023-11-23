@@ -3,6 +3,7 @@ import 'package:easybit/screens/pages/registrationpage.dart';
 import 'package:easybit/services/user_service.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
 class LoginBody extends StatefulWidget {
@@ -65,6 +66,7 @@ class _LoginBodyState extends State<LoginBody> {
                 border: Border.all(color: bluelogo, width: 3)),
             height: 50,
             child: TextFormField(
+              keyboardType: TextInputType.text,
               // The validator receives the text that the user has entered
               controller: usernameController,
               validator: (value) {
@@ -73,7 +75,6 @@ class _LoginBodyState extends State<LoginBody> {
                 }
                 return null;
               },
-              keyboardType: TextInputType.text,
               onChanged: (String value) {},
               style: const TextStyle(
                 color: Colors.black87,
