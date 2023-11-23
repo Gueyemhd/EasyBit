@@ -36,35 +36,6 @@ class _TransfertBitcoinsBodyState extends State<TransfertBitcoinsBody> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     //This size provides us total height and width of our screen
-
-    Widget RecipientUsername() {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-              alignment: Alignment.centerLeft,
-              height: size.height * 0.06,
-              decoration: const BoxDecoration(
-                color: Color.fromARGB(207, 217, 227, 232),
-              ),
-              child: TextFormField(
-                autofocus: true,
-                style: const TextStyle(color: Colors.black87, fontSize: 20),
-                decoration: const InputDecoration(
-                    hintText: 'Entrer le nom d\'utilisateur du bénéficiaire',
-                    hintStyle: TextStyle(
-                        color: Color.fromARGB(132, 0, 0, 0), fontSize: 13),
-                    enabledBorder: OutlineInputBorder(),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color.fromARGB(255, 60, 88, 59), width: 2.0),
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    )),
-              )),
-        ],
-      );
-    }
-
     Widget recipientUsername() {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,22 +69,16 @@ class _TransfertBitcoinsBodyState extends State<TransfertBitcoinsBody> {
                     child: TextFormField(
                       keyboardType: TextInputType.text,
                       autofocus: true,
-                      style: const TextStyle(
-                        color: Colors.black87,
-                      ),
+                      style:
+                          const TextStyle(color: Colors.black87, fontSize: 20),
                       decoration: const InputDecoration(
-                          border: InputBorder.none,
-                          contentPadding: EdgeInsets.fromLTRB(15, 5, 0, 0),
-                          hintText:
-                              'Entrer le nom d\'utilisateur du bénéficiaire',
-                          hintStyle: TextStyle(
-                              color: Color.fromARGB(132, 0, 0, 0),
-                              fontSize: 13),
-                          enabledBorder: OutlineInputBorder(),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: transfertcolor, width: 2.0),
-                          )),
+                        border: InputBorder.none,
+                        contentPadding: EdgeInsets.fromLTRB(15, 5, 0, 0),
+                        hintText:
+                            'Entrer le nom d\'utilisateur du bénéficiaire',
+                        hintStyle: TextStyle(
+                            color: Color.fromARGB(132, 0, 0, 0), fontSize: 13),
+                      ),
                     ),
                   )
                 ],
@@ -160,10 +125,15 @@ class _TransfertBitcoinsBodyState extends State<TransfertBitcoinsBody> {
                         autofocus: true,
                         style: const TextStyle(
                           color: Colors.black87,
+                          fontSize: 20,
                         ),
                         decoration: const InputDecoration(
                           border: InputBorder.none,
                           contentPadding: EdgeInsets.fromLTRB(15, 5, 0, 0),
+                          hintText: 'Entrer le montant à transférer',
+                          hintStyle: TextStyle(
+                              color: Color.fromARGB(132, 0, 0, 0),
+                              fontSize: 13),
                         )),
                   ),
                   Padding(
@@ -217,7 +187,7 @@ class _TransfertBitcoinsBodyState extends State<TransfertBitcoinsBody> {
         child: ClipRRect(
           child: Container(
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 60, 88, 59),
+                color: transfertcolor,
                 borderRadius: BorderRadius.circular(70),
               ),
               child: TextButton(
@@ -225,9 +195,9 @@ class _TransfertBitcoinsBodyState extends State<TransfertBitcoinsBody> {
                   backgroundColor: MaterialStateProperty.resolveWith<Color>(
                       (Set<MaterialState> states) {
                     if (states.contains(MaterialState.hovered)) {
-                      return const Color.fromARGB(255, 60, 88, 59);
+                      return transfertcolor;
                     }
-                    return const Color.fromARGB(154, 255, 255, 255);
+                    return disableTrsftButton;
                   }),
                 ),
                 onPressed: () {
