@@ -17,7 +17,7 @@ class _TransfertBitcoinsState extends State<TransfertBitcoins> {
     return Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
-          backgroundColor: const Color(0xFF324531),
+          backgroundColor: const Color.fromARGB(255, 60, 88, 59),
           title: const Text(
             _title,
             style: TextStyle(fontSize: 22),
@@ -40,7 +40,7 @@ class _TransfertBitcoinsState extends State<TransfertBitcoins> {
             ),
             tooltip: 'Menu Icon',
             onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const CalculatorBTCtoXOF())),
+                builder: (context) => const TransfertBitcoins())),
           ),
         ),
         body: const TransfertBitcoinsBody());

@@ -18,6 +18,19 @@ class _TransfertBitcoinsBodyState extends State<TransfertBitcoinsBody> {
     '  SAT',
   ];
 
+  // Create a global key that uniquely identifies the Form widget
+  // and allows validation of the form.
+  //
+  // Note: This is a `GlobalKey<FormState>`, not a GlobalKey<MyCustomFormState>.
+  final _formKey = GlobalKey<FormState>();
+
+  // Create a text controller and use it to retrieve the current value
+  // of the TextField.
+  Map userData = {};
+
+  final recipientUsernameController = TextEditingController();
+  final btcAmountController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -28,7 +41,7 @@ class _TransfertBitcoinsBodyState extends State<TransfertBitcoinsBody> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           const Text(
-            'Nom d\'utilisateur du beneficiaire',
+            'Nom d\'utilisateur du bénéficiaire',
             style: TextStyle(
               color: Colors.black,
               fontSize: 15,
@@ -38,169 +51,164 @@ class _TransfertBitcoinsBodyState extends State<TransfertBitcoinsBody> {
             height: MediaQuery.of(context).size.height * 0.01,
           ),
           Container(
-            alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: const [
-                  BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 6,
-                      offset: Offset(0, 2))
-                ],
-                border: Border.all(color: bluelogo, width: 2)),
-            height: 60,
-            child: const TextField(
-              style: TextStyle(
-                color: Colors.black87,
+              alignment: Alignment.centerLeft,
+              height: size.height * 0.06,
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(207, 217, 227, 232),
               ),
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.only(top: 14),
-                  prefixIcon: Icon(Icons.person, color: Colors.blue),
-                  hintText: 'Nom & prénom',
-                  hintStyle: TextStyle(color: Colors.blue, fontSize: 12)),
-            ),
-          )
+              child: TextFormField(
+                autofocus: true,
+                style: const TextStyle(color: Colors.black87, fontSize: 20),
+                decoration: const InputDecoration(
+                    hintText: 'Entrer le nom d\'utilisateur du bénéficiaire',
+                    hintStyle: TextStyle(
+                        color: Color.fromARGB(132, 0, 0, 0), fontSize: 13),
+                    enabledBorder: OutlineInputBorder(),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Color.fromARGB(255, 60, 88, 59), width: 2.0),
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    )),
+              )),
         ],
+      );
+    }
+
+    Widget transfertBtn() {
+      return Container(
+        margin: const EdgeInsets.symmetric(vertical: 10),
+        width: size.width * 0.4,
+        height: size.height * 0.05,
+        child: ClipRRect(
+          child: Container(
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 60, 88, 59),
+                borderRadius: BorderRadius.circular(70),
+              ),
+              child: TextButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                      (Set<MaterialState> states) {
+                    if (states.contains(MaterialState.hovered)) {
+                      return const Color.fromARGB(255, 60, 88, 59);
+                    }
+                    return const Color.fromARGB(154, 255, 255, 255);
+                  }),
+                ),
+                onPressed: () {
+                  // Validate returns true if the form is valid, or false otherwise.
+                  if (_formKey.currentState!.validate()) {
+                    // If the form is valid, display a snackbar. In the real world,
+                    // you'd often call a server or save the information in a database.
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Succès')),
+                    );
+                  }
+/*
+                  User user = User();
+                  user.username = usernameController.text;
+                  user.password = passwordController.text;
+
+                  UserService().login(user);*/
+                },
+                child: const Text(
+                  "Transférer",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Colors.white),
+                ),
+              )),
+        ),
       );
     }
 
     Widget btcAmount() {
       return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 10),
-              width: size.width * 0.9,
-              height: size.width * 0.15,
-              alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
-                  color: Colors.white38,
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.black12, width: 2)),
-              child: TextFormField(
-                  autofocus: true, //make phone keyboard appear automatically
-                  style: const TextStyle(
-                    color: Colors.black87,
-                  ),
-                  decoration: InputDecoration(
-                    enabledBorder: const OutlineInputBorder(),
-                    focusedBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: bluelogo, width: 2.0),
-                    ),
-                    suffix: Container(
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 15, horizontal: 15),
-                      width: size.width * 0.18,
-                      height: size.height * 0.20,
-                      decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 193, 215, 236),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black26,
-                            offset: Offset(
-                              5.0,
-                              5.0,
-                            ),
-                            blurRadius: 10.0,
-                            spreadRadius: 2.0,
-                          )
-                        ],
-                      ),
-                      child: DropdownButton(
-                        // Initial Value
-                        value: dropdownvalue,
-                        dropdownColor: bluelogo,
-                        // Down Arrow Icon
-                        icon: const Icon(
-                          Icons.arrow_drop_down,
-                          color: Color.fromARGB(237, 12, 90, 154),
-                          size: 25,
-                        ),
-
-                        // Array list of items
-                        items: items.map((String items) {
-                          return DropdownMenuItem(
-                            value: items,
-                            child: Text(
-                              items,
-                              style: const TextStyle(color: Colors.white),
-                            ),
-                          );
-                        }).toList(),
-                        // After selecting the desired option,it will
-                        // change button value to selected value
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            dropdownvalue = newValue!;
-                          });
-                        },
-                      ),
-                    ),
-                  )),
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          const Text(
+            'Montant',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 15,
             ),
-          ]);
-    }
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.01,
+          ),
+          Container(
+              alignment: Alignment.centerLeft,
+              height: size.height * 0.06,
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(207, 217, 227, 232),
+              ),
+              child: TextFormField(
+                autofocus: true,
+                style: const TextStyle(color: Colors.black87, fontSize: 20),
+                decoration: InputDecoration(
+                  hintText: 'Entrer le montant à transférer',
+                  hintStyle: const TextStyle(
+                      color: Color.fromARGB(132, 0, 0, 0), fontSize: 13),
+                  enabledBorder: const OutlineInputBorder(),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Color.fromARGB(255, 60, 88, 59), width: 2.0),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  suffix: Container(
+                    margin: const EdgeInsets.symmetric(
+                        vertical: 15, horizontal: 15),
+                    width: size.width * 0.18,
+                    height: size.height * 0.20,
+                    decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 63, 97, 62),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(
+                            5.0,
+                            5.0,
+                          ),
+                          blurRadius: 10.0,
+                          spreadRadius: 2.0,
+                        )
+                      ],
+                    ),
+                    child: DropdownButton(
+                      // Initial Value
+                      value: dropdownvalue,
+                      dropdownColor: const Color.fromARGB(255, 60, 88, 59),
+                      // Down Arrow Icon
+                      icon: const Icon(
+                        Icons.arrow_drop_down,
+                        color: Color.fromARGB(255, 60, 88, 59),
+                        size: 25,
+                      ),
 
-    Widget xofField() {
-      return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-                margin: const EdgeInsets.symmetric(vertical: 10),
-                width: size.width * 0.9,
-                height: size.width * 0.15,
-                alignment: Alignment.centerLeft,
-                decoration: BoxDecoration(
-                    color: Colors.white38,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black12, width: 2)),
-                child: TextFormField(
-                  style: const TextStyle(
-                    color: Colors.black87,
+                      // Array list of items
+                      items: items.map((String items) {
+                        return DropdownMenuItem(
+                          value: items,
+                          child: Text(
+                            items,
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                        );
+                      }).toList(),
+                      // After selecting the desired option,it will
+                      // change button value to selected value
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          dropdownvalue = newValue!;
+                        });
+                      },
+                    ),
                   ),
-                  decoration: InputDecoration(
-                    enabledBorder: const OutlineInputBorder(),
-                    focusedBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: bluelogo, width: 2.0),
-                    ),
-                    suffix: Container(
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 15, horizontal: 18),
-                      width: size.width * 0.15,
-                      height: size.height * 0.03,
-                      decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 213, 225, 236),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black26,
-                            offset: Offset(
-                              5.0,
-                              5.0,
-                            ),
-                            blurRadius: 10.0,
-                            spreadRadius: 2.0,
-                          )
-                        ],
-                      ),
-                      child: const Text(
-                        "CFA",
-                        textAlign: TextAlign.center,
-                        // style: TextStyle(fontSize: 20, color: bluelogo),
-                      ),
-                    ),
-                    suffixStyle: const TextStyle(
-                      fontSize: 20,
-                      color: bluelogo,
-                      backgroundColor: Color.fromARGB(255, 213, 225, 236),
-                    ),
-                    border: InputBorder.none,
-                    contentPadding: const EdgeInsets.only(top: 14),
-                    hintStyle: const TextStyle(color: bluelogo, fontSize: 15),
-                  ),
-                )),
-          ]);
+                ),
+              )),
+        ],
+      );
     }
 
     return SingleChildScrollView(
@@ -213,6 +221,10 @@ class _TransfertBitcoinsBodyState extends State<TransfertBitcoinsBody> {
           height: MediaQuery.of(context).size.height * 0.05,
         ),
         btcAmount(),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.09,
+        ),
+        transfertBtn()
       ]),
     );
   }

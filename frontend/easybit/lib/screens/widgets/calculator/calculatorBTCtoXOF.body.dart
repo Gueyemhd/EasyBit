@@ -1,7 +1,7 @@
-import 'package:easybit/screens/pages/calculatorBTCtoXOF.dart';
 import 'package:easybit/screens/pages/calculatorXOFtoBTC.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class BTCtoXOF extends StatefulWidget {
   const BTCtoXOF({super.key});
@@ -25,145 +25,141 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
     Size size = MediaQuery.of(context).size;
     //This size provides us total height and width of our screen
     Widget btcField() {
-      return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 10),
-              width: size.width * 0.9,
-              height: size.width * 0.15,
-              alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
-                  color: Colors.white38,
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.black12, width: 2)),
-              child: TextFormField(
-                  autofocus: true, //make phone keyboard appear automatically
-                  style: const TextStyle(
-                    color: Colors.black87,
-                  ),
-                  decoration: InputDecoration(
-                    enabledBorder: const OutlineInputBorder(),
-                    focusedBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: bluelogo, width: 2.0),
-                    ),
-                    suffix: Container(
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 15, horizontal: 15),
-                      width: size.width * 0.18,
-                      height: size.height * 0.20,
-                      decoration: const BoxDecoration(
-                        color: Color(0xFFEAF2F6),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black26,
-                            offset: Offset(
-                              5.0,
-                              5.0,
-                            ),
-                            blurRadius: 10.0,
-                            spreadRadius: 2.0,
-                          )
-                        ],
-                      ),
-                      child: DropdownButton(
-                        // Initial Value
-                        value: dropdownvalue,
-                        dropdownColor: bluelogo,
-                        // Down Arrow Icon
-                        icon: const Icon(
-                          Icons.arrow_drop_down,
-                          color: Color.fromARGB(237, 12, 90, 154),
-                          size: 25,
-                        ),
-
-                        // Array list of items
-                        items: items.map((String items) {
-                          return DropdownMenuItem(
-                            value: items,
-                            child: Text(
-                              items,
-                              style: const TextStyle(color: Colors.black),
-                            ),
-                          );
-                        }).toList(),
-                        // After selecting the desired option,it will
-                        // change button value to selected value
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            dropdownvalue = newValue!;
-                          });
-                        },
-                      ),
-                    ),
-                  )),
+      return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Container(
+            margin: const EdgeInsets.symmetric(vertical: 10),
+            width: MediaQuery.of(context).size.width * 0.8,
+            height: MediaQuery.of(context).size.height * 0.07,
+            decoration: BoxDecoration(
+              color: Colors.grey[200],
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: const [
+                BoxShadow(
+                    color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
+              ],
+              //    border: Border.all(color: bluelogo, width: 3)
             ),
-          ]);
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.digitsOnly
+                      ],
+                      autofocus:
+                          true, //make phone keyboard appear automatically
+                      style: const TextStyle(
+                        color: Colors.black87,
+                      ),
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        contentPadding: EdgeInsets.fromLTRB(15, 5, 0, 0),
+                      )),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 5, 5, 0),
+                  child: Container(
+                    width: size.width * 0.18,
+                    height: size.width * 0.07,
+                    alignment: Alignment.centerRight,
+                    decoration: const BoxDecoration(
+                      color: Color.fromARGB(177, 165, 183, 199),
+                    ),
+                    child: DropdownButton(
+                      // Initial Value
+                      value: dropdownvalue,
+                      dropdownColor: bluelogo,
+                      // Down Arrow Icon
+                      icon: const Icon(
+                        Icons.arrow_drop_down,
+                        color: Color.fromARGB(237, 12, 90, 154),
+                        size: 25,
+                      ),
+
+                      // Array list of items
+
+                      items:
+                          items.map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                      // After selecting the desired option,it will
+                      // change button value to selected value
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          dropdownvalue = newValue!;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ))
+      ]);
     }
 
     Widget xofField() {
-      return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-                margin: const EdgeInsets.symmetric(vertical: 10),
-                width: size.width * 0.9,
-                height: size.width * 0.15,
-                alignment: Alignment.centerLeft,
-                decoration: BoxDecoration(
-                    color: Colors.white38,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black12, width: 2)),
-                child: TextFormField(
-                  style: const TextStyle(
-                    color: Colors.black87,
-                  ),
-                  decoration: InputDecoration(
-                    enabledBorder: const OutlineInputBorder(),
-                    focusedBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: bluelogo, width: 2.0),
-                    ),
-                    suffix: Container(
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 15, horizontal: 18),
-                      width: size.width * 0.15,
-                      height: size.height * 0.03,
-                      decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 213, 225, 236),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black26,
-                            offset: Offset(
-                              5.0,
-                              5.0,
-                            ),
-                            blurRadius: 10.0,
-                            spreadRadius: 2.0,
-                          )
-                        ],
+      return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Container(
+            margin: const EdgeInsets.symmetric(vertical: 10),
+            width: MediaQuery.of(context).size.width * 0.8,
+            height: MediaQuery.of(context).size.height * 0.07,
+            decoration: BoxDecoration(
+              color: Colors.grey[200],
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: const [
+                BoxShadow(
+                    color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
+              ],
+              //    border: Border.all(color: bluelogo, width: 3)
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.digitsOnly
+                      ],
+                      autofocus:
+                          true, //make phone keyboard appear automatically
+                      style: const TextStyle(
+                        color: Colors.black87,
                       ),
-                      child: const Text(
-                        "CFA",
-                        textAlign: TextAlign.center,
-                        // style: TextStyle(fontSize: 20, color: bluelogo),
-                      ),
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        contentPadding: EdgeInsets.fromLTRB(15, 5, 0, 0),
+                      )),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 5, 5, 0),
+                  child: Container(
+                    width: size.width * 0.12,
+                    height: size.width * 0.07,
+                    alignment: Alignment.centerRight,
+                    decoration: BoxDecoration(
+                        color: const Color.fromARGB(177, 165, 183, 199),
+                        border: Border.all(color: Colors.black12, width: 2)),
+                    child: const Text(
+                      "CFA",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 20, color: bluelogo),
                     ),
-                    suffixStyle: const TextStyle(
-                      fontSize: 20,
-                      color: bluelogo,
-                      backgroundColor: Color.fromARGB(255, 213, 225, 236),
-                    ),
-                    border: InputBorder.none,
-                    contentPadding: const EdgeInsets.only(top: 14),
-                    hintStyle: const TextStyle(color: bluelogo, fontSize: 15),
                   ),
-                )),
-          ]);
+                ),
+              ],
+            ))
+      ]);
     }
 
     return SingleChildScrollView(
       physics: const AlwaysScrollableScrollPhysics(),
-      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 120),
+      padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width / 20,
+          vertical: MediaQuery.of(context).size.height / 20),
       child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           // crossAxisAlignment: CrossAxisAlignment.start,
@@ -177,11 +173,11 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.05,
+              height: MediaQuery.of(context).size.height * 0.03,
             ),
             btcField(),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.05,
+              height: MediaQuery.of(context).size.height * 0.03,
             ),
             GestureDetector(
               onTap: () => Navigator.of(context).push(MaterialPageRoute(
@@ -189,11 +185,11 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
               child: const Image(
                 image: AssetImage("images/arrow_swap.png"),
                 fit: BoxFit.cover,
-                width: 70,
+                width: 60,
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.05,
+              height: MediaQuery.of(context).size.height * 0.03,
             ),
             xofField(),
           ]),
