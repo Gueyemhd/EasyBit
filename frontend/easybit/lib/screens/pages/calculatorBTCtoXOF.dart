@@ -1,4 +1,5 @@
 import 'package:easybit/screens/pages/calculatorXOFtoBTC.dart';
+import 'package:easybit/screens/pages/transfertBitoins.dart';
 import 'package:easybit/screens/widgets/calculator/calculatorBTCtoXOF.body.dart';
 import 'package:flutter/material.dart';
 
@@ -40,7 +41,7 @@ class _CalculatorBTCtoXOFState extends State<CalculatorBTCtoXOF> {
             ),
             tooltip: 'Menu Icon',
             onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const CalculatorXOFtoBTC())),
+                builder: (context) => const TransfertBitcoins())),
           ),
         ),
         body: BTCtoXOF());

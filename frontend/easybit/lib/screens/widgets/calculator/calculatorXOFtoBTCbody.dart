@@ -31,13 +31,11 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
             width: MediaQuery.of(context).size.width * 0.8,
             height: MediaQuery.of(context).size.height * 0.07,
             decoration: BoxDecoration(
-              color: Colors.grey[200],
+              color: const Color.fromARGB(255, 222, 221, 221),
               borderRadius: BorderRadius.circular(10),
               boxShadow: const [
-                BoxShadow(
-                    color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
+                BoxShadow(color: bluelogo, blurRadius: 6, offset: Offset(3, 3))
               ],
-              //    border: Border.all(color: bluelogo, width: 3)
             ),
             child: Row(
               children: [
@@ -108,13 +106,11 @@ class _XOFtoBTCState extends State<XOFtoBTC> {
             width: MediaQuery.of(context).size.width * 0.8,
             height: MediaQuery.of(context).size.height * 0.07,
             decoration: BoxDecoration(
-              color: Colors.grey[200],
+              color: const Color.fromARGB(255, 222, 221, 221),
               borderRadius: BorderRadius.circular(10),
               boxShadow: const [
-                BoxShadow(
-                    color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
+                BoxShadow(color: bluelogo, blurRadius: 6, offset: Offset(3, 3))
               ],
-              //    border: Border.all(color: bluelogo, width: 3)
             ),
             child: Row(
               children: [
