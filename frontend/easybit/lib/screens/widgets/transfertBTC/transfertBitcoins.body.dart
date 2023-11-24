@@ -58,7 +58,7 @@ class _TransfertBitcoinsBodyState extends State<TransfertBitcoinsBody> {
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: const [
                   BoxShadow(
-                      color: transfertcolor,
+                      color: enableTrsftButton,
                       blurRadius: 6,
                       offset: Offset(5, 5))
                 ],
@@ -110,7 +110,7 @@ class _TransfertBitcoinsBodyState extends State<TransfertBitcoinsBody> {
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: const [
                   BoxShadow(
-                      color: transfertcolor,
+                      color: enableTrsftButton,
                       blurRadius: 6,
                       offset: Offset(5, 5))
                 ],
@@ -119,7 +119,7 @@ class _TransfertBitcoinsBodyState extends State<TransfertBitcoinsBody> {
                 children: [
                   Expanded(
                     child: TextFormField(
-                        cursorColor: transfertcolor,
+                        cursorColor: enableTrsftButton,
                         keyboardType: TextInputType.number,
                         inputFormatters: <TextInputFormatter>[
                           FilteringTextInputFormatter.digitsOnly
@@ -150,11 +150,11 @@ class _TransfertBitcoinsBodyState extends State<TransfertBitcoinsBody> {
                       child: DropdownButton(
                         // Initial Value
                         value: dropdownvalue,
-                        dropdownColor: transfertcolor,
+                        dropdownColor: enableTrsftButton,
                         // Down Arrow Icon
                         icon: const Icon(
                           Icons.arrow_drop_down,
-                          color: transfertcolor,
+                          color: enableTrsftButton,
                           size: 25,
                         ),
                         // Array list of items
@@ -182,50 +182,33 @@ class _TransfertBitcoinsBodyState extends State<TransfertBitcoinsBody> {
     }
 
     Widget transfertBtn() {
-      return Container(
-        margin: const EdgeInsets.symmetric(vertical: 10),
-        width: size.width * 0.4,
-        height: size.height * 0.05,
-        child: ClipRRect(
-          child: Container(
-              decoration: BoxDecoration(
-                //  color: Colors.grey,
-                borderRadius: BorderRadius.circular(70),
-              ),
-              child: TextButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                      (Set<MaterialState> states) {
-                    if (states.contains(MaterialState.hovered)) {
-                      return transfertcolor;
-                    }
-                    return disableTrsftButton;
-                  }),
-                ),
-                onPressed: () {
-                  // Validate returns true if the form is valid, or false otherwise.
-                  if (_formKey.currentState!.validate()) {
-                    // If the form is valid, display a snackbar. In the real world,
-                    // you'd often call a server or save the information in a database.
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Succès')),
-                    );
-                  }
-                  /*
-                  User user = User();
-                  user.username = usernameController.text;
-                  user.password = passwordController.text;
-
-                  UserService().login(user);*/
-                },
-                child: const Text(
-                  "Transférer",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Colors.white),
-                ),
-              )),
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(50),
+        child: TextButton(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                (Set<MaterialState> states) {
+              if (states.contains(MaterialState.hovered)) {
+                return enableTrsftButton;
+              }
+              return disableTrsftButton;
+            }),
+          ),
+          onPressed: () {
+            // Validate returns true if the form is valid, or false otherwise.
+            if (_formKey.currentState!.validate()) {
+              // If the form is valid, display a snackbar. In the real world,
+              // you'd often call a server or save the information in a database.
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Succès')),
+              );
+            }
+          },
+          child: const Text(
+            "Transférer",
+            style: TextStyle(
+                fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),
+          ),
         ),
       );
     }
