@@ -1,10 +1,7 @@
 import 'package:easybit/models/user_model.dart';
 import 'package:easybit/screens/pages/registrationpage.dart';
-import 'package:easybit/services/convert_service.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:http/http.dart' as http;
 
 class LoginBody extends StatefulWidget {
   const LoginBody({super.key});
@@ -22,24 +19,11 @@ class _LoginBodyState extends State<LoginBody> {
   // Note: This is a `GlobalKey<FormState>`, not a GlobalKey<MyCustomFormState>.
   final _formKey = GlobalKey<FormState>();
 
-  // Create a text controller and use it to retrieve the current value
-  // of the TextField.
-  Map userData = {};
+  // Create a text controller and use it to retrieve the current value of the TextField.
 
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
-  void sendLoginDataToServer(Map userData, String path) {
-    var responseRequest = http.post(Uri.parse(path), body: userData);
-  }
-
-  /* @override
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    myController.dispose();
-    super.dispose();
-  }
-*/
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -182,8 +166,6 @@ class _LoginBodyState extends State<LoginBody> {
                   User user = User();
                   user.username = usernameController.text;
                   user.password = passwordController.text;
-
-                  // UserService().login(user);
                 },
                 child: const Text(
                   "Se connecter",
@@ -281,7 +263,6 @@ class _LoginBodyState extends State<LoginBody> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          // Add TextFormFields and Button here.
                           manageUsername(),
                           managePassword(),
                           manageForgotPasswordBtn(),

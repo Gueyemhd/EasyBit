@@ -20,20 +20,12 @@ class _RegistrationBodyState extends State<RegistrationBody> {
   // Note: This is a `GlobalKey<FormState>` not a GlobalKey<MyCustomFormState>.
   final _formKey = GlobalKey<FormState>();
 
-  Map userData = {};
-
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final emailController = TextEditingController();
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-
-  String path = "/http:127.0.0.1:8000/registration";
-
-  void sendCreateAccountDataToServer(Map userData, String path) {
-    var responseRequest = http.post(Uri.parse(path), body: userData);
-  }
 
   @override
   Widget build(BuildContext context) {

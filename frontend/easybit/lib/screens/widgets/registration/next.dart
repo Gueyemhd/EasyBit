@@ -1,9 +1,6 @@
-import 'package:easybit/models/user_model.dart';
 import 'package:easybit/screens/pages/registrationpage.dart';
-import 'package:easybit/services/convert_service.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class Next extends StatefulWidget {
   const Next({super.key});
@@ -12,8 +9,7 @@ class Next extends StatefulWidget {
   State<Next> createState() => _NextState();
 }
 
-// Define a corresponding State class.
-// This class holds data related to the form.
+// Define a corresponding State class. This class holds data related to the form.
 class _NextState extends State<Next> {
   bool passwordVisible = false;
 
@@ -25,8 +21,7 @@ class _NextState extends State<Next> {
   // Create a global key that uniquely identifies the Form widget
   // and allows validation of the form.
 
-  // Note: This is a `GlobalKey<FormState>`,
-  // not a GlobalKey<MyCustomFormState>.
+  // Note: This is a `GlobalKey<FormState>`, not a GlobalKey<MyCustomFormState>.
   final _formKey = GlobalKey<FormState>();
 
   // Create a text controller and use it to retrieve the current values of TextFields
@@ -38,19 +33,6 @@ class _NextState extends State<Next> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-
-  String path = "/http:127.0.0.1:8000/registration";
-
-  void sendCreateAccountDataToServer(Map userData, String path) {
-    var responseRequest = http.post(Uri.parse(path), body: userData);
-  }
-
-  /* @override
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    myController.dispose();
-    super.dispose();
-  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -274,19 +256,6 @@ class _NextState extends State<Next> {
                       const SnackBar(content: Text("Succès")),
                     );
                   }
-
-                  User user = User(
-                    firstname: firstNameController.text,
-                    lastname: lastNameController.text,
-                    username: usernameController.text,
-                    email: emailController.text,
-                    password: passwordController.text,
-                    confirmPassword: confirmPasswordController.text,
-                    id: 0,
-                  );
-
-                  // calling registration function from service to send request
-                  //   UserService().registration(user);
                 },
                 child: const Text(
                   "S'inscrire",
