@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 class User {
   int? id;
   String? firstname;
@@ -16,4 +18,12 @@ class User {
     this.password,
     this.confirmPassword,
   });
+}
+
+class Convert {
+  Float? coin_amount; // montant du bitcoin à entrer pour la conversion
+  String? price; //montant en xof ou btc à afficher
+  Float? currency_amount; //montant en cfa à fournir
+
+  Convert(String s, {this.coin_amount, this.price, this.currency_amount});
 }

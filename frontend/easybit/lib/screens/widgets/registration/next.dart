@@ -1,6 +1,6 @@
 import 'package:easybit/models/user_model.dart';
 import 'package:easybit/screens/pages/registrationpage.dart';
-import 'package:easybit/services/user_service.dart';
+import 'package:easybit/services/convert_service.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -286,7 +286,7 @@ class _NextState extends State<Next> {
                   );
 
                   // calling registration function from service to send request
-                  UserService().registration(user);
+                  //   UserService().registration(user);
                 },
                 child: const Text(
                   "S'inscrire",

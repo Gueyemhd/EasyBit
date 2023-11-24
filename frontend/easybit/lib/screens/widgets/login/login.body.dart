@@ -1,6 +1,6 @@
 import 'package:easybit/models/user_model.dart';
 import 'package:easybit/screens/pages/registrationpage.dart';
-import 'package:easybit/services/user_service.dart';
+import 'package:easybit/services/convert_service.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,8 +28,6 @@ class _LoginBodyState extends State<LoginBody> {
 
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
-
-  String path = "/http:127.0.0.1:8000/login";
 
   void sendLoginDataToServer(Map userData, String path) {
     var responseRequest = http.post(Uri.parse(path), body: userData);
@@ -66,6 +64,7 @@ class _LoginBodyState extends State<LoginBody> {
                 border: Border.all(color: bluelogo, width: 3)),
             height: 50,
             child: TextFormField(
+              cursorColor: bluelogo,
               keyboardType: TextInputType.text,
               // The validator receives the text that the user has entered
               controller: usernameController,
@@ -105,6 +104,7 @@ class _LoginBodyState extends State<LoginBody> {
                 border: Border.all(color: bluelogo, width: 3)),
             height: 50,
             child: TextFormField(
+              cursorColor: bluelogo,
               // The validator receives the password that the user has entered.
               controller: passwordController,
               validator: (value) {
@@ -183,7 +183,7 @@ class _LoginBodyState extends State<LoginBody> {
                   user.username = usernameController.text;
                   user.password = passwordController.text;
 
-                  UserService().login(user);
+                  // UserService().login(user);
                 },
                 child: const Text(
                   "Se connecter",

@@ -59,6 +59,7 @@ class _RegistrationBodyState extends State<RegistrationBody> {
                 border: Border.all(color: bluelogo, width: 3)),
             height: 60,
             child: TextFormField(
+              cursorColor: bluelogo,
               controller: firstNameController,
               // The validator receives the text that the user has entered.
               validator: (value) {
@@ -104,6 +105,7 @@ class _RegistrationBodyState extends State<RegistrationBody> {
                 border: Border.all(color: bluelogo, width: 3)),
             height: 60,
             child: TextFormField(
+              cursorColor: bluelogo,
               controller: lastNameController,
               // The validator receives the text that the user has entered.
               validator: (value) {
@@ -149,6 +151,7 @@ class _RegistrationBodyState extends State<RegistrationBody> {
                 border: Border.all(color: bluelogo, width: 3)),
             height: 60,
             child: TextFormField(
+              cursorColor: bluelogo,
               keyboardType: TextInputType.text,
               controller: usernameController,
               // The validator receives the text that the user has entered.

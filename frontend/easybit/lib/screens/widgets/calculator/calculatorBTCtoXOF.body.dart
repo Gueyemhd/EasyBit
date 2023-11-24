@@ -1,4 +1,6 @@
-import 'package:easybit/screens/pages/calculatorXOFtoBTC.dart';
+import 'package:easybit/models/user_model.dart';
+import 'package:easybit/screens/pages/transfertBitoins.dart';
+import 'package:easybit/services/convert_service.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -21,6 +23,11 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
   ];
   bool swapTextformfield = false;
 
+  final _formKey = GlobalKey<FormState>();
+
+  final btcController = TextEditingController();
+  final xofController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -42,20 +49,28 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
               children: [
                 Expanded(
                   child: TextFormField(
-                      cursorColor: bluelogo,
-                      keyboardType: TextInputType.number,
-                      inputFormatters: <TextInputFormatter>[
-                        FilteringTextInputFormatter.digitsOnly
-                      ],
-                      autofocus:
-                          true, //make phone keyboard appear automatically
-                      style: const TextStyle(
-                        color: Colors.black87,
-                      ),
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.fromLTRB(15, 5, 0, 0),
-                      )),
+                    cursorColor: bluelogo,
+                    keyboardType: TextInputType.number,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly
+                    ],
+                    autofocus: true, //make phone keyboard appear automatically
+                    style: const TextStyle(
+                      color: Colors.black87,
+                    ),
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.fromLTRB(15, 5, 0, 0),
+                    ),
+                    controller: btcController,
+                    // The validator receives the text that the user has entered.
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Veuillez entrer le montant en btc';
+                      }
+                      return null;
+                    },
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 5, 5, 0),
@@ -117,19 +132,28 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
               children: [
                 Expanded(
                   child: TextFormField(
-                      cursorColor: bluelogo,
-                      keyboardType: TextInputType.number,
-                      inputFormatters: <TextInputFormatter>[
-                        FilteringTextInputFormatter.digitsOnly
-                      ],
-                      autofocus: true,
-                      style: const TextStyle(
-                        color: Colors.black87,
-                      ),
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.fromLTRB(15, 5, 0, 0),
-                      )),
+                    cursorColor: bluelogo,
+                    keyboardType: TextInputType.number,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly
+                    ],
+                    autofocus: true,
+                    style: const TextStyle(
+                      color: Colors.black87,
+                    ),
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.fromLTRB(15, 5, 0, 0),
+                    ),
+                    controller: xofController,
+                    // The validator receives the text that the user has entered.
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Veuillez entrer le montant en xof';
+                      }
+                      return null;
+                    },
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 5, 5, 0),
@@ -152,45 +176,103 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
       ]);
     }
 
+    Widget swapconvertBtn() {
+      return Row(
+        children: [
+          const Text(
+            'Switcher',
+            style: TextStyle(
+                color: bluelogo, fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                swapTextformfield = true;
+              });
+            },
+            child: const Image(
+              image: AssetImage("images/arrow_swap.png"),
+              fit: BoxFit.cover,
+              width: 60,
+            ),
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.13,
+          ),
+          const Text(
+            'Convertir',
+            style: TextStyle(
+                color: bluelogo, fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          IconButton(
+            icon: const Icon(
+              Icons.currency_exchange,
+              color: bluelogo,
+              size: 38,
+            ),
+            tooltip: 'Convertir',
+            onPressed: () async {
+              TextEditingValue coin_amount;
+              Convert convert = Convert(
+                (coin_amount = btcController.value) as String,
+              );
+              // Validate returns true if the form is valid, or false otherwise.
+              if (_formKey.currentState!.validate()) {
+                // If the form is valid, display a snackbar.
+                Map response = await ConvertService().convertBTCtoXOF(convert);
+                if (response['error'] == false) {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => TransfertBitcoins()));
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                        backgroundColor: Colors.white,
+                        content: Text(
+                          style: const TextStyle(
+                              color: Colors.red, fontSize: 15.0),
+                          "${response['error_message']}",
+                        )),
+                  );
+                }
+              }
+            },
+          ),
+        ],
+      );
+    }
+
     return SingleChildScrollView(
       physics: const AlwaysScrollableScrollPhysics(),
       padding: EdgeInsets.symmetric(
           horizontal: MediaQuery.of(context).size.width / 20,
           vertical: MediaQuery.of(context).size.height / 20),
-      child:
-          Column(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-        const Text(
-          "1 BTC = 3,898,529,37 XOF",
-          style: TextStyle(
-            fontWeight: FontWeight.w400,
-            color: Color.fromARGB(232, 20, 108, 180),
-            fontSize: 20,
-          ),
-        ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.03,
-        ),
-        swapTextformfield ? xofField() : btcField(),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.03,
-        ),
-        GestureDetector(
-          onTap: () {
-            setState(() {
-              swapTextformfield = true;
-            });
-          },
-          child: const Image(
-            image: AssetImage("images/arrow_swap.png"),
-            fit: BoxFit.cover,
-            width: 60,
-          ),
-        ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.03,
-        ),
-        swapTextformfield ? btcField() : xofField(),
-      ]),
+      child: Form(
+        key: _formKey,
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              const Text(
+                "1 BTC = 3,898,529,37 XOF",
+                style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  color: Color.fromARGB(232, 20, 108, 180),
+                  fontSize: 20,
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.03,
+              ),
+              swapTextformfield ? xofField() : btcField(),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.03,
+              ),
+              swapconvertBtn(),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.03,
+              ),
+              swapTextformfield ? btcField() : xofField(),
+            ]),
+      ),
     );
   }
 }

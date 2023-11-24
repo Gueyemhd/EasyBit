@@ -67,7 +67,7 @@ class _TransfertBitcoinsBodyState extends State<TransfertBitcoinsBody> {
                 children: [
                   Expanded(
                     child: TextFormField(
-                      cursorColor: transfertcolor,
+                      cursorColor: bluelogo,
                       keyboardType: TextInputType.text,
                       autofocus: true,
                       style:
@@ -189,11 +189,11 @@ class _TransfertBitcoinsBodyState extends State<TransfertBitcoinsBody> {
         child: ClipRRect(
           child: Container(
               decoration: BoxDecoration(
-                color: disableTrsftButton,
+                //  color: Colors.grey,
                 borderRadius: BorderRadius.circular(70),
               ),
               child: TextButton(
-                /*  style: ButtonStyle(
+                style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.resolveWith<Color>(
                       (Set<MaterialState> states) {
                     if (states.contains(MaterialState.hovered)) {
@@ -201,7 +201,7 @@ class _TransfertBitcoinsBodyState extends State<TransfertBitcoinsBody> {
                     }
                     return disableTrsftButton;
                   }),
-                ),*/
+                ),
                 onPressed: () {
                   // Validate returns true if the form is valid, or false otherwise.
                   if (_formKey.currentState!.validate()) {
