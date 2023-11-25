@@ -20,6 +20,7 @@ from authentication.register import register
 from converting_calculator.converting import Convert_XOF , Convert_BTC
 from authentication.signing import login_view, logout_view
 from Transactions.Achat_Vente import vente_bitcoin_api, confirmation_vente_api, achat_bitcoin_api,confirmation_achat_api
+from Transactions.transfert import confirmation_demande_transfert_api, transfert_api
 
 
 urlpatterns = [
@@ -31,8 +32,11 @@ urlpatterns = [
     path("logout/", logout_view),
     path('api/password_reset/', include('django_rest_passwordreset.urls', namespace='password_reset')),
     path('achat_bitcoin/', achat_bitcoin_api, name= "achat"),
-    path ("vente_bitcoin/", vente_bitcoin_api , name = "vente"),
+    path("vente_bitcoin/", vente_bitcoin_api , name = "vente"),
     path("confirmation_vente/", confirmation_vente_api, name='confirmation_vente'),
     path("confirmation_achat/", confirmation_achat_api, name='confirmation_achat'),
+    path("transfert/", transfert_api, name ='transfert' ),
+    path("confirmation_transfert/", transfert_api, name ='confirmation_transfert' ),
+
     
 ]

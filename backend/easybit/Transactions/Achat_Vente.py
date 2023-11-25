@@ -8,6 +8,7 @@ from decimal import Decimal
 from rest_framework.decorators import api_view, permission_classes
 import requests
 import re
+from django.utils import timezone
 import json
 
 
@@ -50,11 +51,12 @@ def vente_bitcoin_api(request):
         if utilisateur.solde >= montant_btc:
             # Sauvegarder les données nécessaires dans la session
             request.session['vente_data'] = {
-                'utilisateur_id': utilisateur.id,
+
                 'montant_btc': montant_btc,
                 'montant_xof' : montant_xof, 
                 'operateur': operateur,
                 'username': username,
+                'users' : utilisateur
 
 
 
@@ -98,7 +100,8 @@ def confirmation_vente_api(request):
             auth_user.utilisateur.save()
 
             transaction = Transaction.objects.create(
-                user=auth_user.utilisateur,
+                horodatage=timezone.now(),  
+                user=auth_user,
                 montant_btc=montant_btc,
                 montant_xof = montant_xof,
                 operateur=operateur,
@@ -160,11 +163,12 @@ def achat_bitcoin_api(request):
         if solde_simule >= montant_xof:
             # Sauvegarder les données nécessaires dans la session
             request.session['achat_data'] = {
-                'utilisateur_id': utilisateur.id,
+                'users' : utilisateur,
                 'montant_btc': montant_btc,
                 'montant_xof': montant_xof,
                 'operateur': operateur,
-                'username': username
+                'username': username,
+
             }
 
             return JsonResponse({'message': 'Données d\'achat enregistrées avec succès'})
@@ -200,6 +204,7 @@ def confirmation_achat_api(request):
             utilisateur.utilisateur.save()
 
             transaction = Transaction.objects.create(
+                horodatage=timezone.now(),  
                 user=utilisateur.utilisateur,
                 montant_btc=montant_btc,
                 montant_xof=montant_xof,
