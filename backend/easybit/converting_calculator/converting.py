@@ -12,35 +12,12 @@ cg = CoinGeckoAPI ()
 
 
 
-# This function takes an amount in euro and converts it to XOF using the current exchange rate --------------
-def obtenir_taux_change_eur_xof():
-    ACCESS_KEY = 'e76e97db8d6340c4debf4be0d38387a4' 
-    base_url = 'http://data.fixer.io/api/latest'
-    params = {
-        'access_key': ACCESS_KEY,
-        'symbols': 'XOF'
-    }
-
-    response = requests.get(base_url, params=params)
-
-    if response.status_code == 200:
-        data = response.json()
-        taux_change_eur_xof = data['rates']['XOF']
-        print("Taux de change EUR/XOF :", taux_change_eur_xof)
-        return taux_change_eur_xof
-       
-    else:
-        raise Exception('Impossible de récupérer le taux de change EUR/XOF')
-
-
-
-
 # This API allows you to convert an amount in bitcoin to (XOF). ------------------------------------------------------------------------------
 @api_view(["GET", "POST", "OPTIONS"])
 
 def Convert_XOF(request):
 
-    taux_change_eur_xof = obtenir_taux_change_eur_xof()
+    taux_change_eur_xof = 655.957
     context = {} 
 
     if request.method == "POST" :
@@ -84,7 +61,7 @@ def Convert_XOF(request):
 
 def Convert_BTC(request):
 
-    taux_change_eur_xof = obtenir_taux_change_eur_xof()
+    taux_change_eur_xof = 655.957
     context = {} 
 
     if request.method == "POST" :
