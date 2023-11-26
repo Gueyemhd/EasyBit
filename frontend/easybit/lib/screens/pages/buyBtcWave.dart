@@ -1,4 +1,4 @@
-import 'package:easybit/screens/widgets/BuyAndSell.dart/wave.dart';
+import 'package:easybit/screens/widgets/BuyAndSell/wave.dart';
 import 'package:flutter/material.dart';
 
 class Wave extends StatefulWidget {

@@ -1,4 +1,4 @@
-import 'package:easybit/screens/widgets/BuyAndSell.dart/orange.money.dart';
+import 'package:easybit/screens/widgets/BuyAndSell/orange.money.dart';
 import 'package:flutter/material.dart';
 
 class BuyBtcOm extends StatefulWidget {

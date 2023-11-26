@@ -1,18 +1,18 @@
-import 'package:easybit/screens/widgets/BuyAndSell.dart/BtcValueWave.dart';
-import 'package:easybit/screens/widgets/BuyAndSell.dart/actionTransaction.dart';
-import 'package:easybit/screens/widgets/BuyAndSell.dart/margin.dart';
-import 'package:easybit/screens/widgets/BuyAndSell.dart/moneyField.dart';
-import 'package:easybit/screens/widgets/BuyAndSell.dart/numberField.dart';
+import 'package:easybit/screens/widgets/BuyAndSell/BtcValue.dart';
+import 'package:easybit/screens/widgets/BuyAndSell/actionTransaction.dart';
+import 'package:easybit/screens/widgets/BuyAndSell/margin.dart';
+import 'package:easybit/screens/widgets/BuyAndSell/moneyField.dart';
+import 'package:easybit/screens/widgets/BuyAndSell/numberField.dart';
 import 'package:flutter/material.dart';
 
-class BuyBtcWave extends StatefulWidget {
-  const BuyBtcWave({super.key});
+class Orange extends StatefulWidget {
+  const Orange({super.key});
 
   @override
-  State<BuyBtcWave> createState() => _BuyBtcWaveState();
+  State<Orange> createState() => _OrangeState();
 }
 
-class _BuyBtcWaveState extends State<BuyBtcWave> {
+class _OrangeState extends State<Orange> {
   String dropdownValue = "BTC";
 
   final _formKey = GlobalKey<FormState>();
@@ -27,10 +27,10 @@ class _BuyBtcWaveState extends State<BuyBtcWave> {
         appBar: AppBar(
           title: const Text(
             "Achat BTC avec Orange Money",
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Color.fromRGBO(255, 102, 0, 1)),
           ),
           centerTitle: true,
-          backgroundColor: const Color.fromRGBO(29, 200, 255, 1),
+          backgroundColor: Colors.black,
           leading: const BackButton(color: Colors.white),
         ),
         body: SingleChildScrollView(
@@ -41,7 +41,7 @@ class _BuyBtcWaveState extends State<BuyBtcWave> {
               children: [
                 moneyField(controler: xofValueController),
                 const margin(),
-                const BtcValueWave(),
+                const BtcValue(),
                 const margin(),
                 NumberField(
                     controler: telephoneController, couleur: Colors.grey[200]),
@@ -49,7 +49,7 @@ class _BuyBtcWaveState extends State<BuyBtcWave> {
                 const margin(),
                 ButtonTransaction(
                     press: () {},
-                    couleur: const Color.fromRGBO(29, 200, 255, 1),
+                    couleur: const Color.fromRGBO(255, 102, 0, 1),
                     texte: "ACHETER")
               ],
             ),
@@ -57,6 +57,5 @@ class _BuyBtcWaveState extends State<BuyBtcWave> {
         ),
       ),
     );
-    ;
   }
 }

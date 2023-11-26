@@ -1,4 +1,4 @@
-import 'package:easybit/screens/widgets/BuyAndSell.dart/sellBitcoin.dart';
+import 'package:easybit/screens/widgets/BuyAndSell/sellBitcoin.dart';
 import 'package:flutter/material.dart';
 
 class SellBtc extends StatefulWidget {

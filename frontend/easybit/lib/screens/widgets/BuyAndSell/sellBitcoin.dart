@@ -1,8 +1,8 @@
-import 'package:easybit/screens/widgets/BuyAndSell.dart/actionTransaction.dart';
-import 'package:easybit/screens/widgets/BuyAndSell.dart/btcField.dart';
-import 'package:easybit/screens/widgets/BuyAndSell.dart/margin.dart';
-import 'package:easybit/screens/widgets/BuyAndSell.dart/moneyValue.dart';
-import 'package:easybit/screens/widgets/BuyAndSell.dart/numberField.dart';
+import 'package:easybit/screens/widgets/BuyAndSell/actionTransaction.dart';
+import 'package:easybit/screens/widgets/BuyAndSell/btcField.dart';
+import 'package:easybit/screens/widgets/BuyAndSell/margin.dart';
+import 'package:easybit/screens/widgets/BuyAndSell/moneyValue.dart';
+import 'package:easybit/screens/widgets/BuyAndSell/numberField.dart';
 import 'package:flutter/material.dart';
 
 enum Operators { om, wave }

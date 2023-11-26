@@ -8,6 +8,7 @@ import 'package:easybit/screens/pages/registrationpage.dart';
 import 'package:easybit/screens/pages/sellBtc.dart';
 import 'package:easybit/screens/pages/startedPage.dart';
 import 'package:easybit/screens/pages/welcomePage.dart';
+import 'package:easybit/screens/widgets/profile.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -33,9 +34,10 @@ class MyApp extends StatelessWidget {
         "/welcome": (context) => const WelcomePage(),
         "/orange": (context) => const BuyBtcOm(),
         "/wave": (context) => const Wave(),
-        "/sellbtc": (context) => const SellBtc()
+        "/sellbtc": (context) => const SellBtc(),
+        "/profile": (context) => const ProfileUser()
       },
-      initialRoute: "/welcome",
+      initialRoute: "/profile",
     );
   }
 }

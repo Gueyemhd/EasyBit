@@ -1,6 +1,6 @@
 import 'package:easybit/screens/pages/buyBtcWave.dart';
 import 'package:easybit/screens/pages/sellBtc.dart';
-import 'package:easybit/screens/widgets/BuyAndSell.dart/orange.money.dart';
+import 'package:easybit/screens/widgets/BuyAndSell/orange.money.dart';
 import 'package:flutter/material.dart';
 
 class Operations extends StatelessWidget {

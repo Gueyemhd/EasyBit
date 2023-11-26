@@ -1,18 +1,18 @@
-import 'package:easybit/screens/widgets/BuyAndSell.dart/BtcValue.dart';
-import 'package:easybit/screens/widgets/BuyAndSell.dart/actionTransaction.dart';
-import 'package:easybit/screens/widgets/BuyAndSell.dart/margin.dart';
-import 'package:easybit/screens/widgets/BuyAndSell.dart/moneyField.dart';
-import 'package:easybit/screens/widgets/BuyAndSell.dart/numberField.dart';
+import 'package:easybit/screens/widgets/BuyAndSell/BtcValueWave.dart';
+import 'package:easybit/screens/widgets/BuyAndSell/actionTransaction.dart';
+import 'package:easybit/screens/widgets/BuyAndSell/margin.dart';
+import 'package:easybit/screens/widgets/BuyAndSell/moneyField.dart';
+import 'package:easybit/screens/widgets/BuyAndSell/numberField.dart';
 import 'package:flutter/material.dart';
 
-class Orange extends StatefulWidget {
-  const Orange({super.key});
+class BuyBtcWave extends StatefulWidget {
+  const BuyBtcWave({super.key});
 
   @override
-  State<Orange> createState() => _OrangeState();
+  State<BuyBtcWave> createState() => _BuyBtcWaveState();
 }
 
-class _OrangeState extends State<Orange> {
+class _BuyBtcWaveState extends State<BuyBtcWave> {
   String dropdownValue = "BTC";
 
   final _formKey = GlobalKey<FormState>();
@@ -27,10 +27,10 @@ class _OrangeState extends State<Orange> {
         appBar: AppBar(
           title: const Text(
             "Achat BTC avec Orange Money",
-            style: TextStyle(color: Color.fromRGBO(255, 102, 0, 1)),
+            style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
-          backgroundColor: Colors.black,
+          backgroundColor: const Color.fromRGBO(29, 200, 255, 1),
           leading: const BackButton(color: Colors.white),
         ),
         body: SingleChildScrollView(
@@ -41,7 +41,7 @@ class _OrangeState extends State<Orange> {
               children: [
                 moneyField(controler: xofValueController),
                 const margin(),
-                const BtcValue(),
+                const BtcValueWave(),
                 const margin(),
                 NumberField(
                     controler: telephoneController, couleur: Colors.grey[200]),
@@ -49,7 +49,7 @@ class _OrangeState extends State<Orange> {
                 const margin(),
                 ButtonTransaction(
                     press: () {},
-                    couleur: const Color.fromRGBO(255, 102, 0, 1),
+                    couleur: const Color.fromRGBO(29, 200, 255, 1),
                     texte: "ACHETER")
               ],
             ),
@@ -57,5 +57,6 @@ class _OrangeState extends State<Orange> {
         ),
       ),
     );
+    ;
   }
 }
