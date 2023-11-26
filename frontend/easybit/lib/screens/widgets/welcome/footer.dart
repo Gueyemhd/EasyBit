@@ -22,6 +22,9 @@ class _FooterState extends State<Footer> {
         setState(() {
           index = selectedIndex;
         });
+        if (index == 3){
+          
+        }
       },
       backgroundColor: Color.fromARGB(255, 250, 250, 250),
       color: Color.fromRGBO(23, 101, 152, 1),
