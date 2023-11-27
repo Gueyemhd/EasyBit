@@ -22,22 +22,22 @@ from django.utils import timezone
 @permission_classes([IsAuthenticated])
 
 def transfert_api(request):
-    if request.method == 'POST':
 
-        utilisateur = request.user.utilisateur
-        username = utilisateur.username
-        utilisateur_destination_username = data.get('utilisateur_destination')
-        type = Type.TRANSFERT.value
-        montant_btc = Decimal(data.get('montant_btc', '0'))
+    if request.method == 'POST':
 
         try:
             data = json.loads(request.body.decode('utf-8'))
             montant_btc = Decimal(data.get('montant_btc', '0'))
             montant_xof = convertir_btc_en_xof(montant_btc)
-           
+            utilisateur = request.user.utilisateur
+              
 
-        except Decimal.InvalidOperation:
+        except :
             return JsonResponse({'message': 'Montant invalide'}, status=400)
+
+        username = utilisateur.username
+        utilisateur_destination_username = data.get('utilisateur_destination')
+        type = Type.TRANSFERT.value
 
 
         # Vérifier si l'utilisateur de destination existe

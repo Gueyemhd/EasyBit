@@ -1,5 +1,4 @@
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import authenticate
@@ -23,13 +22,8 @@ import json
 @permission_classes([IsAuthenticated])
 
 def vente_bitcoin_api(request):
-    if request.method == 'POST':
 
-        utilisateur = request.user.utilisateur
-        username = utilisateur.username
-        num_tel = data.get('num_tel')
-        operateur = data.get('operateur')
-        type = Type.VENTE.value
+    if request.method == 'POST':
 
         try:
             data = json.loads(request.body.decode('utf-8'))
@@ -39,6 +33,14 @@ def vente_bitcoin_api(request):
 
         except Decimal.InvalidOperation:
             return JsonResponse({'message': 'Montant invalide'}, status=400)
+
+
+        utilisateur = request.user.utilisateur
+        username = utilisateur.username
+        num_tel = data.get('num_tel')
+        operateur = data.get('operateur')
+        type = Type.VENTE.value
+
 
         # Vérifiez si le numéro de téléphone est valide
         pattern = re.compile(r'^(78|77|70)\d{7}$')
@@ -130,10 +132,7 @@ def confirmation_vente_api(request):
 
 def achat_bitcoin_api(request):
     if request.method == 'POST':
-        utilisateur = request.user.utilisateur
-        username = utilisateur.username
-        operateur = data.get('operateur')
-        num_tel = data.get('num_tel')
+      
 
         try:
             data = json.loads(request.body.decode('utf-8'))
@@ -143,6 +142,13 @@ def achat_bitcoin_api(request):
 
         except Decimal.InvalidOperation:
             return JsonResponse({'message': 'Montant invalide'}, status=400)
+
+
+        utilisateur = request.user.utilisateur
+        username = utilisateur.username
+        operateur = data.get('operateur')
+        num_tel = data.get('num_tel')
+        
 
         # Vérifiez si le numero de télephone est valide
         pattern = re.compile(r'^(78|77|70)\d{7}$')
@@ -155,9 +161,9 @@ def achat_bitcoin_api(request):
         # Simuler le solde en fonction de l'opérateur
         solde_simule = 0
         if operateur == 'orange_money':
-            solde_simule = 500000  # Valeur simulée pour Orange Money
+            solde_simule = 200000  # Valeur simulée pour Orange Money
         elif operateur == 'wave':
-            solde_simule = 700000  # Valeur simulée pour Wave
+            solde_simule = 100000  # Valeur simulée pour Wave
 
         # Vérifier le solde en fonction de l'opérateur choisi
         if solde_simule >= montant_xof:
