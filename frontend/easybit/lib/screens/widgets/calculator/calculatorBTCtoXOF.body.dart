@@ -350,14 +350,20 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
                 height: MediaQuery.of(context).size.height * 0.03,
               ),
               swapTextformfield ? btcField() : xofField(),
-              Row(
-                children: [
-                  buildFutureBuilder(),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.02,
-                  ),
-                  buildFutureBuilder2(),
-                ],
+              Container(
+                margin: EdgeInsets.symmetric(
+                    vertical: MediaQuery.of(context).size.height * 0.02,
+                    horizontal: MediaQuery.of(context).size.width * 0.02),
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: Column(
+                  children: [
+                    buildFutureBuilder2(),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.03,
+                    ),
+                    buildFutureBuilder3(),
+                  ],
+                ),
               )
             ]),
       ),
