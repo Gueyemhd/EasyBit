@@ -57,11 +57,12 @@ class _RegistrationBodyState extends State<RegistrationBody> {
                 border: Border.all(color: bluelogo, width: 3)),
             height: 60,
             child: TextFormField(
+              cursorColor: bluelogo,
               controller: firstNameController,
               // The validator receives the text that the user has entered.
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Veuillez entrer votre prénom';
+                  return '  Veuillez entrer votre prénom';
                 }
                 return null;
               },
@@ -102,11 +103,12 @@ class _RegistrationBodyState extends State<RegistrationBody> {
                 border: Border.all(color: bluelogo, width: 3)),
             height: 60,
             child: TextFormField(
+              cursorColor: bluelogo,
               controller: lastNameController,
               // The validator receives the text that the user has entered.
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Veuillez entrer votre nom';
+                  return '  Veuillez entrer votre nom';
                 }
                 return null;
               },
@@ -147,11 +149,13 @@ class _RegistrationBodyState extends State<RegistrationBody> {
                 border: Border.all(color: bluelogo, width: 3)),
             height: 60,
             child: TextFormField(
+              cursorColor: bluelogo,
+              keyboardType: TextInputType.text,
               controller: usernameController,
               // The validator receives the text that the user has entered.
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Veuillez entre votre nom d\'utilisateur';
+                  return '  Veuillez entre votre nom d\'utilisateur';
                 }
                 return null;
               },

@@ -9,6 +9,7 @@ import 'package:easybit/screens/pages/sellBtc.dart';
 import 'package:easybit/screens/pages/startedPage.dart';
 import 'package:easybit/screens/pages/welcomePage.dart';
 import 'package:easybit/screens/widgets/profile.dart';
+import 'package:easybit/screens/pages/transfertBitoins.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -29,8 +30,9 @@ class MyApp extends StatelessWidget {
         "/registration": (context) => const Registration(),
         "/next": (context) => const NextPage(),
         "/login": (context) => const Login(),
-        "/CalculatorBTCtoXOF": (context) => const CalculatorBTCtoXOF(),
-        "/CalculatorXOFtoBTC": (context) => const CalculatorXOFtoBTC(),
+        "/calculatorBTCtoXOF": (context) => const CalculatorBTCtoXOF(),
+        // "/calculatorXOFtoBTC": (context) => const CalculatorXOFtoBTC(),
+        "/transfertBitcoins": (context) => const TransfertBitcoins(),,
         "/welcome": (context) => const WelcomePage(),
         "/orange": (context) => const BuyBtcOm(),
         "/wave": (context) => const Wave(),

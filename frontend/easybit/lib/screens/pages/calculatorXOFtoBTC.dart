@@ -20,7 +20,7 @@ class _CalculatorXOFtoBTCState extends State<CalculatorXOFtoBTC> {
           backgroundColor: const Color.fromARGB(237, 12, 90, 154),
           title: const Text(
             _title,
-            style: TextStyle(fontSize: 25),
+            style: TextStyle(fontSize: 22),
           ),
           titleSpacing: 00.0,
           centerTitle: true,

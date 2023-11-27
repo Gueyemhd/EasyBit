@@ -5,7 +5,6 @@ from rest_framework import status
 import requests
 
 from pycoingecko import CoinGeckoAPI
-from fixerio import Fixerio
 
 cg = CoinGeckoAPI () 
 

@@ -1,24 +1,24 @@
-import 'package:easybit/screens/pages/calculatorXOFtoBTC.dart';
-import 'package:easybit/screens/pages/transfertBitoins.dart';
-import 'package:easybit/screens/widgets/calculator/calculatorBTCtoXOF.body.dart';
+import 'package:easybit/screens/pages/calculatorBTCtoXOF.dart';
+import 'package:easybit/screens/widgets/transfertBTC/transfertBitcoins.body.dart';
+import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 
-class CalculatorBTCtoXOF extends StatefulWidget {
-  const CalculatorBTCtoXOF({super.key});
+class TransfertBitcoins extends StatefulWidget {
+  const TransfertBitcoins({super.key});
 
   @override
-  State<CalculatorBTCtoXOF> createState() => _CalculatorBTCtoXOFState();
+  State<TransfertBitcoins> createState() => _TransfertBitcoinsState();
 }
 
-class _CalculatorBTCtoXOFState extends State<CalculatorBTCtoXOF> {
-  static const String _title = 'Calculateur';
+class _TransfertBitcoinsState extends State<TransfertBitcoins> {
+  static const String _title = 'Transférer des bitcoins';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(237, 12, 90, 154),
+          backgroundColor: enableTrsftButton,
           title: const Text(
             _title,
             style: TextStyle(fontSize: 22),
@@ -41,9 +41,9 @@ class _CalculatorBTCtoXOFState extends State<CalculatorBTCtoXOF> {
             ),
             tooltip: 'Menu Icon',
             onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const TransfertBitcoins())),
+                builder: (context) => const CalculatorBTCtoXOF())),
           ),
         ),
-        body: BTCtoXOF());
+        body: const TransfertBitcoinsBody());
   }
 }

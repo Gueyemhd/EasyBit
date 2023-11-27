@@ -1,7 +1,6 @@
 import 'package:easybit/models/user_model.dart';
 import 'package:easybit/screens/pages/loginPage.dart';
 import 'package:easybit/screens/pages/registrationpage.dart';
-import 'package:easybit/services/user_service.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -15,14 +14,19 @@ class Next extends StatefulWidget {
   State<Next> createState() => _NextState();
 }
 
-// Define a corresponding State class.
-// This class holds data related to the form.
+// Define a corresponding State class. This class holds data related to the form.
 class _NextState extends State<Next> {
+  bool passwordVisible = false;
+
+  @override
+  void initState() {
+    super.initState();
+    passwordVisible = true;
+  }
   // Create a global key that uniquely identifies the Form widget
   // and allows validation of the form.
 
-  // Note: This is a `GlobalKey<FormState>`,
-  // not a GlobalKey<MyCustomFormState>.
+  // Note: This is a `GlobalKey<FormState>`, not a GlobalKey<MyCustomFormState>.
   final _formKey = GlobalKey<FormState>();
 
   // Create a text controller and use it to retrieve the current values of TextFields
@@ -30,13 +34,6 @@ class _NextState extends State<Next> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-
-  /* @override
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    myController.dispose();
-    super.dispose();
-  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -63,11 +60,12 @@ class _NextState extends State<Next> {
                 border: Border.all(color: bluelogo, width: 3)),
             height: 60,
             child: TextFormField(
+              cursorColor: bluelogo,
               controller: emailController,
               // The validator receives the password that the user has entered.
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Veuillez entrer votre email';
+                  return '  Veuillez entrer votre email';
                 }
                 return null;
               },
@@ -105,30 +103,43 @@ class _NextState extends State<Next> {
                 border: Border.all(color: bluelogo, width: 3)),
             height: 60,
             child: TextFormField(
+              cursorColor: bluelogo,
               controller: passwordController,
               // The validator receives the password that the user has entered.
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Veuillez entrer votre mot de passe';
+                  return '  Veuillez entrer votre mot de passe';
                 }
                 return null;
               },
               keyboardType: TextInputType.visiblePassword,
+              textInputAction: TextInputAction.done,
               obscureText: true,
               style: const TextStyle(
                 color: Colors.black87,
               ),
-              decoration: const InputDecoration(
-                contentPadding: EdgeInsets.only(top: 14),
-                prefixIcon: Icon(Icons.lock, color: bluelogo),
+              decoration: InputDecoration(
+                alignLabelWithHint: false,
+                filled: true,
+                contentPadding: const EdgeInsets.only(top: 14),
+                prefixIcon: const Icon(Icons.lock, color: bluelogo),
                 hintText: 'Mot de passe',
-                hintStyle: TextStyle(
+                hintStyle: const TextStyle(
                   color: bluelogo,
                   fontSize: 12,
                 ),
-                suffixIcon: Icon(
-                  Icons.visibility_off,
-                  color: bluelogo,
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    passwordVisible ? Icons.visibility : Icons.visibility_off,
+                    color: bluelogo,
+                  ),
+                  onPressed: () {
+                    setState(
+                      () {
+                        passwordVisible = !passwordVisible;
+                      },
+                    );
+                  },
                 ),
                 border: InputBorder.none,
               ),
@@ -152,31 +163,44 @@ class _NextState extends State<Next> {
                 border: Border.all(color: bluelogo, width: 3)),
             height: 60,
             child: TextFormField(
+              cursorColor: bluelogo,
               controller: confirmPasswordController,
               // The validator receives the password that the user has entered.
               //   controller: myController,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Veuillez entrer à nouveau votre mot de passe';
+                  return '  Veuillez entrer à nouveau votre mot de passe';
                 }
                 return null;
               },
               keyboardType: TextInputType.visiblePassword,
+              textInputAction: TextInputAction.done,
               obscureText: true,
               style: const TextStyle(
                 color: Colors.black87,
               ),
-              decoration: const InputDecoration(
-                contentPadding: EdgeInsets.only(top: 14),
-                prefixIcon: Icon(Icons.lock, color: bluelogo),
-                hintText: 'Confirmer mot de passe',
-                hintStyle: TextStyle(
+              decoration: InputDecoration(
+                alignLabelWithHint: false,
+                filled: true,
+                contentPadding: const EdgeInsets.only(top: 14),
+                prefixIcon: const Icon(Icons.lock, color: bluelogo),
+                hintText: '  Confirmer mot de passe',
+                hintStyle: const TextStyle(
                   color: bluelogo,
                   fontSize: 12,
                 ),
-                suffixIcon: Icon(
-                  Icons.visibility_off,
-                  color: bluelogo,
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    passwordVisible ? Icons.visibility : Icons.visibility_off,
+                    color: bluelogo,
+                  ),
+                  onPressed: () {
+                    setState(
+                      () {
+                        passwordVisible = !passwordVisible;
+                      },
+                    );
+                  },
                 ),
                 border: InputBorder.none,
               ),
