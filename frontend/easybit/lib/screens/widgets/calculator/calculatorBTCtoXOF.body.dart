@@ -1,9 +1,10 @@
+import 'dart:convert'; // this library allows to access to jsonEncode to encode the data
+
 import 'package:easybit/models/user_model.dart';
-import 'package:easybit/screens/pages/transfertBitoins.dart';
-import 'package:easybit/services/convert_service.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 
 class BTCtoXOF extends StatefulWidget {
   const BTCtoXOF({super.key});
@@ -25,17 +26,92 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
 
   final _formKey = GlobalKey<FormState>();
 
-  final btcController = TextEditingController();
-  final xofController = TextEditingController();
+  final TextEditingController btcController = TextEditingController();
+  final TextEditingController xofController = TextEditingController();
+  Future<Convert>? _futureConvert; // _ means private variable
+  Future<Convert>? _futureConvert1;
+
+  FutureBuilder<Convert> buildFutureBuilder() {
+    return FutureBuilder<Convert>(
+      future: _futureConvert,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return Text(snapshot.data!.price);
+        } else if (snapshot.hasError) {
+          return Text('${snapshot.error}');
+        }
+
+        return const CircularProgressIndicator();
+      },
+    );
+  }
+
+  FutureBuilder<Convert> buildFutureBuilder1() {
+    return FutureBuilder<Convert>(
+      future: _futureConvert1,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return Text(snapshot.data!.price);
+        } else if (snapshot.hasError) {
+          return Text('${snapshot.error}');
+        }
+
+        return const CircularProgressIndicator();
+      },
+    );
+  }
+
+  late Future<Convert> futureConvert2;
+  late Future<Convert> futureConvert3;
+
+  @override
+  void initState() {
+    super.initState();
+    futureConvert2 = fetchXofPrice();
+    futureConvert3 = fetchBtcPrice();
+  }
+
+  FutureBuilder<Convert> buildFutureBuilder2() {
+    return FutureBuilder<Convert>(
+      future: futureConvert2,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return Text(snapshot.data!.price);
+        } else if (snapshot.hasError) {
+          return Text('${snapshot.error}');
+        }
+        // By default, show a loading spinner.
+        return const CircularProgressIndicator();
+      },
+    );
+  }
+
+  FutureBuilder<Convert> buildFutureBuilder3() {
+    return FutureBuilder<Convert>(
+      future: futureConvert3,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return Text(snapshot.data!.price);
+        } else if (snapshot.hasError) {
+          return Text('${snapshot.error}');
+        }
+        // By default, show a loading spinner.
+        return const CircularProgressIndicator();
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     //This size provides us total height and width of our screen
+
     Widget btcField() {
       return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         Container(
-            margin: const EdgeInsets.symmetric(vertical: 10),
+            margin: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).size.height * 0.02,
+                horizontal: MediaQuery.of(context).size.width * 0.01),
             width: MediaQuery.of(context).size.width * 0.8,
             height: MediaQuery.of(context).size.height * 0.07,
             decoration: BoxDecoration(
@@ -49,6 +125,7 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
               children: [
                 Expanded(
                   child: TextFormField(
+                    controller: btcController,
                     cursorColor: bluelogo,
                     keyboardType: TextInputType.number,
                     inputFormatters: <TextInputFormatter>[
@@ -62,9 +139,9 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.fromLTRB(15, 5, 0, 0),
                     ),
-                    controller: btcController,
                     // The validator receives the text that the user has entered.
                     validator: (value) {
+                      buildFutureBuilder2();
                       if (value == null || value.isEmpty) {
                         return 'Veuillez entrer le montant en btc';
                       }
@@ -118,7 +195,9 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
     Widget xofField() {
       return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         Container(
-            margin: const EdgeInsets.symmetric(vertical: 10),
+            margin: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).size.height * 0.02,
+                horizontal: MediaQuery.of(context).size.width * 0.01),
             width: MediaQuery.of(context).size.width * 0.8,
             height: MediaQuery.of(context).size.height * 0.07,
             decoration: BoxDecoration(
@@ -132,6 +211,7 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
               children: [
                 Expanded(
                   child: TextFormField(
+                    controller: xofController,
                     cursorColor: bluelogo,
                     keyboardType: TextInputType.number,
                     inputFormatters: <TextInputFormatter>[
@@ -145,9 +225,9 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.fromLTRB(15, 5, 0, 0),
                     ),
-                    controller: xofController,
                     // The validator receives the text that the user has entered.
                     validator: (value) {
+                      buildFutureBuilder();
                       if (value == null || value.isEmpty) {
                         return 'Veuillez entrer le montant en xof';
                       }
@@ -179,63 +259,62 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
     Widget swapconvertBtn() {
       return Row(
         children: [
-          const Text(
-            'Switcher',
-            style: TextStyle(
-                color: bluelogo, fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                swapTextformfield = true;
-              });
-            },
-            child: const Image(
-              image: AssetImage("images/arrow_swap.png"),
-              fit: BoxFit.cover,
-              width: 60,
+          Container(
+            margin: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).size.height * 0.02,
+                horizontal: MediaQuery.of(context).size.width * 0.05),
+            width: MediaQuery.of(context).size.width * 0.8,
+            height: MediaQuery.of(context).size.height * 0.07,
+            child: Row(
+              children: [
+                const Text(
+                  'Switcher',
+                  style: TextStyle(
+                      color: bluelogo,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      swapTextformfield = true;
+                    });
+                  },
+                  child: const Image(
+                    image: AssetImage("images/arrow_swap.png"),
+                    fit: BoxFit.cover,
+                    width: 60,
+                  ),
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.13,
+                ),
+                const Text(
+                  'Convertir',
+                  style: TextStyle(
+                      color: bluelogo,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
+                ),
+                IconButton(
+                  icon: const Icon(
+                    Icons.currency_exchange,
+                    color: bluelogo,
+                    size: 38,
+                  ),
+                  tooltip: 'Convertir',
+                  onPressed: () {
+                    setState(() {
+                      _futureConvert = convertBTCtoXOF(btcController.text);
+                      //On pressing the convertir button
+                      // make the network request,
+                      // which sends the data in the TextField to the server as a POST request
+                      _futureConvert1 = convertBTCtoXOF(xofController.text);
+                    });
+                  },
+                ),
+              ],
             ),
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.13,
-          ),
-          const Text(
-            'Convertir',
-            style: TextStyle(
-                color: bluelogo, fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          IconButton(
-            icon: const Icon(
-              Icons.currency_exchange,
-              color: bluelogo,
-              size: 38,
-            ),
-            tooltip: 'Convertir',
-            onPressed: () async {
-              TextEditingValue coin_amount;
-              Convert convert = Convert(
-                (coin_amount = btcController.value) as String,
-              );
-              // Validate returns true if the form is valid, or false otherwise.
-              if (_formKey.currentState!.validate()) {
-                // If the form is valid, display a snackbar.
-                Map response = await ConvertService().convertBTCtoXOF(convert);
-                if (response['error'] == false) {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => TransfertBitcoins()));
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                        backgroundColor: Colors.white,
-                        content: Text(
-                          style: const TextStyle(
-                              color: Colors.red, fontSize: 15.0),
-                          "${response['error_message']}",
-                        )),
-                  );
-                }
-              }
-            },
           ),
         ],
       );
@@ -271,8 +350,80 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
                 height: MediaQuery.of(context).size.height * 0.03,
               ),
               swapTextformfield ? btcField() : xofField(),
+              Row(
+                children: [
+                  buildFutureBuilder(),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.02,
+                  ),
+                  buildFutureBuilder2(),
+                ],
+              )
             ]),
       ),
     );
+  }
+}
+
+//This method uses the http.post() method to send the encoded data to the server
+//This method takes an argument coinAmount
+// that is sent to the server to convert to the xof value
+Future<Convert> convertBTCtoXOF(String coinAmount) async {
+  final response = await http.post(
+    Uri.parse('http://127.0.0.1/Convert_BTC'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'coin_amount': coinAmount,
+    }),
+  );
+
+  if (response.statusCode == 201) {
+    // If the server did return a 201 CREATED response,
+    // then parse the JSON.
+    return Convert.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+  } else {
+    // If the server did not return a 201 CREATED response,
+    // then throw an exception.
+    throw Exception('Failed to send coin_amount to server.');
+  }
+}
+
+Future<Convert> convertXOFtoBTC(String currencyAmount, String price) async {
+  final response = await http.post(
+    Uri.parse('http://127.0.0.1/Convert_XOF'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'currency_amount': currencyAmount,
+    }),
+  );
+
+  if (response.statusCode == 201) {
+    return Convert.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+  } else {
+    throw Exception('Failed to send coin_amount to server.');
+  }
+}
+
+Future<Convert> fetchXofPrice() async {
+  final response = await http.get(Uri.parse('http://127.0.0.1/Convert_BTC'));
+
+  if (response.statusCode == 200) {
+    return Convert.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+  } else {
+    throw Exception('Failed to load convert');
+  }
+}
+
+Future<Convert> fetchBtcPrice() async {
+  final response = await http.get(Uri.parse('http://127.0.0.1/Convert_XOF'));
+
+  if (response.statusCode == 200) {
+    return Convert.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+  } else {
+    throw Exception('Failed to load convert');
   }
 }

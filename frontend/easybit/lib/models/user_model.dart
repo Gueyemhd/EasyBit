@@ -1,5 +1,33 @@
 import 'dart:ffi';
 
+class Convert {
+  String coinAmount; // bitcoin amount the user needs to type
+  String price; //xof or btc amount to be displayed
+  String currencyAmount; //cfa amount the user needs to type
+
+  Convert(
+      {required this.coinAmount,
+      required this.price,
+      required this.currencyAmount});
+
+//convert the http.Response into a Dart object
+  factory Convert.fromJson(Map<String, dynamic> json) {
+    return switch (json) {
+      {
+        'coin_amount': String coin_amount,
+        'price': String price,
+        'currency_amount': String currency_amount,
+      } =>
+        Convert(
+          coinAmount: coin_amount,
+          price: price,
+          currencyAmount: currency_amount,
+        ),
+      _ => throw const FormatException('Failed to load convert.'),
+    };
+  }
+}
+
 class User {
   int? id;
   String? firstname;
@@ -18,12 +46,4 @@ class User {
     this.password,
     this.confirmPassword,
   });
-}
-
-class Convert {
-  Float? coin_amount; // montant du bitcoin à entrer pour la conversion
-  String? price; //montant en xof ou btc à afficher
-  Float? currency_amount; //montant en cfa à fournir
-
-  Convert(String s, {this.coin_amount, this.price, this.currency_amount});
 }

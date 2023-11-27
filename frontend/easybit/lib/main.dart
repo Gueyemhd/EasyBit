@@ -1,3 +1,4 @@
+import 'package:easybit/screens/my.dart';
 import 'package:easybit/screens/pages/calculatorBTCtoXOF.dart';
 import 'package:easybit/screens/pages/calculatorXOFtoBTC.dart';
 import 'package:easybit/screens/pages/launchpage.dart';
@@ -30,8 +31,9 @@ class MyApp extends StatelessWidget {
         "/calculatorBTCtoXOF": (context) => const CalculatorBTCtoXOF(),
         // "/calculatorXOFtoBTC": (context) => const CalculatorXOFtoBTC(),
         "/transfertBitcoins": (context) => const TransfertBitcoins(),
+        "/my": (context) => My(),
       },
-      initialRoute: "/calculatorBTCtoXOF",
+      initialRoute: "/my",
     );
   }
 }
