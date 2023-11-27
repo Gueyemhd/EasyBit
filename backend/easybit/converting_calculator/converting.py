@@ -68,10 +68,11 @@ def Convert_BTC(request):
     if request.method == "POST" :
 
      # We retrieve the value of the amount to convert in BTC 
-        currency_amount = request.data.get("currency")
-
-        if currency_amount is not None and isinstance(currency_amount, (int, float)) and currency_amount>=0:
-
+        try:
+            currency_amount = int(request.data.get("currency"))
+        except:
+            return Response({'error': 'Invalid currency amount!'}, status=status.HTTP_400_BAD_REQUEST)
+        else:            
             crypto_data = cg.get_price(
             ids='bitcoin',
             vs_currencies='eur',
@@ -89,9 +90,6 @@ def Convert_BTC(request):
     
             return  Response(context)
         
-        else:
-
-            return Response({'error': 'Invalid currency amount!'}, status=status.HTTP_400_BAD_REQUEST)
     else:
         
         return Response({"error": 'Bad request '}, status= status.HTTP_405_METHOD_NOT_ALLOWED)

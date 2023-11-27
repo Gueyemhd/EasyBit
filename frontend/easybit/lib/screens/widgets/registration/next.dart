@@ -1,6 +1,7 @@
 import 'package:easybit/models/user_model.dart';
 import 'package:easybit/screens/pages/loginPage.dart';
 import 'package:easybit/screens/pages/registrationpage.dart';
+import 'package:easybit/services/user_service.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 

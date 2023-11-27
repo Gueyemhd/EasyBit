@@ -283,7 +283,7 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
                 GestureDetector(
                   onTap: () {
                     setState(() {
-                      swapTextformfield = true;
+                      swapTextformfield = !swapTextformfield;
                     });
                   },
                   child: const Image(
@@ -357,7 +357,7 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: Column(
                   children: [
-                    buildFutureBuilder(),
+                    buildFutureBuilder1(),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.03,
                     ),
@@ -376,16 +376,18 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
 // that is sent to the server to convert to the xof value
 Future<Convert> convertBTCtoXOF(String coinAmount) async {
   final response = await http.post(
-    Uri.parse('http://127.0.0.1/Convert_BTC'),
+    Uri.parse('http://10.0.2.2:8000/Convert_BTC/'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, String>{
-      'coin_amount': coinAmount,
+      'currency': coinAmount,
     }),
   );
+  print("=================response=============");
+  print(json.decode(response.body));
 
-  if (response.statusCode == 201) {
+  if (response.statusCode == 200) {
     // If the server did return a 201 CREATED response,
     // then parse the JSON.
     return Convert.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
@@ -398,7 +400,7 @@ Future<Convert> convertBTCtoXOF(String coinAmount) async {
 
 Future<Convert> convertXOFtoBTC(String currencyAmount, String price) async {
   final response = await http.post(
-    Uri.parse('http://127.0.0.1/Convert_XOF'),
+    Uri.parse('http://10.0.2.2:8000/Convert_XOF/'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -415,7 +417,8 @@ Future<Convert> convertXOFtoBTC(String currencyAmount, String price) async {
 }
 
 Future<Convert> fetchXofPrice() async {
-  final response = await http.get(Uri.parse('http://127.0.0.1/Convert_BTC'));
+  final response =
+      await http.get(Uri.parse('http://10.0.2.2:8000/Convert_BTC/'));
 
   if (response.statusCode == 200) {
     return Convert.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
@@ -425,7 +428,8 @@ Future<Convert> fetchXofPrice() async {
 }
 
 Future<Convert> fetchBtcPrice() async {
-  final response = await http.get(Uri.parse('http://127.0.0.1/Convert_XOF'));
+  final response =
+      await http.get(Uri.parse('http://10.0.2.2:8000/Convert_XOF/'));
 
   if (response.statusCode == 200) {
     return Convert.fromJson(jsonDecode(response.body) as Map<String, dynamic>);

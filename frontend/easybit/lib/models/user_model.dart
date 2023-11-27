@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 class Convert {
   String coinAmount; // bitcoin amount the user needs to type
   String price; //xof or btc amount to be displayed
