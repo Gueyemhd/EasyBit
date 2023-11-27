@@ -12,6 +12,7 @@ cg = CoinGeckoAPI ()
 
 
 
+
 # This API allows you to convert an amount in bitcoin to (XOF). ------------------------------------------------------------------------------
 @api_view(["GET", "POST", "OPTIONS"])
 
