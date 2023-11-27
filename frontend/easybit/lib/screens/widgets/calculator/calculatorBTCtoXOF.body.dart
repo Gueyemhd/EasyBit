@@ -339,16 +339,10 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
+                height: MediaQuery.of(context).size.height * 0.02,
               ),
               swapTextformfield ? xofField() : btcField(),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
-              ),
               swapconvertBtn(),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
-              ),
               swapTextformfield ? btcField() : xofField(),
               Container(
                 margin: EdgeInsets.symmetric(
@@ -357,11 +351,11 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: Column(
                   children: [
-                    buildFutureBuilder2(),
+                    buildFutureBuilder(),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.03,
                     ),
-                    buildFutureBuilder3(),
+                    buildFutureBuilder2(),
                   ],
                 ),
               )
