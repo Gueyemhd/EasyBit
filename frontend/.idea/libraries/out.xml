@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="out">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/easybit/build/app/intermediates/project_dex_archive/debug/out/f5aaa5218844c6a1a216a917d5c402f9d99bd52c16da143c6f0bd623261dc13f_2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/easybit/build/app/intermediates/project_dex_archive/debug/out/f5aaa5218844c6a1a216a917d5c402f9d99bd52c16da143c6f0bd623261dc13f_1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/easybit/build/app/intermediates/project_dex_archive/debug/out/f5aaa5218844c6a1a216a917d5c402f9d99bd52c16da143c6f0bd623261dc13f_0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/easybit/build/app/intermediates/project_dex_archive/debug/out/f5aaa5218844c6a1a216a917d5c402f9d99bd52c16da143c6f0bd623261dc13f_3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

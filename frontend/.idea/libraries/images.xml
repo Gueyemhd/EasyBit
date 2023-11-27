@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="images">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/easybit/build/app/intermediates/compressed_assets/debug/out/assets/flutter_assets/images/load.gif.jar!/" />
+      <root url="jar://$PROJECT_DIR$/easybit/build/app/intermediates/compressed_assets/debug/out/assets/flutter_assets/images/logo.png.jar!/" />
+      <root url="jar://$PROJECT_DIR$/easybit/build/app/intermediates/compressed_assets/debug/out/assets/flutter_assets/images/background.png.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
