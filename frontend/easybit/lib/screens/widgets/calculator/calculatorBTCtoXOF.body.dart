@@ -64,9 +64,15 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
   late Future<Convert> futureConvert2;
   late Future<Convert> futureConvert3;
 
-  @override
+/* @override
   void initState() {
     super.initState();
+    futureConvert2 = fetchXofPrice();}*/
+
+// use this method instead of initState() to have the option of reloading the API in response
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     futureConvert2 = fetchXofPrice();
     futureConvert3 = fetchBtcPrice();
   }
