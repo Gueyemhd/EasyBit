@@ -3,7 +3,7 @@
 
 # Description
 
-EasyBit est un projet novateur visant à créer une application mobile permettant d'acheter des Bitcoins (BTC) avec de la monnaie locale (XOF) via des services de mobile money tels que Wave et Orange Money. De plus, l'application offre la possibilité de convertir des Bitcoins en monnaies locales en utilisant les mêmes services. Cette solution offre une passerelle transparente et fiable entre la crypto-monnaie et les systèmes de paiement mobile, simplifiant ainsi les transactions financières pour les utilisateurs sénégalais.Cette initiative révolutionne l'accès aux crypto-monnaies en facilitant l’accès à ces technologies. 
+EasyBit, un projet novateur, développe une application mobile révolutionnaire permettant l'achat de Bitcoins (BTC) avec de la monnaie locale (XOF) via des services de mobile money tels que Wave et Orange Money. L'application permet également l'utilisation des bitcoins dans les transactions quotidiennes, notamment les paiements marchands. De plus, EasyBit propose un chatbot intégré servant d'assistant virtuel pour les utilisateurs et fournit les taux de change en temps réel, ajoutant ainsi une dimension interactive et informative à l'expérience utilisateur.Cette solution offre une passerelle transparente entre la crypto-monnaie et les systèmes de paiement mobile, permettant aux utilisateurs sénégalais de simplifier leurs transactions financières.
  
 # Fonctionnalités principales
 
