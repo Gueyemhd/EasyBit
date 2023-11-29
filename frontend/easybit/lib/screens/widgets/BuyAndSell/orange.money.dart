@@ -37,21 +37,25 @@ class _OrangeState extends State<Orange> {
           child: Padding(
             padding: EdgeInsets.fromLTRB(
                 0, MediaQuery.of(context).size.height / 12, 0, 0),
-            child: Column(
-              children: [
-                moneyField(controler: xofValueController),
-                const margin(),
-                const BtcValue(),
-                const margin(),
-                NumberField(
-                    controler: telephoneController, couleur: Colors.grey[200]),
-                const margin(),
-                const margin(),
-                ButtonTransaction(
-                    press: () {},
-                    couleur: const Color.fromRGBO(255, 102, 0, 1),
-                    texte: "ACHETER")
-              ],
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  moneyField(controler: xofValueController),
+                  const margin(),
+                  const BtcValue(),
+                  const margin(),
+                  NumberField(
+                      controler: telephoneController,
+                      couleur: Colors.grey[200]),
+                  const margin(),
+                  const margin(),
+                  ButtonTransaction(
+                      press: () {},
+                      couleur: const Color.fromRGBO(255, 102, 0, 1),
+                      texte: "ACHETER")
+                ],
+              ),
             ),
           ),
         ),

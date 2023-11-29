@@ -4,9 +4,6 @@ import 'package:easybit/screens/pages/nextPage.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
-import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
-import 'package:easybit/services/user_service.dart';
 
 class RegistrationBody extends StatefulWidget {
   const RegistrationBody({super.key});

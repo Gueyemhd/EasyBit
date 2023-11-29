@@ -133,7 +133,6 @@ def confirmation_vente_api(request):
 def achat_bitcoin_api(request):
     if request.method == 'POST':
       
-
         try:
             data = json.loads(request.body.decode('utf-8'))
             montant_xof = Decimal(data.get('montant_xof', '0'))

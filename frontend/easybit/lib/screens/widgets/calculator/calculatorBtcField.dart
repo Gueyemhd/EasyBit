@@ -1,16 +1,17 @@
+import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 
 const List<String> list = <String>['BTC', 'SAT'];
 
-class BtcField extends StatefulWidget {
+class CalculatorBtcFields extends StatefulWidget {
   final TextEditingController controler;
-  const BtcField({super.key, required this.controler});
+  const CalculatorBtcFields({super.key, required this.controler});
 
   @override
-  State<BtcField> createState() => _BtcFieldState();
+  State<CalculatorBtcFields> createState() => _CalculatorBtcFieldsState();
 }
 
-class _BtcFieldState extends State<BtcField> {
+class _CalculatorBtcFieldsState extends State<CalculatorBtcFields> {
   String? dropdownValue = 'BTC';
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class _BtcFieldState extends State<BtcField> {
           margin: const EdgeInsets.symmetric(vertical: 10),
           width: MediaQuery.of(context).size.width * 0.8,
           decoration: BoxDecoration(
-            color: const Color.fromRGBO(224, 233, 239, 1),
+            color: containerTexfieldColor,
             borderRadius: BorderRadius.circular(10),
             boxShadow: const [
               BoxShadow(
@@ -36,23 +37,21 @@ class _BtcFieldState extends State<BtcField> {
                 child: TextFormField(
                   autofocus: true,
                   controller: widget.controler,
-                  // inputFormatters: <TextInputFormatter>[
-                  //   FilteringTextInputFormatter.digitsOnly
-                  // ],
-                  // The validator receives the text that the user has entered.
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return '';
+                      return 'Veuillez entrer une valeur correcte';
                     }
                     return null;
                   },
                   keyboardType: TextInputType.number,
                   onChanged: (String value) {},
-                  style: const TextStyle(color: Colors.black87, fontSize: 16.0),
+                  style: const TextStyle(
+                      color: Colors.black87,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w500),
                   decoration: const InputDecoration(
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.fromLTRB(15, 5, 0, 0),
-                      hintText: 'Entrez le montant à vendre',
                       hintStyle: TextStyle(
                           color: Color.fromARGB(255, 153, 151, 151),
                           fontSize: 14)),
@@ -61,12 +60,12 @@ class _BtcFieldState extends State<BtcField> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 5, 15, 0),
                 child: DropdownButton(
+                  dropdownColor: calculatorDropdownColor,
                   value: dropdownValue,
                   icon: const Icon(Icons.arrow_downward),
                   elevation: 20,
                   style: const TextStyle(
-                      color: Color.fromRGBO(23, 101, 152, 1),
-                      fontWeight: FontWeight.w500),
+                      color: linearColor, fontWeight: FontWeight.w500),
                   onChanged: (String? value) {
                     // This is called when the user selects an item.
                     setState(() {

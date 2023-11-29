@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:easybit/screens/widgets/welcome/actions.dart';
 import 'package:easybit/screens/widgets/welcome/header.dart';
 import 'package:easybit/screens/widgets/welcome/evolution.dart';
-import 'package:easybit/screens/widgets/welcome/footer.dart';
+import 'package:easybit/screens/widgets/welcome/navigation.dart';
+import 'package:localstorage/localstorage.dart';
 
 class WelcomeBody extends StatefulWidget {
   const WelcomeBody({super.key});
@@ -12,9 +13,10 @@ class WelcomeBody extends StatefulWidget {
 }
 
 class _WelcomeBodyState extends State<WelcomeBody> {
+  LocalStorage storage = LocalStorage('user_information');
   bool isVisible = false;
   String defaultValue = "----------";
-  String solde = "0.00012";
+  String solde = "";
   String afficher = "----------";
 
   @override
@@ -76,7 +78,7 @@ class _WelcomeBodyState extends State<WelcomeBody> {
                     onPressed: () => setState(() {
                           isVisible = !isVisible;
                           if (isVisible) {
-                            afficher = solde;
+                            afficher = '${storage.getItem('solde')}';
                           } else {
                             afficher = defaultValue;
                           }
@@ -92,36 +94,31 @@ class _WelcomeBodyState extends State<WelcomeBody> {
       );
     }
 
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
-            child: Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: Column(children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 25.0,
-                ),
-                const Header(),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 24.0,
-                ),
-                soldeSection(),
-                const SizedBox(
-                  height: 20.0,
-                ),
-                const Operations(),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 40.0,
-                ),
-                const Evolution(),
-              ]),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Column(children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 25.0,
             ),
-          ),
+            const Header(),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 24.0,
+            ),
+            soldeSection(),
+            const SizedBox(
+              height: 20.0,
+            ),
+            const Operations(),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 40.0,
+            ),
+            const Evolution(),
+          ]),
         ),
-        bottomNavigationBar: const Footer(),
       ),
     );
   }

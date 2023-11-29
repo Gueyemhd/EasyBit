@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localstorage/localstorage.dart';
 
 class Header extends StatefulWidget {
   const Header({super.key});
@@ -8,24 +9,25 @@ class Header extends StatefulWidget {
 }
 
 class _HeaderState extends State<Header> {
+  LocalStorage storage = LocalStorage('user_information');
   @override
   Widget build(BuildContext context) {
     Widget header() {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Column(
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Salut Mouhamed",
-                style: TextStyle(
+                "Salut ${storage.getItem('prenom')}",
+                style: const TextStyle(
                     fontSize: 20.0,
                     color: Color.fromARGB(255, 195, 69, 218),
                     fontWeight: FontWeight.w500),
               ),
-              SizedBox(height: 5.0),
-              Text(
+              const SizedBox(height: 5.0),
+              const Text(
                 "Bienvenue!",
                 style: TextStyle(fontSize: 35.0, fontWeight: FontWeight.bold),
               )

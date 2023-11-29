@@ -1,8 +1,9 @@
+import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 
-class moneyField extends StatelessWidget {
+class CalculatorXofField extends StatelessWidget {
   final TextEditingController controler;
-  const moneyField({super.key, required this.controler});
+  const CalculatorXofField({super.key, required this.controler});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class moneyField extends StatelessWidget {
           margin: const EdgeInsets.symmetric(vertical: 10),
           width: MediaQuery.of(context).size.width * 0.8,
           decoration: BoxDecoration(
-            color: Colors.grey[200],
+            color: containerTexfieldColor,
             borderRadius: BorderRadius.circular(10),
             boxShadow: const [
               BoxShadow(
@@ -28,24 +29,21 @@ class moneyField extends StatelessWidget {
                 child: TextFormField(
                   autofocus: true,
                   controller: controler,
-                  // inputFormatters: <TextInputFormatter>[
-                  //   FilteringTextInputFormatter
-                  // ],
-                  // The validator receives the text that the user has entered.
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return '';
+                      return 'Veuillez entrer une valeur correcte';
                     }
                     return null;
                   },
                   keyboardType: TextInputType.number,
                   onChanged: (String value) {},
-                  style: const TextStyle(color: Colors.black87, fontSize: 16.0),
+                  style: const TextStyle(
+                      color: Colors.black87,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w500),
                   decoration: const InputDecoration(
                       border: InputBorder.none,
-                      contentPadding: EdgeInsets.fromLTRB(15, 5, 0, 0),
-                      hintText: 'Entrez le montant',
-                      hintStyle: TextStyle(color: Colors.grey, fontSize: 14)),
+                      contentPadding: EdgeInsets.fromLTRB(15, 5, 0, 0)),
                 ),
               ),
               const Padding(
@@ -54,7 +52,7 @@ class moneyField extends StatelessWidget {
                   'XOF',
                   style: TextStyle(
                       letterSpacing: 1.0,
-                      color: Colors.blueGrey,
+                      color: linearColor,
                       fontWeight: FontWeight.w500),
                 ),
               )

@@ -1,4 +1,4 @@
-import 'package:easybit/screens/widgets/welcome/welcome.body.dart';
+import 'package:easybit/screens/widgets/welcome/navigation.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -11,6 +11,6 @@ class WelcomePage extends StatefulWidget {
 class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(resizeToAvoidBottomInset: true, body: WelcomeBody());
+    return const Scaffold(resizeToAvoidBottomInset: true, body: Footer());
   }
 }

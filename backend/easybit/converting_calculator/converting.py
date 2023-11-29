@@ -11,6 +11,27 @@ cg = CoinGeckoAPI ()
 
 
 
+# This function takes an amount in euro and converts it to XOF using the current exchange rate --------------
+def obtenir_taux_change_eur_xof():
+    ACCESS_KEY = 'e76e97db8d6340c4debf4be0d38387a4' 
+    base_url = 'http://data.fixer.io/api/latest'
+    params = {
+        'access_key': ACCESS_KEY,
+        'symbols': 'XOF'
+    }
+
+    response = requests.get(base_url, params=params)
+
+    if response.status_code == 200:
+        data = response.json()
+        taux_change_eur_xof = data['rates']['XOF']
+        print("Taux de change EUR/XOF :", taux_change_eur_xof)
+        return taux_change_eur_xof
+       
+    else:
+        raise Exception('Impossible de récupérer le taux de change EUR/XOF')
+
+
 
 
 # This API allows you to convert an amount in bitcoin to (XOF). ------------------------------------------------------------------------------
@@ -68,11 +89,10 @@ def Convert_BTC(request):
     if request.method == "POST" :
 
      # We retrieve the value of the amount to convert in BTC 
-        try:
-            currency_amount = int(request.data.get("currency"))
-        except:
-            return Response({'error': 'Invalid currency amount!'}, status=status.HTTP_400_BAD_REQUEST)
-        else:            
+        currency_amount = request.data.get("currency")
+
+        if currency_amount is not None and isinstance(currency_amount, (int, float)) and currency_amount>=0:
+
             crypto_data = cg.get_price(
             ids='bitcoin',
             vs_currencies='eur',
@@ -90,6 +110,9 @@ def Convert_BTC(request):
     
             return  Response(context)
         
+        else:
+
+            return Response({'error': 'Invalid currency amount!'}, status=status.HTTP_400_BAD_REQUEST)
     else:
         
         return Response({"error": 'Bad request '}, status= status.HTTP_405_METHOD_NOT_ALLOWED)

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ButtonTransaction extends StatelessWidget {
   final Color? couleur;
   final String texte;
-  final Function press;
+  final Function() press;
   const ButtonTransaction(
       {super.key,
       required this.press,
@@ -22,13 +22,11 @@ class ButtonTransaction extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: couleur,
         ),
+        onPressed: press,
         child: Text(
           texte,
-          style: TextStyle(fontSize: 16),
+          style: const TextStyle(fontSize: 16),
         ),
-        onPressed: () {
-          press;
-        },
       ),
     );
   }

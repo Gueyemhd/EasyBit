@@ -51,4 +51,66 @@ class UserService {
       return {'error_message': "Un problème est survenu, veuillez réessayer"};
     }
   }
+
+  Future<Map> logout() async {
+    try {
+      String urlLogin = 'http://10.0.2.2:8000/logout/';
+      http.Response response = await http.get(
+        Uri.parse(urlLogin),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      );
+
+      return json.decode(response.body);
+    } catch (e) {
+      return {'error_message': "Un problème est survenu, veuillez réessayer"};
+    }
+  }
+
+  Future<Map> calculatorbtc(dynamic value) async {
+    try {
+      String urlRegistration = "http://10.0.2.2:8000/Convert_BTC/";
+
+      http.Response response = await http.post(
+        Uri.parse(urlRegistration),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: json.encode({
+          "currency": value,
+        }),
+      );
+
+      return json.decode(response.body);
+    } catch (e) {
+      return {
+        'error_message': "Un problème est survenu, veuillez réessayer!",
+        'error': true
+      };
+    }
+  }
+
+  Future<Map> calculatorxof(dynamic value) async {
+    try {
+      String urlRegistration = "http://10.0.2.2:8000/Convert_XOF/";
+
+      http.Response response = await http.post(
+        Uri.parse(urlRegistration),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: json.encode({
+          "coin": value,
+        }),
+      );
+
+      return json.decode(response.body);
+    } catch (e) {
+      return {
+        'error_message': "Un problème est survenu, veuillez réessayer!",
+        'error': true
+      };
+    }
+  }
 }

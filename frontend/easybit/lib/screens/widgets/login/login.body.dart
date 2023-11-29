@@ -1,9 +1,10 @@
 import 'package:easybit/models/user_model.dart';
 import 'package:easybit/screens/pages/registrationpage.dart';
-import 'package:easybit/screens/pages/welcomePage.dart';
+import 'package:easybit/screens/pages/navigationPage.dart';
 import 'package:easybit/services/user_service.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:localstorage/localstorage.dart';
 
 class LoginBody extends StatefulWidget {
   const LoginBody({super.key});
@@ -163,7 +164,15 @@ class _LoginBodyState extends State<LoginBody> {
                   if (_formKey.currentState!.validate()) {
                     // If the form is valid, display a snackbar.
                     Map response = await UserService().login(user);
-                    if (response['message'] == "reussite") {
+                    if (response['message'] == "succes") {
+                      LocalStorage storage = LocalStorage('user_information');
+                      await storage.ready;
+                      storage.setItem('prenom', response['prenom']);
+                      storage.setItem('nom', response['nom']);
+                      storage.setItem('username', response['username']);
+                      storage.setItem('mail', response['adresse_mail']);
+                      storage.setItem('solde', response['solde']);
+                      storage.setItem('token', response['token']);
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => const WelcomePage()));
                     } else {
@@ -178,12 +187,6 @@ class _LoginBodyState extends State<LoginBody> {
                       );
                     }
                   }
-
-                  // User user = User();
-                  // user.username = usernameController.text;
-                  // user.password = passwordController.text;
-
-                  // UserService().login(user);
                 },
                 child: const Text(
                   "Se connecter",

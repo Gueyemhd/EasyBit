@@ -37,21 +37,31 @@ class _BuyBtcWaveState extends State<BuyBtcWave> {
           child: Padding(
             padding: EdgeInsets.fromLTRB(
                 0, MediaQuery.of(context).size.height / 12, 0, 0),
-            child: Column(
-              children: [
-                moneyField(controler: xofValueController),
-                const margin(),
-                const BtcValueWave(),
-                const margin(),
-                NumberField(
-                    controler: telephoneController, couleur: Colors.grey[200]),
-                const margin(),
-                const margin(),
-                ButtonTransaction(
-                    press: () {},
-                    couleur: const Color.fromRGBO(29, 200, 255, 1),
-                    texte: "ACHETER")
-              ],
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  moneyField(controler: xofValueController),
+                  const margin(),
+                  const BtcValueWave(),
+                  const margin(),
+                  NumberField(
+                      controler: telephoneController,
+                      couleur: Colors.grey[200]),
+                  const margin(),
+                  const margin(),
+                  ButtonTransaction(
+                      press: () {
+                        if (_formKey.currentState!.validate()) {
+                          print("==================valeur====================");
+                          String valeur = xofValueController.text;
+                          print(valeur);
+                        }
+                      },
+                      couleur: const Color.fromRGBO(29, 200, 255, 1),
+                      texte: "ACHETER")
+                ],
+              ),
             ),
           ),
         ),
