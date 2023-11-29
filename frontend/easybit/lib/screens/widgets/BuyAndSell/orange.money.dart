@@ -3,6 +3,8 @@ import 'package:easybit/screens/widgets/BuyAndSell/actionTransaction.dart';
 import 'package:easybit/screens/widgets/BuyAndSell/margin.dart';
 import 'package:easybit/screens/widgets/BuyAndSell/moneyField.dart';
 import 'package:easybit/screens/widgets/BuyAndSell/numberField.dart';
+import 'package:easybit/services/user_service.dart';
+import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 
 class Orange extends StatefulWidget {
@@ -13,6 +15,7 @@ class Orange extends StatefulWidget {
 }
 
 class _OrangeState extends State<Orange> {
+  String valeur = '';
   String dropdownValue = "BTC";
 
   final _formKey = GlobalKey<FormState>();
@@ -27,7 +30,7 @@ class _OrangeState extends State<Orange> {
         appBar: AppBar(
           title: const Text(
             "Achat BTC avec Orange Money",
-            style: TextStyle(color: Color.fromRGBO(255, 102, 0, 1)),
+            style: TextStyle(color: orange),
           ),
           centerTitle: true,
           backgroundColor: Colors.black,
@@ -42,8 +45,42 @@ class _OrangeState extends State<Orange> {
               child: Column(
                 children: [
                   moneyField(controler: xofValueController),
-                  const margin(),
-                  const BtcValue(),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    height: MediaQuery.of(context).size.height / 13,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(5, 0, 35, 0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.currency_exchange,
+                                color: orange, size: 50.0),
+                            onPressed: () async {
+                              if (_formKey.currentState!.validate()) {
+                                double value =
+                                    double.parse(xofValueController.text);
+                                print("=========Valeur=========");
+                                print(value);
+                                Map response =
+                                    await UserService().calculatorbtc(value);
+                                print("=========response=======");
+                                print(response);
+                                setState(() {
+                                  valeur = response['price'].toString();
+                                });
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  //const margin(),
+                  BtcValue(
+                    valeur: valeur,
+                  ),
                   const margin(),
                   NumberField(
                       controler: telephoneController,
@@ -51,9 +88,7 @@ class _OrangeState extends State<Orange> {
                   const margin(),
                   const margin(),
                   ButtonTransaction(
-                      press: () {},
-                      couleur: const Color.fromRGBO(255, 102, 0, 1),
-                      texte: "ACHETER")
+                      press: () {}, couleur: orange, texte: "ACHETER")
                 ],
               ),
             ),

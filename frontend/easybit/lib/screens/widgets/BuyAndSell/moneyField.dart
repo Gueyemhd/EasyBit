@@ -34,7 +34,7 @@ class moneyField extends StatelessWidget {
                   // The validator receives the text that the user has entered.
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return '';
+                      return 'Veuillez entrer un montant valide';
                     }
                     return null;
                   },

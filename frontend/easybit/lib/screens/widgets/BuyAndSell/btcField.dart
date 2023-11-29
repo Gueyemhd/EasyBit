@@ -42,7 +42,7 @@ class _BtcFieldState extends State<BtcField> {
                   // The validator receives the text that the user has entered.
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return '';
+                      return 'Veuillez entrez un montant valide';
                     }
                     return null;
                   },

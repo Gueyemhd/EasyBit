@@ -44,7 +44,7 @@ class NumberField extends StatelessWidget {
                   // The validator receives the text that the user has entered.
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return '';
+                      return 'Veuillez compléter ce champ';
                     }
                     return null;
                   },

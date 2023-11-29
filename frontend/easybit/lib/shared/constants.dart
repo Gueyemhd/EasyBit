@@ -9,3 +9,4 @@ const calculatorDropdownColor = Color.fromARGB(177, 165, 183, 199);
 const transfertDropdownColor = Color.fromARGB(255, 178, 215, 178);
 const containerTexfieldColor = Color.fromARGB(255, 222, 221, 221);
 const disableTrsftButton = Colors.grey;
+const orange = Color.fromRGBO(255, 102, 0, 1);

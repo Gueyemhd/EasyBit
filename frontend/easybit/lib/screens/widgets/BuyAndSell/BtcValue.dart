@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 const List<String> list = <String>['BTC', 'SAT'];
 
 class BtcValue extends StatefulWidget {
-  const BtcValue({super.key});
+  final String valeur;
+  const BtcValue({super.key, required this.valeur});
 
   @override
   State<BtcValue> createState() => _BtcValueState();
@@ -36,7 +37,7 @@ class _BtcValueState extends State<BtcValue> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(''),
+                  Text(widget.valeur),
                   DropdownButton(
                     value: dropdownValue,
                     icon: const Icon(Icons.arrow_downward),
