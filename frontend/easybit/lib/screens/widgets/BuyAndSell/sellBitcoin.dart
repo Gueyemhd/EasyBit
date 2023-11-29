@@ -20,6 +20,8 @@ class _SellBitcoinState extends State<SellBitcoin> {
 
   final btcValueController = TextEditingController();
   final telephoneController = TextEditingController();
+  SellInformation data = new SellInformation();
+  //data.btc = btcValueController.text;
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +95,26 @@ class _SellBitcoinState extends State<SellBitcoin> {
                   ),
                   const margin(),
                   ButtonTransaction(
-                    press: () {},
+                    press: 
+                    () async {
+                          if (_formKey.currentState!.validate()) {
+                            double.parse(btcValueController.text)
+                            double.parse(telephoneController.text);
+                            data.operateur = option;
+                            Map response = 
+                            await SellBtcService().SellValidation(data);
+                            setState(() {
+                             });
+      
+                        },
+                      // SellInformation data = new SellInformation();
+
+                      // data.montant_btc = btcValueController.text;
+                      // data.montant_xof = telephoneController.text;
+                      // data.operateur = option;
+                      // final result = SellValidation(data);
+                      // print (result);                    
+                      },
                     couleur: const Color.fromRGBO(23, 101, 152, 1),
                     texte: "VENDRE",
                   )
