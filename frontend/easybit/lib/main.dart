@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         "/sellbtc": (context) => const SellBtc(),
         "/profile": (context) => const ProfileUser()
       },
-      initialRoute: "/calculatorBTCtoXOF",
+      initialRoute: "/welcome",
     );
   }
 }
