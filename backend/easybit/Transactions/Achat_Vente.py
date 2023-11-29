@@ -18,8 +18,8 @@ import json
 # API pour la validation de la demande de vente de bitcoins -------------------------------------------------------------
 
 @api_view(['POST'])
-@authentication_classes(['rest_framework.authentication.TokenAuthentication'])
-@permission_classes([IsAuthenticated])
+# @authentication_classes(['rest_framework.authentication.TokenAuthentication'])
+# @permission_classes([IsAuthenticated])
 
 def vente_bitcoin_api(request):
 
@@ -35,8 +35,8 @@ def vente_bitcoin_api(request):
             return JsonResponse({'message': 'Montant invalide'}, status=400)
 
 
-        utilisateur = request.user.utilisateur
-        username = utilisateur.username
+        # utilisateur = request.user.utilisateur
+        # username = utilisateur.username
         num_tel = data.get('num_tel')
         operateur = data.get('operateur')
         type = Type.VENTE.value
@@ -50,19 +50,19 @@ def vente_bitcoin_api(request):
         else:
             return JsonResponse({'message': 'Numero de téléphone invalide'}, status=400)
 
-        if utilisateur.solde >= montant_btc:
-            # Sauvegarder les données nécessaires dans la session
-            request.session['vente_data'] = {
+        if 2 >= montant_btc:
+        #     # Sauvegarder les données nécessaires dans la session
+        #     request.session['vente_data'] = {
 
-                'montant_btc': montant_btc,
-                'montant_xof' : montant_xof, 
-                'operateur': operateur,
-                'username': username,
-                'users' : utilisateur
+        #         'montant_btc': montant_btc,
+        #         'montant_xof' : montant_xof, 
+        #         'operateur': operateur,
+        #         'username': username,
+        #         'users' : utilisateur
 
 
 
-            }
+        #     }
 
             return JsonResponse({'message': 'Données de vente enregistrées avec succès'})
 

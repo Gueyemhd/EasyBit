@@ -1,8 +1,10 @@
+import 'package:easybit/models/SellBtc_Model.dart';
 import 'package:easybit/screens/widgets/BuyAndSell/actionTransaction.dart';
 import 'package:easybit/screens/widgets/BuyAndSell/btcField.dart';
 import 'package:easybit/screens/widgets/BuyAndSell/margin.dart';
 import 'package:easybit/screens/widgets/BuyAndSell/moneyValue.dart';
 import 'package:easybit/screens/widgets/BuyAndSell/numberField.dart';
+import 'package:easybit/services/SellBtc_service.dart';
 import 'package:flutter/material.dart';
 
 enum Operators { om, wave }
@@ -20,7 +22,7 @@ class _SellBitcoinState extends State<SellBitcoin> {
 
   final btcValueController = TextEditingController();
   final telephoneController = TextEditingController();
-  SellInformation data = new SellInformation();
+  SellInformation data = SellInformation();
   //data.btc = btcValueController.text;
 
   @override
@@ -95,26 +97,27 @@ class _SellBitcoinState extends State<SellBitcoin> {
                   ),
                   const margin(),
                   ButtonTransaction(
-                    press: 
-                    () async {
-                          if (_formKey.currentState!.validate()) {
-                            double.parse(btcValueController.text)
-                            double.parse(telephoneController.text);
-                            data.operateur = option;
-                            Map response = 
+                    press: () async {
+                      if (_formKey.currentState!.validate()) {
+                        data.montant_btc = btcValueController.text;
+                        data.num_tel = telephoneController.text;
+                        String operator =
+                            option == Operators.om ? "orange_money" : "wave";
+                        data.operateur = operator;
+                        Map response =
                             await SellBtcService().SellValidation(data);
-                            setState(() {
-                             });
-      
-                        },
+                        print('======Response=====');
+                        print(response);
+                        //setState(() {});
+                      }
                       // SellInformation data = new SellInformation();
 
                       // data.montant_btc = btcValueController.text;
                       // data.montant_xof = telephoneController.text;
                       // data.operateur = option;
                       // final result = SellValidation(data);
-                      // print (result);                    
-                      },
+                      // print (result);
+                    },
                     couleur: const Color.fromRGBO(23, 101, 152, 1),
                     texte: "VENDRE",
                   )
