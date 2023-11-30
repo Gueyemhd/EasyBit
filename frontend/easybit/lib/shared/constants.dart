@@ -10,3 +10,4 @@ const transfertDropdownColor = Color.fromARGB(255, 178, 215, 178);
 const containerTexfieldColor = Color.fromARGB(255, 222, 221, 221);
 const disableTrsftButton = Colors.grey;
 const fiedeltcolor = Colors.grey;
+const alertTrsfcolor = Color.fromARGB(223, 225, 222, 222);
