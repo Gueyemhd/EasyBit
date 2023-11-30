@@ -17,7 +17,7 @@ class _Rowpopup2State extends State<Rowpopup2> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         SizedBox(
-          width: MediaQuery.of(context).size.width * 0.01,
+          width: MediaQuery.of(context).size.width / 75,
         ),
         const Icon(
           Icons.percent,
@@ -29,7 +29,7 @@ class _Rowpopup2State extends State<Rowpopup2> {
         ),
         const Data(texte: "63,75"),
         SizedBox(
-          height: MediaQuery.of(context).size.width * 0.03,
+          height: MediaQuery.of(context).size.width * 0.05,
         ),
       ],
     );

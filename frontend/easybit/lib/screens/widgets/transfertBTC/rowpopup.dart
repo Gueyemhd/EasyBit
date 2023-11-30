@@ -16,7 +16,7 @@ class _RowpopupState extends State<Rowpopup> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         SizedBox(
-          width: MediaQuery.of(context).size.width * 0.01,
+          width: MediaQuery.of(context).size.width / 20,
         ),
         const Icon(
           Icons.money,
