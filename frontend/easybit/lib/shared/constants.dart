@@ -12,3 +12,6 @@ const disableTrsftButton = Colors.grey;
 const fiedeltcolor = Colors.grey;
 const alertTrsfcolor = Color.fromARGB(223, 225, 222, 222);
 const codeFieldcolor = Color.fromARGB(255, 246, 246, 246);
+const orangemoneycolor = Color.fromRGBO(255, 102, 0, 1);
+const waveColor = Color.fromRGBO(29, 200, 255, 1);
+const sellbitcoincolor = Color.fromRGBO(23, 101, 152, 1);

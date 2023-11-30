@@ -3,6 +3,7 @@ import 'package:easybit/screens/widgets/BuyAndSell/actionTransaction.dart';
 import 'package:easybit/screens/widgets/BuyAndSell/margin.dart';
 import 'package:easybit/screens/widgets/BuyAndSell/moneyField.dart';
 import 'package:easybit/screens/widgets/BuyAndSell/numberField.dart';
+import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 
 class Orange extends StatefulWidget {
@@ -27,7 +28,7 @@ class _OrangeState extends State<Orange> {
         appBar: AppBar(
           title: const Text(
             "Achat BTC avec Orange Money",
-            style: TextStyle(color: Color.fromRGBO(255, 102, 0, 1)),
+            style: TextStyle(color: orangemoneycolor),
           ),
           centerTitle: true,
           backgroundColor: Colors.black,
@@ -48,9 +49,7 @@ class _OrangeState extends State<Orange> {
                 const margin(),
                 const margin(),
                 ButtonTransaction(
-                    press: () {},
-                    couleur: const Color.fromRGBO(255, 102, 0, 1),
-                    texte: "ACHETER")
+                    press: () {}, couleur: orangemoneycolor, texte: "ACHETER")
               ],
             ),
           ),
