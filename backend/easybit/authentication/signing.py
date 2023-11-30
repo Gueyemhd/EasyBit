@@ -8,14 +8,6 @@ from datetime import datetime, timedelta
 from .models import Utilisateur , Transaction
 from Transactions.Gestion_Token import get_user_from_token
 
-
-
-
-
-
-
-
-
 # API to sign in 
 @api_view(["POST"])
 def login_view(request):
@@ -26,15 +18,6 @@ def login_view(request):
         password = request.data.get('password', None)
 
         auth_user = authenticate(username = username, password= password)
-        
-
-        print("==============User===============")
-        print(auth_user)
-        print(secret)
-        print("==============test pour le token===============")
-
-        result = get_user_from_token("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX3VzZXJuYW1lIjoiT2xpdmUiLCJleHAiOjE3MDE0NDc5MDF9.209sE23kcvOyq6T1lfbp7TUlEPPlumKoiJKI0F8tDyo")
-        print (result)
 
         if auth_user:
 
@@ -93,9 +76,6 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return Response({'message': 'vous êtes déconnecté'})
-
-
-
 
 
 
