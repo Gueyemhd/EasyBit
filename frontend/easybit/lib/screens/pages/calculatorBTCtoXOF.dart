@@ -1,5 +1,3 @@
-import 'package:easybit/screens/pages/calculatorXOFtoBTC.dart';
-import 'package:easybit/screens/pages/transfertBitoins.dart';
 import 'package:easybit/screens/pages/welcomePage.dart';
 import 'package:easybit/screens/widgets/calculator/calculatorBTCtoXOF.body.dart';
 import 'package:flutter/material.dart';
