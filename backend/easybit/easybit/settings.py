@@ -11,6 +11,22 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import environ 
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = environ.Env(
+
+    DEBUG = (bool ,False)
+)
+
+environ.Env.read_env(env_file ='backend\easybit\config.env' )
+
+secret = env.str('SECRET', default = "")
+
+print (type(secret), len(secret ))
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -45,6 +61,7 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "corsheaders",
     'django_rest_passwordreset',
+    
     #'authentication.apps.AuthenticationConfig'
 ]
 
