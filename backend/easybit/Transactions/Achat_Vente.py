@@ -2,13 +2,15 @@ from django.http import JsonResponse
 from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import authenticate
-from authentication.models import Utilisateur, Transaction, Type
+from authentication.models import Utilisateur, Transaction, Type, User
 from decimal import Decimal
 from rest_framework.decorators import api_view, permission_classes
 import requests
 import re
 from django.utils import timezone
 import json
+from .Gestion_Token import get_user_from_token
+
 
 
 
@@ -18,59 +20,74 @@ import json
 # API pour la validation de la demande de vente de bitcoins -------------------------------------------------------------
 
 @api_view(['POST'])
-@authentication_classes(['rest_framework.authentication.TokenAuthentication'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 
 def vente_bitcoin_api(request):
 
-    if request.method == 'POST':
+    token = request.headers.get('Authorization').split(' ')[1]  
 
-        try:
-            data = json.loads(request.body.decode('utf-8'))
-            montant_btc = Decimal(data.get('montant_btc', '0'))
-            montant_xof = convertir_btc_en_xof(montant_btc)
-           
+    username = get_user_from_token(token)
 
-        except Decimal.InvalidOperation:
-            return JsonResponse({'message': 'Montant invalide'}, status=400)
+    print("l\'utilisateur {} a été indentifier aavec succés " .format(username))
 
+    if username:
+        #le token est donc valide
 
-        utilisateur = request.user.utilisateur
-        username = utilisateur.username
-        num_tel = data.get('num_tel')
-        operateur = data.get('operateur')
-        type = Type.VENTE.value
+        user  = User.objects.get(username=username)
 
 
-        # Vérifiez si le numéro de téléphone est valide
-        pattern = re.compile(r'^(78|77|70)\d{7}$')
+        if request.method == 'POST': 
 
-        if bool(pattern.match(num_tel)):
-            num_tel = num_tel
-        else:
-            return JsonResponse({'message': 'Numero de téléphone invalide'}, status=400)
+            try:
+                data = json.loads(request.body.decode('utf-8'))
+                montant_btc = Decimal(data.get('montant_btc', '0'))
+                montant_xof = convertir_btc_en_xof(montant_btc)
+            
 
-        if utilisateur.solde >= montant_btc:
-            # Sauvegarder les données nécessaires dans la session
-            request.session['vente_data'] = {
-
-                'montant_btc': montant_btc,
-                'montant_xof' : montant_xof, 
-                'operateur': operateur,
-                'username': username,
-                'users' : utilisateur
+            except Decimal.InvalidOperation:
+                return JsonResponse({'message': 'Montant invalide'}, status=400)
 
 
+            utilisateur = Utilisateur.objects.get(user= user)
+            username = utilisateur.username
+            num_tel = data.get('num_tel')
+            operateur = data.get('operateur')
+            type = Type.VENTE.value
 
-            }
 
-            return JsonResponse({'message': 'Données de vente enregistrées avec succès'})
+            # Vérifiez si le numéro de téléphone est valide
+            pattern = re.compile(r'^(78|77|70)\d{7}$')
 
-        else:
-            return JsonResponse({'message': 'Solde insuffisant de bitcoins pour effectuer la vente'}, status=400)
+            if bool(pattern.match(num_tel)):
+                num_tel = num_tel
+            else:
+                return JsonResponse({'message': 'Numero de téléphone invalide'}, status=400)
 
-    return JsonResponse({'error': 'Méthode non autorisée'}, status=405)
+            if utilisateur.solde >= montant_btc:
+                # Sauvegarder les données nécessaires dans la session
+                request.session['vente_data'] = {
 
+                    'montant_btc': montant_btc,
+                    'montant_xof' : montant_xof, 
+                    'operateur': operateur,
+                    'username': username,
+                    'users' : utilisateur
+
+
+
+                }
+
+                return JsonResponse({'message': 'Données de vente enregistrées avec succès'})
+
+            else:
+                return JsonResponse({'message': 'Solde insuffisant de bitcoins pour effectuer la vente'}, status=400)
+
+        return JsonResponse({'error': 'Méthode non autorisée'}, status=405)
+
+
+    else:
+        #Le token n'est pas valide
+        return JsonResponse({'error':"Le token n'est pas valide" }, status=405 )
 
 #------------------------------------------------------------------------------------------------------------------
 
@@ -84,8 +101,13 @@ def vente_bitcoin_api(request):
 @permission_classes([IsAuthenticated])
 
 def confirmation_vente_api(request):
+
     if request.method == 'POST':
-        username = request.user.username
+
+        token = request.headers.get('Authorization').split(' ')[1]
+
+        username =  get_user_from_token(token)
+
         mot_de_passe = request.POST.get("mot_de_passe")
 
         # Vérifier le nom d'utilisateur et le mot de passe et récupérer l'utilisateur
@@ -131,57 +153,72 @@ def confirmation_vente_api(request):
 @permission_classes([IsAuthenticated])
 
 def achat_bitcoin_api(request):
-    if request.method == 'POST':
-      
-        try:
-            data = json.loads(request.body.decode('utf-8'))
-            montant_xof = Decimal(data.get('montant_xof', '0'))
-            montant_btc = convertir_xof_en_btc (montant_xof)
-           
 
-        except Decimal.InvalidOperation:
-            return JsonResponse({'message': 'Montant invalide'}, status=400)
+    
+
+    token = request.headers.get('Authorization').split(' ')[1]  
+
+    username = get_user_from_token(token)
+
+    print("l\'utilisateur {} a été indentifier aavec succés " .format(username))
+
+    if username :
+
+        user  = User.objects.get(username=username)
 
 
-        utilisateur = request.user.utilisateur
-        username = utilisateur.username
-        operateur = data.get('operateur')
-        num_tel = data.get('num_tel')
+        if request.method == 'POST':
         
 
-        # Vérifiez si le numero de télephone est valide
-        pattern = re.compile(r'^(78|77|70)\d{7}$')
+            try:
+                data = json.loads(request.body.decode('utf-8'))
+                montant_xof = Decimal(data.get('montant_xof', '0'))
+                montant_btc = convertir_xof_en_btc (montant_xof)
+            
 
-        if bool(pattern.match(num_tel)):
-            num_tel = num_tel
-        else:
-            return JsonResponse({'message': 'Numero de téléphone invalide'}, status=400)
+            except Decimal.InvalidOperation:
+                return JsonResponse({'message': 'Montant invalide'}, status=400)
 
-        # Simuler le solde en fonction de l'opérateur
-        solde_simule = 0
-        if operateur == 'orange_money':
-            solde_simule = 200000  # Valeur simulée pour Orange Money
-        elif operateur == 'wave':
-            solde_simule = 100000  # Valeur simulée pour Wave
 
-        # Vérifier le solde en fonction de l'opérateur choisi
-        if solde_simule >= montant_xof:
-            # Sauvegarder les données nécessaires dans la session
-            request.session['achat_data'] = {
-                'users' : utilisateur,
-                'montant_btc': montant_btc,
-                'montant_xof': montant_xof,
-                'operateur': operateur,
-                'username': username,
+            utilisateur =Utilisateur.objects.get(user=user)
+            username = utilisateur.username
+            operateur = data.get('operateur')
+            num_tel = data.get('num_tel')
+            
 
-            }
+            # Vérifiez si le numero de télephone est valide
+            pattern = re.compile(r'^(78|77|70)\d{7}$')
 
-            return JsonResponse({'message': 'Données d\'achat enregistrées avec succès'})
+            if bool(pattern.match(num_tel)):
+                num_tel = num_tel
+            else:
+                return JsonResponse({'message': 'Numero de téléphone invalide'}, status=400)
 
-        else:
-            return JsonResponse({'message': 'Solde insuffisant dans le compte de mobile money'}, status=400)
+            # Simuler le solde en fonction de l'opérateur
+            solde_simule = 0
+            if operateur == 'orange_money':
+                solde_simule = 200000  # Valeur simulée pour Orange Money
+            elif operateur == 'wave':
+                solde_simule = 100000  # Valeur simulée pour Wave
 
-    return JsonResponse({'error': 'Méthode non autorisée'}, status=405)
+            # Vérifier le solde en fonction de l'opérateur choisi
+            if solde_simule >= montant_xof:
+                # Sauvegarder les données nécessaires dans la session
+                request.session['achat_data'] = {
+                    'users' : utilisateur,
+                    'montant_btc': montant_btc,
+                    'montant_xof': montant_xof,
+                    'operateur': operateur,
+                    'username': username,
+
+                }
+
+                return JsonResponse({'message': 'Données d\'achat enregistrées avec succès'})
+
+            else:
+                return JsonResponse({'message': 'Solde insuffisant dans le compte de mobile money'}, status=400)
+
+        return JsonResponse({'error': 'Méthode non autorisée'}, status=405)
 
 
 # API pour la confirmation de la demande d'achat de bitcoins--------------------------------------------------------------
@@ -192,7 +229,11 @@ def achat_bitcoin_api(request):
 
 def confirmation_achat_api(request):
     if request.method == 'POST':
-        username = request.user.username
+
+        token = request.headers.get('Authorization').split(' ')[1]
+
+        username =  get_user_from_token(token)
+
         mot_de_passe = request.POST.get("mot_de_passe")
 
         # Vérifier le nom d'utilisateur et le mot de passe et récupérer l'utilisateur
@@ -232,7 +273,7 @@ def confirmation_achat_api(request):
 
 def convertir_btc_en_xof(montant_btc):
 
-    conversion_api_url = 'http://localhost:8000/Convert_XOF/'
+    conversion_api_url = 'http://127.0.0.1:8000/Convert_XOF/'
     response = requests.post(conversion_api_url, data={'coin': float(montant_btc)})
     
     if response.status_code == 200:
@@ -250,7 +291,7 @@ def convertir_btc_en_xof(montant_btc):
 
 
 def convertir_xof_en_btc (montant_xof):
-    conversion_api_url = 'http://localhost:8000/Convert_BTC/'
+    conversion_api_url = 'http://127.0.0.1:8000/Convert_BTC/'
     response = requests.post(conversion_api_url, data={'currency': float(montant_xof)})
     
     if response.status_code == 200:
@@ -260,4 +301,5 @@ def convertir_xof_en_btc (montant_xof):
         return 0
     
 
-#---------------------------------------------------------------------------------------------
+
+

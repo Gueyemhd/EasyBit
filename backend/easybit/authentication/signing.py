@@ -5,36 +5,63 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 import jwt 
 from datetime import datetime, timedelta
-from .models import Utilisateur
-from easybit.settings import secret, secret1
+from .models import Utilisateur , Transaction
+from Transactions.Gestion_Token import get_user_from_token
+
+
+
+
+
+
 
 
 
 # API to sign in 
 @api_view(["POST"])
-
 def login_view(request):
     if request.method == "POST":
-             # we fetch credentials
+     
+      
         username = request.data.get('username', None)
         password = request.data.get('password', None)
 
         auth_user = authenticate(username = username, password= password)
+        
+
+        print("==============User===============")
+        print(auth_user)
+        print(secret)
+        print("==============test pour le token===============")
+
+        result = get_user_from_token("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX3VzZXJuYW1lIjoiT2xpdmUiLCJleHAiOjE3MDE0NDc5MDF9.209sE23kcvOyq6T1lfbp7TUlEPPlumKoiJKI0F8tDyo")
+        print (result)
+
         if auth_user:
+
             login(request, auth_user)
             
-            utilisateur = Utilisateur.objects.filter(username=auth_user).first()
-            transactions_user = utilisateur.transaction_set.all()
-           
+            try :
+
+                utilisateur = Utilisateur.objects.filter(username=auth_user).first()
+                print (utilisateur)
+                transactions_user = utilisateur.transaction_set.all()
+                transactions_user = [{'montant_btc': t.montant_btc, 'montant_xof': t.montant_xof, 'type': t.type, 'users': [user.username for user in t.users.all()]} for t in transactions_user]
+                print (transactions_user)
+
+
+            except:
+
+                transactions_user = ""
+
+        
             payload = {
-                'username': username,
+
+                'user_username': username,
                 'exp': datetime.utcnow() + timedelta(days=1)  # expire dans 1 jour
             }
 
             # Générez le token JWT avec une clé secrète
             token = jwt.encode(payload, secret , algorithm='HS256')
-            print("============token===========")
-            print(token)
 
             # Créez la réponse
             response = Response()
@@ -47,7 +74,7 @@ def login_view(request):
                 'prenom' : utilisateur.prenom,
                 'adresse_mail': utilisateur.adresse_mail,
                 'solde': utilisateur.solde,
-                'transactions': [{'montant_btc': t.montant_btc, 'montant_xof': t.montant_xof, 'type': t.type, 'users': [user.username for user in t.users.all()]} for t in transactions_user]
+                'transactions': transactions_user
 
             }
 
@@ -72,4 +99,15 @@ def logout_view(request):
 
 
 
+import environ 
 
+env = environ.Env(
+
+    DEBUG = (bool ,False)
+)
+
+environ.Env.read_env(env_file ='..\easybit\config.env' )
+
+secret = env.str('SECRET', default = "")
+
+print (type(secret), len(secret ))
