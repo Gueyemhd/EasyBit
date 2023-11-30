@@ -1,5 +1,5 @@
-import 'package:easybit/screens/widgets/transfertBTC/btnTransfert.dart';
-import 'package:easybit/screens/widgets/transfertBTC/recipientUsername.dart';
+import 'package:easybit/screens/widgets/transfertBTC/buttons/btnTransfert.dart';
+import 'package:easybit/screens/widgets/transfertBTC/textfields/recipientUsername.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

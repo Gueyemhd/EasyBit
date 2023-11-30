@@ -1,8 +1,8 @@
-import 'package:easybit/screens/widgets/transfertBTC/quitBtn.dart';
-import 'package:easybit/screens/widgets/transfertBTC/rowpopup.dart';
-import 'package:easybit/screens/widgets/transfertBTC/rowpopup2.dart';
-import 'package:easybit/screens/widgets/transfertBTC/rowpopup3.dart';
-import 'package:easybit/screens/widgets/transfertBTC/submitBtn.dart';
+import 'package:easybit/screens/widgets/transfertBTC/buttons/quitBtn.dart';
+import 'package:easybit/screens/widgets/transfertBTC/popupRows/rowpopup.dart';
+import 'package:easybit/screens/widgets/transfertBTC/popupRows/rowpopup2.dart';
+import 'package:easybit/screens/widgets/transfertBTC/popupRows/rowpopup3.dart';
+import 'package:easybit/screens/widgets/transfertBTC/buttons/submitBtn.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 

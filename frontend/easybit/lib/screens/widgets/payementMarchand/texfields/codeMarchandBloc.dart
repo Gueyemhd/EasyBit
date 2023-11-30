@@ -32,9 +32,6 @@ class _CodeMarchandState extends State<CodeMarchandBloc> {
           ),
         ),
         Container(
-          margin: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).size.height * 0.02,
-              horizontal: MediaQuery.of(context).size.width * 0.01),
           width: MediaQuery.of(context).size.width * 0.8,
           height: MediaQuery.of(context).size.height * 0.09,
           decoration: BoxDecoration(

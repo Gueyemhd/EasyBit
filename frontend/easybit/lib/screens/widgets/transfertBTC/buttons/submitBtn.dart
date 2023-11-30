@@ -1,5 +1,5 @@
-import 'package:easybit/screens/widgets/transfertBTC/passwordField.dart';
-import 'package:easybit/screens/widgets/transfertBTC/submitBtn2.dart';
+import 'package:easybit/screens/widgets/transfertBTC/textfields/passwordField.dart';
+import 'package:easybit/screens/widgets/transfertBTC/buttons/submitBtn2.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 

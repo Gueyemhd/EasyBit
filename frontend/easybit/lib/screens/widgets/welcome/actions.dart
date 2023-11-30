@@ -36,7 +36,7 @@ class Operations extends StatelessWidget {
                   onPressed: () => showDialog<String>(
                         context: context,
                         builder: (BuildContext context) => AlertDialog(
-                          title: const Text('je souhaite payer avec:'),
+                          title: const Text('Je souhaite payer avec:'),
                           elevation: 10.0,
                           backgroundColor:
                               const Color.fromARGB(255, 250, 250, 250),

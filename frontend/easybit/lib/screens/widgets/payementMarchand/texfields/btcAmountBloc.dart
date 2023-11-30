@@ -32,10 +32,10 @@ class _BtcAmountState extends State<BtcAmountField> {
             fontSize: 15,
           ),
         ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.01,
+        ),
         Container(
-            margin: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).size.height * 0.02,
-                horizontal: MediaQuery.of(context).size.width * 0.01),
             width: MediaQuery.of(context).size.width * 0.8,
             height: MediaQuery.of(context).size.height * 0.07,
             decoration: BoxDecoration(
@@ -59,14 +59,14 @@ class _BtcAmountState extends State<BtcAmountField> {
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.fromLTRB(15, 5, 0, 0),
-                      hintText: 'Entrer le montant à transférer',
+                      hintText: 'Entrer le montant à payer',
                       hintStyle: TextStyle(
                           color: Color.fromARGB(132, 0, 0, 0), fontSize: 13),
                     ),
                     // The validator receives the text that the user has entered.
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Veuillez entrer le montant en btc';
+                        return 'Veuillez entrer le montant à payer';
                       }
                       return null;
                     },

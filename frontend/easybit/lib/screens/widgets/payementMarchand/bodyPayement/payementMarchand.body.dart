@@ -1,7 +1,8 @@
 import 'package:easybit/screens/pages/welcomePage.dart';
-import 'package:easybit/screens/widgets/payementMarchand/btcAmountBloc.dart';
-import 'package:easybit/screens/widgets/payementMarchand/codeMarchandBloc.dart';
-import 'package:easybit/screens/widgets/payementMarchand/roundedBtn.dart';
+import 'package:easybit/screens/widgets/payementMarchand/texfields/btcAmountBloc.dart';
+import 'package:easybit/screens/widgets/payementMarchand/texfields/codeMarchandBloc.dart';
+import 'package:easybit/screens/widgets/payementMarchand/buttons/roundedBtn.dart';
+import 'package:easybit/screens/widgets/payementMarchand/buttons/switch.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,10 @@ class _PayementMarchandBodyState extends State<PayementMarchandBody> {
           horizontal: MediaQuery.of(context).size.width / 20,
           vertical: MediaQuery.of(context).size.height / 20),
       child: Column(children: <Widget>[
+        const SwitchButton(),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.04,
+        ),
         const CodeMarchandBloc(),
         const BtcAmountField(),
         SizedBox(
