@@ -6,14 +6,16 @@ from django.contrib.auth.decorators import login_required
 import jwt 
 from datetime import datetime, timedelta
 from .models import Utilisateur
-from easybit.settings import secret
+from easybit.settings import secret, secret1
+
+
 
 # API to sign in 
 @api_view(["POST"])
 
 def login_view(request):
     if request.method == "POST":
-        # we fetch credentials
+             # we fetch credentials
         username = request.data.get('username', None)
         password = request.data.get('password', None)
 
@@ -23,9 +25,7 @@ def login_view(request):
             
             utilisateur = Utilisateur.objects.filter(username=auth_user).first()
             transactions_user = utilisateur.transaction_set.all()
-            print (transactions_user)
-
-        
+           
             payload = {
                 'username': username,
                 'exp': datetime.utcnow() + timedelta(days=1)  # expire dans 1 jour
@@ -33,6 +33,8 @@ def login_view(request):
 
             # Générez le token JWT avec une clé secrète
             token = jwt.encode(payload, secret , algorithm='HS256')
+            print("============token===========")
+            print(token)
 
             # Créez la réponse
             response = Response()

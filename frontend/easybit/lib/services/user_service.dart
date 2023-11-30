@@ -2,6 +2,10 @@ import 'dart:convert';
 
 import 'package:easybit/models/user_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:localstorage/localstorage.dart';
+
+LocalStorage storage = LocalStorage('user_information');
+String token = storage.getItem('token');
 
 class UserService {
   Future<Map> registration(UserInformation user) async {
@@ -59,6 +63,7 @@ class UserService {
         Uri.parse(urlLogin),
         headers: {
           "Content-Type": "application/json",
+          "Authorization": "Bearer $token",
         },
       );
 
