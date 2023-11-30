@@ -9,6 +9,7 @@ import requests
 import re
 from django.utils import timezone
 import json
+from . import Gestion_Token
 
 
 
@@ -18,59 +19,72 @@ import json
 # API pour la validation de la demande de vente de bitcoins -------------------------------------------------------------
 
 @api_view(['POST'])
-@authentication_classes(['rest_framework.authentication.TokenAuthentication'])
 @permission_classes([IsAuthenticated])
 
 def vente_bitcoin_api(request):
 
-    if request.method == 'POST':
+    token = request.headers.get('Authorization').split(' ')[1]  
+    result = get_user_from_token(token)
 
-        try:
-            data = json.loads(request.body.decode('utf-8'))
-            montant_btc = Decimal(data.get('montant_btc', '0'))
-            montant_xof = convertir_btc_en_xof(montant_btc)
-           
+    if result:
 
-        except Decimal.InvalidOperation:
-            return JsonResponse({'message': 'Montant invalide'}, status=400)
+        #le token est donc valide
+        user = result
+    
 
 
-        utilisateur = request.user.utilisateur
-        username = utilisateur.username
-        num_tel = data.get('num_tel')
-        operateur = data.get('operateur')
-        type = Type.VENTE.value
+        if request.method == 'POST': 
+
+            try:
+                data = json.loads(request.body.decode('utf-8'))
+                montant_btc = Decimal(data.get('montant_btc', '0'))
+                montant_xof = convertir_btc_en_xof(montant_btc)
+            
+
+            except Decimal.InvalidOperation:
+                return JsonResponse({'message': 'Montant invalide'}, status=400)
 
 
-        # Vérifiez si le numéro de téléphone est valide
-        pattern = re.compile(r'^(78|77|70)\d{7}$')
-
-        if bool(pattern.match(num_tel)):
-            num_tel = num_tel
-        else:
-            return JsonResponse({'message': 'Numero de téléphone invalide'}, status=400)
-
-        if utilisateur.solde >= montant_btc:
-            # Sauvegarder les données nécessaires dans la session
-            request.session['vente_data'] = {
-
-                'montant_btc': montant_btc,
-                'montant_xof' : montant_xof, 
-                'operateur': operateur,
-                'username': username,
-                'users' : utilisateur
+            utilisateur = request.user.utilisateur
+            username = utilisateur.username
+            num_tel = data.get('num_tel')
+            operateur = data.get('operateur')
+            type = Type.VENTE.value
 
 
+            # Vérifiez si le numéro de téléphone est valide
+            pattern = re.compile(r'^(78|77|70)\d{7}$')
 
-            }
+            if bool(pattern.match(num_tel)):
+                num_tel = num_tel
+            else:
+                return JsonResponse({'message': 'Numero de téléphone invalide'}, status=400)
 
-            return JsonResponse({'message': 'Données de vente enregistrées avec succès'})
+            if utilisateur.solde >= montant_btc:
+                # Sauvegarder les données nécessaires dans la session
+                request.session['vente_data'] = {
 
-        else:
-            return JsonResponse({'message': 'Solde insuffisant de bitcoins pour effectuer la vente'}, status=400)
+                    'montant_btc': montant_btc,
+                    'montant_xof' : montant_xof, 
+                    'operateur': operateur,
+                    'username': username,
+                    'users' : utilisateur
 
-    return JsonResponse({'error': 'Méthode non autorisée'}, status=405)
 
+
+                }
+
+                return JsonResponse({'message': 'Données de vente enregistrées avec succès'})
+
+            else:
+                return JsonResponse({'message': 'Solde insuffisant de bitcoins pour effectuer la vente'}, status=400)
+
+        return JsonResponse({'error': 'Méthode non autorisée'}, status=405)
+
+
+    else:
+        #Le token n'est pas valide
+        return JsonResponse({'error': result}, status=status.HTTP_401_UNAUTHORIZED)
 
 #------------------------------------------------------------------------------------------------------------------
 
