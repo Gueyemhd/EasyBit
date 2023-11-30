@@ -110,7 +110,6 @@ class _BTCtoXOFState extends State<BTCtoXOF> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    //This size provides us total height and width of our screen
 
     Widget btcField() {
       return Row(mainAxisAlignment: MainAxisAlignment.center, children: [

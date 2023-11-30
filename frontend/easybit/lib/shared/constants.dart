@@ -11,3 +11,4 @@ const containerTexfieldColor = Color.fromARGB(255, 222, 221, 221);
 const disableTrsftButton = Colors.grey;
 const fiedeltcolor = Colors.grey;
 const alertTrsfcolor = Color.fromARGB(223, 225, 222, 222);
+const codeFieldcolor = Color.fromARGB(255, 246, 246, 246);

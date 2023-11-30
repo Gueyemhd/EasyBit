@@ -1,3 +1,4 @@
+import 'package:easybit/screens/widgets/payementMarchand/roundedBtn.dart';
 import 'package:easybit/screens/widgets/transfertBTC/quitBtn.dart';
 import 'package:easybit/screens/widgets/transfertBTC/rowpopup.dart';
 import 'package:easybit/screens/widgets/transfertBTC/rowpopup2.dart';
@@ -254,6 +255,9 @@ class _TransfertBitcoinsBodyState extends State<TransfertBitcoinsBody> {
                           color: trsftcolor,
                           size: 25,
                         ),
+                        style: const TextStyle(
+                          color: Colors.black,
+                        ),
 
                         // Array list of items
                         items:
@@ -279,20 +283,6 @@ class _TransfertBitcoinsBodyState extends State<TransfertBitcoinsBody> {
       );
     }
 
-    Widget transfertBtn() {
-      return ElevatedButton(
-        onPressed: _showAlertDialog,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: trsftcolor,
-          shape: const BeveledRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(3))),
-          textStyle: const TextStyle(
-              color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        child: const Text('Transférer'),
-      );
-    }
-
     return SingleChildScrollView(
       physics: const AlwaysScrollableScrollPhysics(),
       padding: EdgeInsets.symmetric(
@@ -307,7 +297,8 @@ class _TransfertBitcoinsBodyState extends State<TransfertBitcoinsBody> {
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.09,
         ),
-        transfertBtn()
+        RoundedBtn(
+            text: "Transférer", press: _showAlertDialog, fillcolor: trsftcolor)
       ]),
     );
   }
