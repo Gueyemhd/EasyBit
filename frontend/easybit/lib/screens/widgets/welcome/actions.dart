@@ -1,4 +1,5 @@
 import 'package:easybit/screens/pages/buyBtcWave.dart';
+import 'package:easybit/screens/pages/payementMarchand.dart';
 import 'package:easybit/screens/pages/sellBtc.dart';
 import 'package:easybit/screens/pages/transfertBitoins.dart';
 import 'package:easybit/screens/widgets/BuyAndSell/orange.money.dart';
@@ -89,10 +90,41 @@ class Operations extends StatelessWidget {
                     elevation: 0.0,
                     enableFeedback: false,
                   ),
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const TransfertBitcoins()));
-                  },
+                  onPressed: () => showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                          //  title: const Text('je souhaite payer avec:'),
+                          elevation: 10.0,
+                          backgroundColor: Color.fromARGB(255, 250, 250, 250),
+                          actions: <Widget>[
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      const Color.fromARGB(255, 250, 250, 250),
+                                  elevation: 0.0),
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        const TransfertBitcoins()));
+                              },
+                              child: Image.asset("images/transfert_simple.png"),
+                            ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      Color.fromARGB(255, 250, 250, 250),
+                                  elevation: 0.0),
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        const PayementMarchand()));
+                              },
+                              child:
+                                  Image.asset("images/payement_marchand.png"),
+                            )
+                          ],
+                        ),
+                      ),
                   child: Image.asset("images/transfer.png")),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
