@@ -25,12 +25,10 @@ def login_view(request):
             
             try :
 
-                utilisateur = Utilisateur.objects.filter(username=auth_user).first()
-                print (utilisateur)
+                utilisateur = Utilisateur.objects.filter(username=auth_user).first()    
                 transactions_user = utilisateur.transaction_set.all()
                 transactions_user = [{'montant_btc': t.montant_btc, 'montant_xof': t.montant_xof, 'type': t.type, 'users': [user.username for user in t.users.all()]} for t in transactions_user]
-                print (transactions_user)
-
+             
 
             except:
 

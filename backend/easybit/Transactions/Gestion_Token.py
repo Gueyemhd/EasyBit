@@ -27,7 +27,7 @@ def get_user_from_token( token ):
 
     try:
 
-        decoded = jwt.decode(token, secret , algorithms=['HS256'])
+        decoded = jwt.decode(token, 'BA4EB4D5A20BF50128A65996A28B958F801BDFECB47326CD0C6850F4CACB9171' , algorithms=['HS256'])
 
         username = decoded.get('user_username')
 
@@ -42,7 +42,7 @@ def get_user_from_token( token ):
 
     except jwt.InvalidTokenError :
 
-        message = 'oken invalide '
+        message = 'token invalide '
         
 
     return message

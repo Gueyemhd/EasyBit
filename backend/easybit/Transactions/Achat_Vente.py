@@ -40,11 +40,11 @@ def vente_bitcoin_api(request):
 
             try:
                 data = json.loads(request.body.decode('utf-8'))
-                montant_btc = Decimal(data.get('montant_btc', '0'))
-                montant_xof = convertir_btc_en_xof(montant_btc)
+                montant_btc = float(data.get('montant_btc', '0'))
+                montant_xof = float(data.get('montant_xof', '0'))
             
 
-            except Decimal.InvalidOperation:
+            except:
                 return JsonResponse({'message': 'Montant invalide'}, status=400)
 
 
@@ -64,17 +64,18 @@ def vente_bitcoin_api(request):
                 return JsonResponse({'message': 'Numero de téléphone invalide'}, status=400)
 
             if utilisateur.solde >= montant_btc and montant_btc > 0.0:
-                user.utilisateur.solde -= montant_btc
+                user.utilisateur.solde -= Decimal(montant_btc)
                 user.utilisateur.save()
 
                 transaction = Transaction.objects.create(
-                horodatage=timezone.now(),  
-                user=user,
+                horodatage=timezone.now(),                 
                 montant_btc=montant_btc,
                 montant_xof = montant_xof,
                 operateur=operateur,
                 type=Type.VENTE.value
             )
+                transaction.users.add(utilisateur)
+
                 return JsonResponse({'message': 'Vente effectuée avec succes'})
 
             else:
@@ -152,40 +153,34 @@ def vente_bitcoin_api(request):
 
 def achat_bitcoin_api(request):
 
-    
-
     token = request.headers.get('Authorization').split(' ')[1]  
 
     username = get_user_from_token(token)
 
-    print("l\'utilisateur {} a été indentifier aavec succés " .format(username))
-
     if username :
 
         user  = User.objects.get(username=username)
-
 
         if request.method == 'POST':
         
 
             try:
                 data = json.loads(request.body.decode('utf-8'))
-                montant_xof = Decimal(data.get('montant_xof', '0'))
-                montant_btc = convertir_xof_en_btc (montant_xof)
-            
-
-            except Decimal.InvalidOperation:
+                montant_xof = float(data.get('montant_xof', '0'))
+                montant_btc = float(data.get('montant_btc', '0'))
+              
+            except:
                 return JsonResponse({'message': 'Montant invalide'}, status=400)
 
 
-            utilisateur =Utilisateur.objects.get(user=user)
+            utilisateur = Utilisateur.objects.get(user=user)
             username = utilisateur.username
             operateur = data.get('operateur')
             num_tel = data.get('num_tel')
             
 
             # Vérifiez si le numero de télephone est valide
-            pattern = re.compile(r'^(78|77|70)\d{7}$')
+            pattern = re.compile(r'^(78|77|70|76)\d{7}$')
 
             if bool(pattern.match(num_tel)):
                 num_tel = num_tel
@@ -195,32 +190,46 @@ def achat_bitcoin_api(request):
             # Simuler le solde en fonction de l'opérateur
             solde_simule = 0
             if operateur == 'orange_money':
-                solde_simule = 200000  # Valeur simulée pour Orange Money
+                solde_simule = 200000000  # Valeur simulée pour Orange Money
             elif operateur == 'wave':
                 solde_simule = 100000  # Valeur simulée pour Wave
 
             # Vérifier le solde en fonction de l'opérateur choisi
             if solde_simule >= montant_xof and montant_xof > 0.0:
                 
-                utilisateur.utilisateur.solde += montant_btc
-                utilisateur.utilisateur.save()
+                utilisateur.solde += Decimal(montant_btc)
+                utilisateur.save()
 
                 transaction = Transaction.objects.create(
                 horodatage=timezone.now(),  
-                user=utilisateur.utilisateur,
                 montant_btc=montant_btc,
                 montant_xof=montant_xof,
                 operateur=operateur,
                 type=Type.ACHAT.value
             )
-               
+                transaction.users.add(utilisateur)                               
 
-                return JsonResponse({'message': 'Données d\'achat enregistrées avec succès'})
+                return JsonResponse({'message': 'succes'})
 
             else:
                 return JsonResponse({'message': 'Solde insuffisant dans le compte de mobile money'}, status=400)
 
         return JsonResponse({'error': 'Méthode non autorisée'}, status=405)
+
+
+# API pour récupérer les informations à jour de l'utilisateur
+@api_view(['GET'])
+def balance_refresh(request):
+    token = request.headers.get('Authorization').split(' ')[1]  
+
+    username = get_user_from_token(token)
+
+    user  = User.objects.get(username=username)
+    utilisateur = Utilisateur.objects.get(user=user)
+
+    solde = utilisateur.solde
+
+    return JsonResponse({'solde': solde})
 
 
 # API pour la confirmation de la demande d'achat de bitcoins--------------------------------------------------------------
@@ -273,16 +282,16 @@ def achat_bitcoin_api(request):
 # # Appel de l'API de convert_XOF ------------------------------------------------------------------
 
 
-def convertir_btc_en_xof(montant_btc):
+# def convertir_btc_en_xof(montant_btc):
 
-    conversion_api_url = 'http://127.0.0.1:8000/Convert_XOF/'
-    response = requests.post(conversion_api_url, data={'coin': float(montant_btc)})
+#     conversion_api_url = 'http://127.0.0.1:8000/Convert_XOF/'
+#     response = requests.post(conversion_api_url, data={'coin': float(montant_btc)})
     
-    if response.status_code == 200:
-        data = response.json()
-        return data.get('price', 0)
-    else:
-        return 0
+#     if response.status_code == 200:
+#         data = response.json()
+#         return data.get('price', 0)
+#     else:
+#         return 0
     
 
 #---------------------------------------------------------------------------------------------
@@ -292,15 +301,15 @@ def convertir_btc_en_xof(montant_btc):
 # Appel de l'API de convert_FCA ------------------------------------------------------------------
 
 
-def convertir_xof_en_btc (montant_xof):
-    conversion_api_url = 'http://127.0.0.1:8000/Convert_BTC/'
-    response = requests.post(conversion_api_url, data={'currency': float(montant_xof)})
+# def convertir_xof_en_btc (montant_xof):
+#     conversion_api_url = 'http://127.0.0.1:8000/Convert_BTC/'
+#     response = requests.post(conversion_api_url, data={'currency': float(montant_xof)})
     
-    if response.status_code == 200:
-        data = response.json()
-        return data.get('price', 0)
-    else:
-        return 0
+#     if response.status_code == 200:
+#         data = response.json()
+#         return data.get('price', 0)
+#     else:
+#         return 0
     
 
 

@@ -19,7 +19,7 @@ from django.urls import path, include
 from authentication.register import register
 from converting_calculator.converting import Convert_XOF , Convert_BTC
 from authentication.signing import login_view, logout_view
-from Transactions.Achat_Vente import vente_bitcoin_api, achat_bitcoin_api
+from Transactions.Achat_Vente import vente_bitcoin_api, achat_bitcoin_api, balance_refresh
 from Transactions.transfert import confirmation_demande_transfert_api, transfert_api
 
 
@@ -35,6 +35,7 @@ urlpatterns = [
     path("vente_bitcoin/", vente_bitcoin_api , name = "vente"),
     path("transfert/", transfert_api, name ='transfert' ),
     path("confirmation_transfert/", transfert_api, name ='confirmation_transfert' ),
+    path("balance/", balance_refresh, name="balance")
 
     
 ]
