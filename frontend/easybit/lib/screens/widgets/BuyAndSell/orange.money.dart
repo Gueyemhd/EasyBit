@@ -1,5 +1,4 @@
 import 'package:easybit/models/BuyBtc_Model.dart';
-import 'package:easybit/screens/pages/navigationPage.dart';
 import 'package:easybit/screens/widgets/BuyAndSell/BtcValue.dart';
 import 'package:easybit/screens/widgets/BuyAndSell/actionTransaction.dart';
 import 'package:easybit/screens/widgets/BuyAndSell/margin.dart';

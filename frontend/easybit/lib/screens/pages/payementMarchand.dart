@@ -1,12 +1,17 @@
 import 'package:easybit/screens/pages/navigationPage.dart';
-import 'package:easybit/screens/widgets/transfertBTC/bodyTransfert/transfertBitcoins.body.dart';
+import 'package:easybit/screens/widgets/payementMarchand/bodyPayement/payementMarchand.body.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 
-class TransfertBitcoins extends StatelessWidget {
-  static const String _title = 'Transférer des bitcoins';
+class PayementMarchand extends StatefulWidget {
+  const PayementMarchand({super.key});
 
-  const TransfertBitcoins({super.key});
+  @override
+  State<PayementMarchand> createState() => _PayementMarchandState();
+}
+
+class _PayementMarchandState extends State<PayementMarchand> {
+  static const String _title = 'Paiement Marchand';
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +44,6 @@ class TransfertBitcoins extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const WelcomePage())),
           ),
         ),
-        body: const TransfertBitcoinsBody());
+        body: const PayementMarchandBody());
   }
 }

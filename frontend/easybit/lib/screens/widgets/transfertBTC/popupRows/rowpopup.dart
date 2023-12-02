@@ -1,5 +1,5 @@
-import 'package:easybit/screens/widgets/transfertBTC/data.dart';
-import 'package:easybit/screens/widgets/transfertBTC/textmodel.dart';
+import 'package:easybit/screens/widgets/transfertBTC/formatWidgets/data.dart';
+import 'package:easybit/screens/widgets/transfertBTC/formatWidgets/textmodel.dart';
 import 'package:flutter/material.dart';
 
 class Rowpopup extends StatefulWidget {
@@ -16,7 +16,7 @@ class _RowpopupState extends State<Rowpopup> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         SizedBox(
-          width: MediaQuery.of(context).size.width * 0.01,
+          width: MediaQuery.of(context).size.width / 20,
         ),
         const Icon(
           Icons.money,

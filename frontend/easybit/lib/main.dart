@@ -2,6 +2,7 @@ import 'package:easybit/screens/pages/buyBtcOm.dart';
 import 'package:easybit/screens/pages/buyBtcWave.dart';
 import 'package:easybit/screens/pages/loginPage.dart';
 import 'package:easybit/screens/pages/nextPage.dart';
+import 'package:easybit/screens/pages/payementMarchand.dart';
 import 'package:easybit/screens/pages/registrationpage.dart';
 import 'package:easybit/screens/pages/sellBtc.dart';
 import 'package:easybit/screens/pages/startedPage.dart';

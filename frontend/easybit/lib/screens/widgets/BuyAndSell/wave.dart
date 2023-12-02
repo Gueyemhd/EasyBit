@@ -3,6 +3,7 @@ import 'package:easybit/screens/widgets/BuyAndSell/actionTransaction.dart';
 import 'package:easybit/screens/widgets/BuyAndSell/margin.dart';
 import 'package:easybit/screens/widgets/BuyAndSell/moneyField.dart';
 import 'package:easybit/screens/widgets/BuyAndSell/numberField.dart';
+import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 
 class BuyBtcWave extends StatefulWidget {
@@ -30,7 +31,7 @@ class _BuyBtcWaveState extends State<BuyBtcWave> {
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
-          backgroundColor: const Color.fromRGBO(29, 200, 255, 1),
+          backgroundColor: waveColor,
           leading: const BackButton(color: Colors.white),
         ),
         body: SingleChildScrollView(

@@ -1,5 +1,5 @@
-import 'package:easybit/screens/widgets/transfertBTC/data.dart';
-import 'package:easybit/screens/widgets/transfertBTC/textmodel.dart';
+import 'package:easybit/screens/widgets/transfertBTC/formatWidgets/data.dart';
+import 'package:easybit/screens/widgets/transfertBTC/formatWidgets/textmodel.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +17,7 @@ class _Rowpopup3State extends State<Rowpopup3> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         SizedBox(
-          width: MediaQuery.of(context).size.width * 0.01,
+          width: MediaQuery.of(context).size.width * 0.1,
         ),
         const Icon(
           Icons.person,
