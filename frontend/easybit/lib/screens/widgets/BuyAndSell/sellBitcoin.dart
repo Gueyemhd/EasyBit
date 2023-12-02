@@ -3,6 +3,7 @@ import 'package:easybit/screens/widgets/BuyAndSell/btcField.dart';
 import 'package:easybit/screens/widgets/BuyAndSell/margin.dart';
 import 'package:easybit/screens/widgets/BuyAndSell/moneyValue.dart';
 import 'package:easybit/screens/widgets/BuyAndSell/numberField.dart';
+import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 
 enum Operators { om, wave }
@@ -31,7 +32,7 @@ class _SellBitcoinState extends State<SellBitcoin> {
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
-          backgroundColor: const Color.fromRGBO(23, 101, 152, 1),
+          backgroundColor: sellbitcoincolor,
           leading: const BackButton(color: Colors.white),
         ),
         body: SingleChildScrollView(
@@ -91,7 +92,7 @@ class _SellBitcoinState extends State<SellBitcoin> {
                 const margin(),
                 ButtonTransaction(
                   press: () {},
-                  couleur: const Color.fromRGBO(23, 101, 152, 1),
+                  couleur: sellbitcoincolor,
                   texte: "VENDRE",
                 )
               ],

@@ -1,4 +1,4 @@
-import 'package:easybit/screens/widgets/transfertBTC/animated.dart';
+import 'package:easybit/screens/pages/welcomePage.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +22,7 @@ class _SubmitBtn2State extends State<SubmitBtn2> {
           child: ElevatedButton(
             onPressed: () {
               Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const Animated()));
+                  MaterialPageRoute(builder: (context) => const WelcomePage()));
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: bluelogo,

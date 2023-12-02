@@ -3,6 +3,7 @@ import 'package:easybit/screens/pages/buyBtcWave.dart';
 import 'package:easybit/screens/pages/calculatorBTCtoXOF.dart';
 import 'package:easybit/screens/pages/loginPage.dart';
 import 'package:easybit/screens/pages/nextPage.dart';
+import 'package:easybit/screens/pages/payementMarchand.dart';
 import 'package:easybit/screens/pages/registrationpage.dart';
 import 'package:easybit/screens/pages/sellBtc.dart';
 import 'package:easybit/screens/pages/startedPage.dart';
@@ -35,7 +36,8 @@ class MyApp extends StatelessWidget {
         "/orange": (context) => const BuyBtcOm(),
         "/wave": (context) => const Wave(),
         "/sellbtc": (context) => const SellBtc(),
-        "/profile": (context) => const ProfileUser()
+        "/profile": (context) => const ProfileUser(),
+        "/PayementMarchand": (context) => const PayementMarchand(),
       },
       initialRoute: "/welcome",
     );

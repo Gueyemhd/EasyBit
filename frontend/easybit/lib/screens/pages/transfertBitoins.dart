@@ -1,17 +1,12 @@
-import 'package:easybit/screens/pages/calculatorBTCtoXOF.dart';
-import 'package:easybit/screens/widgets/transfertBTC/transfertBitcoins.body.dart';
+import 'package:easybit/screens/pages/welcomePage.dart';
+import 'package:easybit/screens/widgets/transfertBTC/bodyTransfert/transfertBitcoins.body.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 
-class TransfertBitcoins extends StatefulWidget {
-  const TransfertBitcoins({super.key});
-
-  @override
-  State<TransfertBitcoins> createState() => _TransfertBitcoinsState();
-}
-
-class _TransfertBitcoinsState extends State<TransfertBitcoins> {
+class TransfertBitcoins extends StatelessWidget {
   static const String _title = 'Transférer des bitcoins';
+
+  const TransfertBitcoins({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +35,8 @@ class _TransfertBitcoinsState extends State<TransfertBitcoins> {
               size: 38,
             ),
             tooltip: 'Menu Icon',
-            onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const CalculatorBTCtoXOF())),
+            onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const WelcomePage())),
           ),
         ),
         body: const TransfertBitcoinsBody());

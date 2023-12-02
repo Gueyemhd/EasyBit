@@ -1,23 +1,24 @@
-import 'package:easybit/screens/pages/calculatorBTCtoXOF.dart';
-import 'package:easybit/screens/widgets/calculator/calculatorXOFtoBTCbody.dart';
+import 'package:easybit/screens/pages/welcomePage.dart';
+import 'package:easybit/screens/widgets/payementMarchand/bodyPayement/payementMarchand.body.dart';
+import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 
-class CalculatorXOFtoBTC extends StatefulWidget {
-  const CalculatorXOFtoBTC({super.key});
+class PayementMarchand extends StatefulWidget {
+  const PayementMarchand({super.key});
 
   @override
-  State<CalculatorXOFtoBTC> createState() => _CalculatorXOFtoBTCState();
+  State<PayementMarchand> createState() => _PayementMarchandState();
 }
 
-class _CalculatorXOFtoBTCState extends State<CalculatorXOFtoBTC> {
-  static const String _title = 'Calculateur';
+class _PayementMarchandState extends State<PayementMarchand> {
+  static const String _title = 'Paiement Marchand';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(237, 12, 90, 154),
+          backgroundColor: trsftcolor,
           title: const Text(
             _title,
             style: TextStyle(fontSize: 22),
@@ -39,10 +40,10 @@ class _CalculatorXOFtoBTCState extends State<CalculatorXOFtoBTC> {
               size: 38,
             ),
             tooltip: 'Menu Icon',
-            onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const CalculatorBTCtoXOF())),
+            onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const WelcomePage())),
           ),
         ),
-        body: XOFtoBTC());
+        body: const PayementMarchandBody());
   }
 }
