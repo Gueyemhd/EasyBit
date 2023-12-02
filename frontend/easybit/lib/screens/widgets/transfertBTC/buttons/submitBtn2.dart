@@ -1,5 +1,5 @@
 import 'package:easybit/screens/pages/navigationPage.dart';
-import 'package:easybit/screens/pages/welcomePage.dart';
+import 'package:easybit/screens/pages/navigationPage.dart';
 import 'package:easybit/shared/constants.dart';
 import 'package:flutter/material.dart';
 

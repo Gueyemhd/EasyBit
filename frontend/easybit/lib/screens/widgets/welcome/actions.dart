@@ -124,8 +124,7 @@ class Operations extends StatelessWidget {
                                                   .size
                                                   .height *
                                               0.01),
-                                      Image.asset(
-                                          "images/transfert_simple.png"),
+                                      Image.asset("images/transfert.png"),
                                       const Text('Transfert simple',
                                           style: TextStyle(
                                               fontSize: 12,

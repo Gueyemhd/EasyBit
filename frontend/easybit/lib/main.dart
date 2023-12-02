@@ -34,7 +34,6 @@ class MyApp extends StatelessWidget {
         "/orange": (context) => const BuyBtcOm(),
         "/wave": (context) => const Wave(),
         "/sellbtc": (context) => const SellBtc(),
-        // "/profile": (context) => const ProfileUser()
       },
       initialRoute: "/login",
     );

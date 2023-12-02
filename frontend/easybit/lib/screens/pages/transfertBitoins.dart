@@ -29,15 +29,7 @@ class TransfertBitcoins extends StatelessWidget {
           ),
           elevation: 0.00,
           actions: const <Widget>[],
-          leading: IconButton(
-            icon: const Icon(
-              Icons.arrow_circle_left_outlined,
-              size: 38,
-            ),
-            tooltip: 'Menu Icon',
-            onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const WelcomePage())),
-          ),
+          leading: const BackButton(color: Colors.white),
         ),
         body: const TransfertBitcoinsBody());
   }
