@@ -209,7 +209,14 @@ def achat_bitcoin_api(request):
             )
                 transaction.users.add(utilisateur)                               
 
-                return JsonResponse({'message': 'succes'})
+                return JsonResponse(
+                    {'message': 'succes',
+                     'montant_xof' : '{}'.format(montant_xof),
+                     'montant_btc' : '{}'.format(montant_btc),
+                     'date' : '{}'.format(transaction.horodatage),
+                     'reference': '{}'.format(transaction.id)
+                     }
+                    )
 
             else:
                 return JsonResponse({'message': 'Solde insuffisant dans le compte de mobile money'}, status=400)
