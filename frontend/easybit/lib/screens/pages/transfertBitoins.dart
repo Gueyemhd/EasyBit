@@ -18,7 +18,7 @@ class _TransfertBitcoinsState extends State<TransfertBitcoins> {
     return Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
-          backgroundColor: enableTrsftButton,
+          backgroundColor: trsftcolor,
           title: const Text(
             _title,
             style: TextStyle(fontSize: 22),

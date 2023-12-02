@@ -1,5 +1,6 @@
 import 'package:easybit/screens/pages/buyBtcWave.dart';
 import 'package:easybit/screens/pages/sellBtc.dart';
+import 'package:easybit/screens/pages/transfertBitoins.dart';
 import 'package:easybit/screens/widgets/BuyAndSell/orange.money.dart';
 import 'package:flutter/material.dart';
 
@@ -88,7 +89,10 @@ class Operations extends StatelessWidget {
                     elevation: 0.0,
                     enableFeedback: false,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const TransfertBitcoins()));
+                  },
                   child: Image.asset("images/transfer.png")),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
