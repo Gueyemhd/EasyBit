@@ -172,7 +172,7 @@ class _LoginBodyState extends State<LoginBody> {
                       storage.setItem('username', response['username']);
                       storage.setItem('mail', response['adresse_mail']);
                       storage.setItem('solde', response['solde']);
-                      storage.setItem('token', response['token']);
+                      storage.setItem('token', response['jwt']);
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => const WelcomePage()));
                     } else {

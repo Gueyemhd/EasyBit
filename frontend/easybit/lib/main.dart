@@ -6,7 +6,7 @@ import 'package:easybit/screens/pages/registrationpage.dart';
 import 'package:easybit/screens/pages/sellBtc.dart';
 import 'package:easybit/screens/pages/startedPage.dart';
 import 'package:easybit/screens/pages/navigationPage.dart';
-import 'package:easybit/screens/widgets/profile.dart';
+//import 'package:easybit/screens/widgets/profile.dart';
 import 'package:easybit/screens/pages/transfertBitoins.dart';
 import 'package:flutter/material.dart';
 

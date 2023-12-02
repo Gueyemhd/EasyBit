@@ -1,8 +1,8 @@
+import 'package:easybit/services/SellBtc_service.dart';
 import 'package:flutter/material.dart';
 import 'package:easybit/screens/widgets/welcome/actions.dart';
 import 'package:easybit/screens/widgets/welcome/header.dart';
 import 'package:easybit/screens/widgets/welcome/evolution.dart';
-import 'package:easybit/screens/widgets/welcome/navigation.dart';
 import 'package:localstorage/localstorage.dart';
 
 class WelcomeBody extends StatefulWidget {
@@ -75,14 +75,23 @@ class _WelcomeBodyState extends State<WelcomeBody> {
                     color: Color.fromRGBO(160, 32, 130, 1),
                     borderRadius: BorderRadius.all(Radius.circular(50.0))),
                 child: IconButton(
-                    onPressed: () => setState(() {
-                          isVisible = !isVisible;
-                          if (isVisible) {
-                            afficher = '${storage.getItem('solde')}';
-                          } else {
-                            afficher = defaultValue;
-                          }
-                        }),
+                    onPressed: () async {
+                      Map response = await SellBtcService().getBalance();
+                      if (response['solde'] == '0E-8') {
+                        storage.setItem('solde', '0.00000');
+                      } else {
+                        storage.setItem('solde', response['solde']);
+                      }
+
+                      setState(() {
+                        isVisible = !isVisible;
+                        if (isVisible) {
+                          afficher = '${storage.getItem('solde')}';
+                        } else {
+                          afficher = defaultValue;
+                        }
+                      });
+                    },
                     icon: Icon(
                       isVisible ? Icons.visibility : Icons.visibility_off,
                       color: Colors.white,

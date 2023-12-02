@@ -41,13 +41,13 @@ class _BuyBtcWaveState extends State<BuyBtcWave> {
               key: _formKey,
               child: Column(
                 children: [
-                  moneyField(controler: xofValueController),
-                  const margin(),
-                  const BtcValueWave(),
-                  const margin(),
                   NumberField(
                       controler: telephoneController,
                       couleur: Colors.grey[200]),
+                  const margin(),
+                  moneyField(controler: xofValueController),
+                  const margin(),
+                  const BtcValueWave(),
                   const margin(),
                   const margin(),
                   ButtonTransaction(
